@@ -1,0 +1,38 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [],
+  "rules": {
+    "no-param-reassign": ["error", { "props": false }],
+    "prefer-arrow/prefer-arrow-functions": [
+      "error",
+      {
+        "disallowPrototype": true,
+        "singleReturnOnly": false
+      }
+    ],
+    "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
+    "func-style": ["error", "expression", { "allowArrowFunctions": true }],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/no-unresolved": "off",
+    "import/no-dynamic-require": "off",
+    "import/order": "off",
+    "import/extensions": "off",
+    "linebreak-style": "off",
+    "max-len": ["error", { "code": 150 }],
+    "eol-last": "off",
+    "comma-dangle": "off",
+    "object-curly-newline": "off",
+    "global-require": "off",
+    "arrow-parens": ["error", "as-needed"],
+    "no-confusing-arrow": "off",
+    "implicit-arrow-linebreak": "off",
+    "no-bitwise": ["error", { "allow": ["&"] }],
+    "no-plusplus": "off"
+  }
+}
+
