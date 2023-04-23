@@ -1,4 +1,4 @@
-export const BASE_UBI_URI = 'https://public-ubiservices.ubi.com';
+export const BASE_UBI_URI = version => `https://public-ubiservices.ubi.com/v${version}`;
 
 export const UBI_APPID = '3587dcbb-7f81-457c-9781-0e3f29f6f56a';
 
