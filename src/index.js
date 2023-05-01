@@ -1,5 +1,6 @@
 import getAuth from './auth.js';
 import getUserByUsername from './getUserByUsername.js';
+import getUserByUserId from './getUserById.js';
 
 const email = 'calumwilson2000@gmail.com';
 const password = 'Trivium19-';
@@ -14,3 +15,6 @@ console.log(token);
 
 const player = await getUserByUsername("CaleyW1", "uplay");
 console.log(player);
+
+const playerById = await getUserByUserId(player.profiles[0].userId);
+console.log(playerById)

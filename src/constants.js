@@ -4,4 +4,6 @@ export const UBI_APPID = '3587dcbb-7f81-457c-9781-0e3f29f6f56a';
 
 export const UBI_AUTH_URI = '/profiles/sessions';
 
-export const UBI_GETUSERBYUSERNAME_URI = (userName, platform) => `/profiles?namesOnPlatform=${userName}&platformType=${platform}`
+export const UBI_GETUSERBYUSERNAME_URI = (userName, platform) => `/profiles?namesOnPlatform=${userName}&platformType=${platform}`;
+
+export const UBI_GETUSERBYID_URI = userId => `/profiles?userIds=${userId}`;
