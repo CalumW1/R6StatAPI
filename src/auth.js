@@ -8,14 +8,14 @@ let nextTokenRefresh = null;
 let currentTime = new Date().getTime();
 
 const getAuth = async (email, password) => {
-  if (token !== null && currentTime < nextTokenRefresh){
+  if (token !== null && currentTime < nextTokenRefresh) {
     return token;
   }
-  var token2 = await getTokenFromUbi(email, password);
-  return token2;
+  var newToken = await getTokenFromUbi(email, password);
+  return newToken;
 };
 
-async function getTokenFromUbi(email, password) {
+const getTokenFromUbi = async (email, password) => {
   console.log('refreshing token');
 
   const headers = {
@@ -41,6 +41,6 @@ async function getTokenFromUbi(email, password) {
   });
 
   return data.ticket;
-}
+};
 
 export default getAuth;
