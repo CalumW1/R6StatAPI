@@ -14,7 +14,14 @@ export const UBI_SPACEIDS = [
   { id: 'xbl', value: '98a601e5-ca91-4440-b1c5-753f601a2c90' },
 ];
 
+export const UBI_SERVER_IDS = [
+  { id: 'pc', value: 'e3d5ea9e-50bd-43b7-88bf-39794f4e3d40' },
+  { id: 'ps4', value: 'fb4cc4c9-2063-461d-a1e8-84a7d36525fc' },
+  { id: 'xbox', value: '4008612d-3baf-49e4-957a-33066726a7bc' },
+];
+
 export const BASE_UBI_URI = version => `https://public-ubiservices.ubi.com/v${version}`;
+export const UBI_SERVER_STATUS_URI = 'https://game-status-api.ubisoft.com/v1';
 
 export const UBI_GETUSERBYUSERNAME_URI = (userName, platform) =>
   `/profiles?namesOnPlatform=${userName}&platformType=${platform}`;
@@ -23,3 +30,5 @@ export const UBI_GETUSERBYID_URI = userId => `/profiles?userIds=${userId}`;
 
 export const UBI_GETPLAYERPROGRESSION = (spaceId, sandbox, playerIds) =>
   `/spaces/${spaceId}/sandboxes/${sandbox}/r6playerprofile/playerprofile/progressions?profile_ids=${playerIds}`;
+
+export const UBI_GETSERVERSTATUS = serverId => `instances?appIds=${serverId}`;
