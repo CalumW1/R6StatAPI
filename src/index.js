@@ -2,6 +2,7 @@ import getAuth from './auth.js';
 import getUserByUsername from './getUserByUsername.js';
 import getUserByUserId from './getUserById.js';
 import getUserProgression from './getUserProgression.js';
+import getServerStatus from './getServerStatus.js';
 
 const email = 'calumwilson2000@gmail.com';
 const password = 'Trivium19-';
@@ -22,3 +23,6 @@ console.log(playerById);
 
 const progression = await getUserProgression(player.profiles[0].userId, 'uplay');
 console.log(progression);
+
+const serverStatus = await getServerStatus('xbox');
+console.log(serverStatus);

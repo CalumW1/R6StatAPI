@@ -31,4 +31,4 @@ export const UBI_GETUSERBYID_URI = userId => `/profiles?userIds=${userId}`;
 export const UBI_GETPLAYERPROGRESSION = (spaceId, sandbox, playerIds) =>
   `/spaces/${spaceId}/sandboxes/${sandbox}/r6playerprofile/playerprofile/progressions?profile_ids=${playerIds}`;
 
-export const UBI_GETSERVERSTATUS = serverId => `instances?appIds=${serverId}`;
+export const UBI_GETSERVERSTATUS = serverId => `/instances?appIds=${serverId}`;
