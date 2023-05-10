@@ -3,6 +3,7 @@ import getUserByUsername from './getUserByUsername.js';
 import getUserByUserId from './getUserById.js';
 import getUserProgression from './getUserProgression.js';
 import getServerStatus from './getServerStatus.js';
+import getUserRank from './getUserRank.js';
 
 const email = 'calumwilson2000@gmail.com';
 const password = 'Trivium19-';
@@ -15,7 +16,7 @@ const password = 'Trivium19-';
 const token = await getAuth(email, password);
 console.log(token);
 
-const player = await getUserByUsername('CaleyW1', 'uplay');
+const player = await getUserByUsername('M0kA-', 'uplay');
 console.log(player);
 
 const playerById = await getUserByUserId(player.profiles[0].userId);
@@ -26,3 +27,6 @@ console.log(progression);
 
 const serverStatus = await getServerStatus('xbox');
 console.log(serverStatus);
+
+const rank = await getUserRank('pc', player.profiles[0].userId);
+console.log(rank.platform_families_full_profiles[0].board_ids_full_profiles[3]);

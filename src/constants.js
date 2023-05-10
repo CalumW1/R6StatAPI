@@ -1,4 +1,5 @@
-export const UBI_APPID = '3587dcbb-7f81-457c-9781-0e3f29f6f56a';
+// export const UBI_APPID = '3587dcbb-7f81-457c-9781-0e3f29f6f56a';
+export const UBI_APPID = 'e3d5ea9e-50bd-43b7-88bf-39794f4e3d40';
 
 export const UBI_AUTH_URI = '/profiles/sessions';
 
@@ -20,7 +21,12 @@ export const UBI_SERVER_IDS = [
   { id: 'xbox', value: '4008612d-3baf-49e4-957a-33066726a7bc' },
 ];
 
+export const UBI_BOARDIDS = [{}];
+
+export const UBI_REGIONID = [{}];
+
 export const BASE_UBI_URI = version => `https://public-ubiservices.ubi.com/v${version}`;
+
 export const UBI_SERVER_STATUS_URI = 'https://game-status-api.ubisoft.com/v1';
 
 export const UBI_GETUSERBYUSERNAME_URI = (userName, platform) =>
@@ -32,3 +38,9 @@ export const UBI_GETPLAYERPROGRESSION = (spaceId, sandbox, playerIds) =>
   `/spaces/${spaceId}/sandboxes/${sandbox}/r6playerprofile/playerprofile/progressions?profile_ids=${playerIds}`;
 
 export const UBI_GETSERVERSTATUS = serverId => `/instances?appIds=${serverId}`;
+
+export const UBI_RANKED_URI = (spaceId, sandboxId, boardId, seasonIds, regionId, profileIds) =>
+  `/spaces/${spaceId}/sandboxes/${sandboxId}/r6karma/player_skill_records?board_ids=${boardId}&season_ids=${seasonIds}&region_ids=${regionId}&profile_ids=${profileIds}`;
+
+export const UBI_PROFILEV2_URI = (profileId, platform) =>
+  `https://public-ubiservices.ubi.com/v2/spaces/0d2ae42d-4c27-4cb7-af6c-2099062302bb/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
