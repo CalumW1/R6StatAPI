@@ -4,6 +4,7 @@ import getUserByUserId from './getUserById.js';
 import getUserProgression from './getUserProgression.js';
 import getServerStatus from './getServerStatus.js';
 import getUserRank from './getUserRank.js';
+import getUserRankV1 from './getUserRankV1.js';
 
 const email = 'calumwilson2000@gmail.com';
 const password = 'Trivium19-';
@@ -30,3 +31,6 @@ console.log(serverStatus);
 
 const rank = await getUserRank('pc', player.profiles[0].userId);
 console.log(rank.platform_families_full_profiles[0].board_ids_full_profiles[3]);
+
+const rankV1 = await getUserRankV1('uplay', 'pvp_ranked', '', player.profiles[0].userId);
+console.log(rankV1);
