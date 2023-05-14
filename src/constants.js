@@ -44,3 +44,6 @@ export const UBI_RANKED_URI = (spaceId, sandboxId, boardId, seasonIds, regionId,
 
 export const UBI_PROFILEV2_URI = (profileId, platform) =>
   `https://public-ubiservices.ubi.com/v2/spaces/0d2ae42d-4c27-4cb7-af6c-2099062302bb/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
+
+export const UBI_SEASON_URI = (spaceId, sandbox, boardId, seasons, regionId, profileId) =>
+  `https://public-ubiservices.ubi.com/v1/spaces/${spaceId}/sandboxes/${sandbox}/r6karma/player_skill_records?board_ids=${boardId}&season_ids=${seasons}&region_ids=${regionId}&profile_ids=${profileId}`;
