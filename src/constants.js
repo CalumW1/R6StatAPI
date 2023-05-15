@@ -21,9 +21,9 @@ export const UBI_SERVER_IDS = [
   { id: 'xbox', value: '4008612d-3baf-49e4-957a-33066726a7bc' },
 ];
 
-export const UBI_BOARDIDS = [{}];
+export const UBI_REGIONID = ['emea', 'ncsa', 'apac'];
 
-export const UBI_REGIONID = [{}];
+export const UBI_BOARDID = ['pvp_ranked', 'pvp_casual', 'pvp_newcomer', 'pvp_event'];
 
 export const BASE_UBI_URI = version => `https://public-ubiservices.ubi.com/v${version}`;
 
