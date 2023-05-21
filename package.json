@@ -5,5 +5,26 @@
   "type": "module",
   "scripts": {
     "start": "node ./src/index.js"
-  }
+  },
+  "name": "r6statapi",
+  "description": "Wrapper for Rainbow Six Siege API",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CalumW1/R6StatAPI.git"
+  },
+  "keywords": [
+    "Ubisoft",
+    "Rainbow",
+    "Six",
+    "Seige"
+  ],
+  "author": "Calum Wilson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CalumW1/R6StatAPI/issues"
+  },
+  "homepage": "https://github.com/CalumW1/R6StatAPI#readme"
 }

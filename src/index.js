@@ -6,31 +6,36 @@ import getServerStatus from './getServerStatus.js';
 import getUserRank from './getUserRank.js';
 import getUserRankV1 from './getUserRankV1.js';
 
-const email = 'calumwilson2000@gmail.com';
-const password = 'Trivium19-';
+class api {
+  constructor() {
+    this.auth = async (email, password) => {
+      return await getAuth(email, password);
+    };
 
-// setInterval(async () => {
-//     const token = await getAuth(email, password);
-//     console.log(token);
-// }, 60000)
+    this.getUserByUserName = async (userName, platform) => {
+      return await getUserByUsername(userName, platform);
+    };
 
-const token = await getAuth(email, password);
-console.log(token);
+    this.getUserByUserId = async userId => {
+      return await getUserByUserId(userId);
+    };
 
-const player = await getUserByUsername('M0kA-', 'uplay');
-console.log(player);
+    this.getUserProgression = async (userId, platform) => {
+      return await getUserProgression(userId, platform);
+    };
 
-const playerById = await getUserByUserId(player.profiles[0].userId);
-console.log(playerById);
+    this.serverStatus = async platform => {
+      return await getServerStatus(platform);
+    };
 
-const progression = await getUserProgression(player.profiles[0].userId, 'uplay');
-console.log(progression);
+    this.getUserRank = async (userId, platform) => {
+      return await getUserRank(platform, userId);
+    };
 
-const serverStatus = await getServerStatus('xbox');
-console.log(serverStatus);
+    this.getUserRankV2 = async (platform, boardId, regionId, userId) => {
+      return await getUserRankV1(platform, boardId, regionId, userId);
+    };
+  }
+}
 
-const rank = await getUserRank('pc', player.profiles[0].userId);
-console.log(rank.platform_families_full_profiles[0].board_ids_full_profiles[3]);
-
-const rankV1 = await getUserRankV1('uplay', 'pvp_ranked', '', player.profiles[0].userId);
-console.log(rankV1);
+export default api;
