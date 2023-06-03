@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import { UBI_APPID, UBI_GETUSERBYID_URI, BASE_UBI_URI } from './constants.js';
 import getAuth from './auth.js';
+import { UserProfileDto } from './constants.js';
 
 const getUserByUserId = async userId => {
   const token = await getAuth();
@@ -20,7 +21,20 @@ const getUserByUserId = async userId => {
 
   const data = await response.json();
 
-  return data;
+  var dto = [];
+
+  for (var profile in data.profiles) {
+    var newObject = new UserProfileDto(
+      profile.profileId,
+      profile.userId,
+      profile.platformType,
+      profile.idOnPlatform,
+      profile.nameOnPLatform
+    );
+    dto.push(newObject);
+  }
+
+  return dto;
 };
 
 export default getUserByUserId;

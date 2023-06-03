@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import { UBI_APPID, BASE_UBI_URI, UBI_GETUSERBYUSERNAME_URI } from './constants.js';
 import getAuth from './auth.js';
+import { UserProfileDto } from './constants.js';
 
 const getUserByUsername = async (userName, platform) => {
   const token = await getAuth();
@@ -20,7 +21,18 @@ const getUserByUsername = async (userName, platform) => {
 
   const data = await response.json();
 
-  return data;
+  const dto = data.profiles.reduce((acc, profile) => {
+    const object = new UserProfileDto(
+      profile.profileId,
+      profile.userId,
+      profile.platformType,
+      profile.idOnPlatform,
+      profile.nameOnPlatform
+    );
+    return { ...acc, ...object };
+  }, {});
+
+  return dto;
 };
 
 export default getUserByUsername;

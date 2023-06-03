@@ -6,6 +6,7 @@ import {
   UBI_GETSERVERSTATUS,
 } from './constants.js';
 import getAuth from './auth.js';
+import { ServerStatusDto } from './constants.js';
 
 const getServerStatus = async plaform => {
   const token = await getAuth();
@@ -27,7 +28,14 @@ const getServerStatus = async plaform => {
 
   const data = await response.json();
 
-  return data;
+  var dto = new ServerStatusDto(
+    data.Platform,
+    data.Status,
+    data.Maintenance,
+    data.ImpactedFeatures
+  );
+
+  return dto;
 };
 
 export default getServerStatus;

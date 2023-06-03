@@ -44,3 +44,124 @@ export const UBI_RANKED_URI = (spaceId, sandboxId, boardId, seasons, regionId, p
 
 export const UBI_PROFILEV2_URI = (profileId, platform) =>
   `https://public-ubiservices.ubi.com/v2/spaces/0d2ae42d-4c27-4cb7-af6c-2099062302bb/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
+
+// DTOs
+
+export class ProgressionDto {
+  constructor(xp, profileId, lootboxProbability, level) {
+    (this.xp = xp),
+      (this.profileId = profileId),
+      (this.lootboxProbability = lootboxProbability),
+      (this.level = level);
+  }
+}
+
+export class ServerStatusDto {
+  constructor(platform, status, maintenance, impactedFeatures) {
+    (this.platform = platform),
+      (this.status = status),
+      (this.maintenance = maintenance),
+      (this.impactedFeatures = impactedFeatures);
+  }
+}
+
+export class UserProfileDto {
+  constructor(profileId, userId, platformType, idOnPlatform, nameOnPlatform) {
+    (this.profileId = profileId),
+      (this.userId = userId),
+      (this.platformType = platformType),
+      (this.idOnPlatform = idOnPlatform),
+      (this.nameOnPlatform = nameOnPlatform);
+  }
+}
+
+export class UserRankDtoV1 {
+  constructor(
+    maxMMR,
+    skillMean,
+    deaths,
+    profileId,
+    nextRankMMR,
+    rank,
+    maxRank,
+    boardId,
+    skillStdev,
+    kills,
+    lastMatchSkillStdevChange,
+    pastSeasonWins,
+    updateTime,
+    lastMatchMMRChange,
+    abandons,
+    season,
+    pastSeasonsLosses,
+    topRankPosition,
+    lastMatchSkillMeanChange,
+    MMR,
+    previousRankMMR,
+    lastMatchResult,
+    pastSeasonsAbandons,
+    wins,
+    region,
+    losses
+  ) {
+    (this.maxMMR = maxMMR), (this.skillMean = skillMean);
+    (this.deaths = deaths),
+      (this.profileId = profileId),
+      (this.nextRankMMR = nextRankMMR),
+      (this.rank = rank),
+      (this.maxRank = maxRank),
+      (this.boardId = boardId),
+      (this.skillStdev = skillStdev),
+      (this.kills = kills),
+      (this.lastMatchSkillStdevChange = lastMatchSkillStdevChange),
+      (this.pastSeasonWins = pastSeasonWins),
+      (this.updateTime = updateTime),
+      (this.lastMatchMMRChange = lastMatchMMRChange),
+      (this.abandons = abandons),
+      (this.season = season),
+      (this.pastSeasonsLosses = pastSeasonsLosses),
+      (this.topRankPosition = topRankPosition),
+      (this.lastMatchSkillMeanChange = lastMatchSkillMeanChange),
+      (this.MMR = MMR),
+      (this.previousRankMMR = previousRankMMR),
+      (this.lastMatchResult = lastMatchResult),
+      (this.pastSeasonsAbandons = pastSeasonsAbandons),
+      (this.wins = wins),
+      (this.region = region),
+      (this.losses = losses);
+  }
+}
+
+export class UserRankDtoV2 {
+  constructor(
+    boardId,
+    id,
+    maxRank,
+    maxRankPoints,
+    platformFamily,
+    rank,
+    rankPoints,
+    seasonId,
+    topRankPosition,
+    deaths,
+    kills,
+    abandons,
+    wins,
+    losses
+  ) {
+    (this.boardId = boardId),
+      (this.id = id),
+      (this.maxRank = maxRank),
+      (this.maxRankPoints = maxRankPoints),
+      (this.platformFamily = platformFamily),
+      (this.rank = rank),
+      (this.rankPoints = rankPoints),
+      (this.seasonId = seasonId),
+      (this.topRankPosition = topRankPosition),
+      (this.deaths = deaths),
+      (this.kills = kills),
+      (this.abandons = abandons),
+      (this.wins = wins),
+      (this.losses = losses);
+  }
+}

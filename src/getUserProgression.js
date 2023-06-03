@@ -7,6 +7,7 @@ import {
   UBI_SPACEIDS,
 } from './constants.js';
 import getAuth from './auth.js';
+import { ProgressionDto } from './constants.js';
 
 const getUserProgression = async (userId, platform) => {
   const token = await getAuth();
@@ -29,7 +30,17 @@ const getUserProgression = async (userId, platform) => {
 
   const data = await response.json();
 
-  return data;
+  const dto = data['player_profiles'].reduce((acc, player) => {
+    const object = new ProgressionDto(
+      player.xp,
+      userId,
+      player['lootbox_probability'],
+      player.level
+    );
+    return { ...acc, ...object };
+  }, {});
+
+  return dto;
 };
 
 export default getUserProgression;
