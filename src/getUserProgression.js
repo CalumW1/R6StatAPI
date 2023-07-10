@@ -3,8 +3,8 @@ import {
   UBI_APPID,
   UBI_GETPLAYERPROGRESSION,
   BASE_UBI_URI,
-  UBI_SANDBOXES,
-  UBI_SPACEIDS,
+  spaceIdCheck,
+  sandboxCheck,
 } from './constants.js';
 import getAuth from './auth.js';
 import { ProgressionDto } from './constants.js';
@@ -12,8 +12,8 @@ import { ProgressionDto } from './constants.js';
 const getUserProgression = async (userId, platform) => {
   const token = await getAuth();
 
-  const sandbox = UBI_SANDBOXES.find(x => x.id === platform).value;
-  const spaceId = UBI_SPACEIDS.find(x => x.id === platform).value;
+  const sandbox = await sandboxCheck(platform);
+  const spaceId = await spaceIdCheck(platform);
 
   const headers = {
     Authorization: `ubi_v1 t=${token}`,

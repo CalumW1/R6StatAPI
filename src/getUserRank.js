@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { UBI_APPID, BASE_UBI_URI, UBI_PROFILEV2_URI } from './constants.js';
+import { UBI_APPID, UBI_PROFILEV2_URI } from './constants.js';
 import getAuth from './auth.js';
 import { UserRankDtoV2 } from './constants.js';
 

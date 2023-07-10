@@ -165,3 +165,45 @@ export class UserRankDtoV2 {
       (this.losses = losses);
   }
 }
+
+// error handling
+
+export const sandboxCheck = async sandboxId => {
+  const sandbox = UBI_SANDBOXES.find(x => x.id === sandboxId).value;
+
+  if (!sandbox) {
+    throw new Error(`Sandbox ${sandboxId} doesn't exist`);
+  }
+
+  return sandbox;
+};
+
+export const spaceIdCheck = async spaceId => {
+  const space = UBI_SPACEIDS.find(x => x.id === spaceId).value;
+
+  if (!space) {
+    throw new Error(`SpaceId ${spaceId} doesn't exist`);
+  }
+
+  return space;
+};
+
+export const boardIdCheck = async boardId => {
+  const board = UBI_BOARDID.find(x => x === boardId);
+
+  if (!board) {
+    throw new Error(`BoardId ${boardId} doesn't exist`);
+  }
+
+  return board;
+};
+
+export const regionIdCheck = async regionId => {
+  const region = UBI_REGIONID.find(x => x === regionId);
+
+  if (!region) {
+    throw new Error(`RegionId ${regionId} doesn't exist`);
+  }
+
+  return region;
+};

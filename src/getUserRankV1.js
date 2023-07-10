@@ -3,10 +3,10 @@ import {
   BASE_UBI_URI,
   UBI_APPID,
   UBI_RANKED_URI,
-  UBI_SPACEIDS,
-  UBI_SANDBOXES,
-  UBI_BOARDID,
-  UBI_REGIONID,
+  sandboxCheck,
+  spaceIdCheck,
+  boardIdCheck,
+  regionIdCheck,
 } from './constants.js';
 import getAuth from './auth.js';
 import { UserRankDtoV1 } from './constants.js';
@@ -20,11 +20,12 @@ const getUserRankV1 = async (platform, boardId, regionId, seasons, profileId) =>
     'Content-Type': 'application/json',
   };
 
-  const sandbox = UBI_SANDBOXES.find(x => x.id === platform).value;
-  const spaceId = UBI_SPACEIDS.find(x => x.id === platform).value;
+  var sandbox = await sandboxCheck(platform);
+  var space = await spaceIdCheck(platform);
+  var board = await boardIdCheck(boardId);
+  var region = await regionIdCheck(regionId);
 
-  const URI =
-    BASE_UBI_URI(1) + UBI_RANKED_URI(spaceId, sandbox, boardId, seasons, regionId, profileId);
+  const URI = BASE_UBI_URI(1) + UBI_RANKED_URI(space, sandbox, board, seasons, region, profileId);
 
   const response = await fetch(URI, {
     method: 'GET',
@@ -69,9 +70,6 @@ const getUserRankV1 = async (platform, boardId, regionId, seasons, profileId) =>
       });
     });
   });
-
-  console.log(test);
-
   return data;
 };
 
