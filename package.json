@@ -8,13 +8,8 @@
   },
   "name": "r6statapi",
   "description": "Wrapper for Rainbow Six Siege API",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "src/index.js",
-  "module": "./index.mjs",
-  "exports": {
-    "import": "./index.mjs",
-    "require": "./src/index.js"
-  },
   "devDependencies": {},
   "repository": {
     "type": "git",
