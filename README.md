@@ -101,14 +101,22 @@ coming soon
 ``` -->
 
 #### Get server status
-coming soon
-<!-- Returns the status of a particular platform
+Returns the status of a particular platform
+
+platforms: pc, xbox, ps4
 ```
+await getServerStatus('pc')
 ```
 
 Example response
 ```
-``` -->
+{
+  platform: 'PC',
+  status: 'Online',
+  maintenance: null,
+  impactedFeatures: []
+}
+``` 
 
 #### Get user rank
 coming soon

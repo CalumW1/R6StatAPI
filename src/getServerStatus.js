@@ -1,12 +1,6 @@
 import fetch from 'node-fetch';
-import {
-  UBI_APPID,
-  UBI_SERVER_STATUS_URI,
-  UBI_SERVER_IDS,
-  UBI_GETSERVERSTATUS,
-} from './constants.js';
+import {ServerStatusDto, UBI_APPID, UBI_GETSERVERSTATUS, UBI_SERVER_IDS, UBI_SERVER_STATUS_URI,} from './constants.js';
 import getAuth from './auth.js';
-import { ServerStatusDto } from './constants.js';
 
 const getServerStatus = async plaform => {
   const token = await getAuth();
@@ -28,13 +22,16 @@ const getServerStatus = async plaform => {
 
   const data = await response.json();
 
-  var dto = new ServerStatusDto(
-    data.Platform,
-    data.Status,
-    data.Maintenance,
-    data.ImpactedFeatures
-  );
-
+  const dto = data.reduce((acc, status) => {
+    const object = new ServerStatusDto(
+        status.Platform,
+        status.Status,
+        status.Maintenance,
+        status.ImpactedFeatures
+    );
+    return { ...acc, ...object}
+  }, {});
+  
   return dto;
 };
 
