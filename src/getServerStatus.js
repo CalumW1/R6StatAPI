@@ -22,17 +22,15 @@ const getServerStatus = async plaform => {
 
   const data = await response.json();
 
-  const dto = data.reduce((acc, status) => {
+  return data.reduce((acc, status) => {
     const object = new ServerStatusDto(
         status.Platform,
         status.Status,
         status.Maintenance,
         status.ImpactedFeatures
     );
-    return { ...acc, ...object}
+    return {...acc, ...object}
   }, {});
-  
-  return dto;
 };
 
 export default getServerStatus;
