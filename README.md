@@ -115,13 +115,20 @@ Example response
 ``` 
 
 #### Get user progression
-coming soon
-<!-- ```
-``` -->
-
-<!-- Example response
+gets the progression for a user
 ```
-``` -->
+await getUserProgression(user.profileId, platform);
+``` 
+
+Example response
+```
+{
+  xp: 12887,
+  profileId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+  lootboxProbability: 750,
+  level: 186
+}
+```
 
 #### Get server status
 Returns the status of a particular platform

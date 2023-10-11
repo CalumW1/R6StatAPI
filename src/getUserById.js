@@ -20,6 +20,8 @@ const getUserByUserId = async userId => {
 
   const data = await response.json();
 
+  const dto = [];
+
   data.profiles.forEach(x => {
     var profile = {
       profileId: x.profileId,
