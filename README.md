@@ -82,14 +82,37 @@ Example response
 ```
 
 #### Get user by userId
-coming soon
-<!-- Gets a user by userId
+Gets a user by userId
 ```
+await getUserById(user.userId, platform);
 ```
 
 Example response
 ```
-``` -->
+[
+  {
+    profileId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+    userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+    platformType: 'uplay',
+    idOnPlatform: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+    nameOnPlatform: 'CaleyW1'
+  },
+  {
+    profileId: 'f02cbe10-2411-43d9-b449-5366888201a8',
+    userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+    platformType: 'steam',
+    idOnPlatform: '76561198172917986',
+    nameOnPlatform: '76561198172917986'
+  },
+  {
+    profileId: '91193155-2b57-48f1-b69b-556f5e4ccfeb',
+    userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+    platformType: 'twitch',
+    idOnPlatform: '469658264',
+    nameOnPlatform: 'calbob'
+  }
+]
+``` 
 
 #### Get user progression
 coming soon
