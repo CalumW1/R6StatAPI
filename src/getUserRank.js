@@ -22,29 +22,15 @@ const getUserRank = async (platforms, profileIds) => {
 
   const data = await response.json();
 
-  const dto = data.platform_families_full_profiles[0].board_ids_full_profiles.flatMap(board =>
-    board.full_profiles.map(
-      x =>
-        new UserRankDtoV2(
-          x.profile.board_id,
-          x.profile.id,
-          x.profile.max_rank,
-          x.profile.max_rank_points,
-          x.profile.platform_family,
-          x.profile.rank,
-          x.profile.rank_points,
-          x.profile.season_id,
-          x.profile.top_rank_position,
-          x.season_statistics.deaths,
-          x.season_statistics.kills,
-          x.season_statistics.match_outcomes.abandons,
-          x.season_statistics.match_outcomes.wins,
-          x.season_statistics.match_outcomes.losses
-        )
-    )
+  return data.platform_families_full_profiles.reduce(
+      (acc, platformFamily) => {
+        platformFamily.board_ids_full_profiles.forEach(board => {
+          acc.push(board.full_profiles[0]);
+        });
+        return acc;
+      },
+      []
   );
-
-  return dto;
 };
 
 export default getUserRank;

@@ -149,13 +149,127 @@ Example response
 ``` 
 
 #### Get user rank
-coming soon
-<!-- ```
+Returns statistics for different gamemodes
+```
+await getUserRank('pc', player.userId);
 ```
 
 Example response
 ```
-``` -->
+[                                                
+  {                                              
+    profile: {                                   
+      board_id: 'casual',                        
+      id: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+      max_rank: 0,                               
+      max_rank_points: 0,                        
+      platform_family: 'pc',                     
+      rank: 0,
+      rank_points: 0,
+      season_id: 31,
+      top_rank_position: 0
+    },
+    season_statistics: { 
+        deaths: 0, 
+        kills: 0, 
+        match_outcomes: {
+            "abandons": 0,
+            "losses": 0,
+            "wins": 0
+        } 
+    }
+  },
+  {
+    profile: {
+      board_id: 'event',
+      id: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+      max_rank: 0,
+      max_rank_points: 0,
+      platform_family: 'pc',
+      rank: 0,
+      rank_points: 0,
+      season_id: 31,
+      top_rank_position: 0
+    },
+    season_statistics: { 
+        deaths: 0, 
+        kills: 0, 
+        match_outcomes: {
+            "abandons": 0,
+            "losses": 0,
+            "wins": 0
+        } 
+    }
+  },
+  {
+    profile: {
+      board_id: 'warmup',
+      id: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+      max_rank: 0,
+      max_rank_points: 0,
+      platform_family: 'pc',
+      rank: 0,
+      rank_points: 0,
+      season_id: 31,
+      top_rank_position: 0
+    },
+    season_statistics: { 
+        deaths: 0, 
+        kills: 0, 
+        match_outcomes: {
+            "abandons": 0,
+            "losses": 0,
+            "wins": 0
+        } 
+    }
+  },
+  {
+    profile: {
+      board_id: 'standard',
+      id: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+      max_rank: 0,
+      max_rank_points: 0,
+      platform_family: 'pc',
+      rank: 0,
+      rank_points: 0,
+      season_id: 31,
+      top_rank_position: 0
+    },
+    season_statistics: { 
+        deaths: 0, 
+        kills: 0, 
+        match_outcomes: {
+            "abandons": 0,
+            "losses": 0,
+            "wins": 0
+        } 
+    }
+  },
+  {
+    profile: {
+      board_id: 'ranked',
+      id: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+      max_rank: 0,
+      max_rank_points: 1000,
+      platform_family: 'pc',
+      rank: 0,
+      rank_points: 1000,
+      season_id: 31,
+      top_rank_position: 0
+    },
+    season_statistics: { 
+        deaths: 0, 
+        kills: 0, 
+        match_outcomes: {
+            "abandons": 0,
+            "losses": 0,
+            "wins": 0
+        } 
+    }
+  }
+]
+
+```
 
 ## Support
 For any questions, bugs or feedback, please use our [Discord](https://discord.gg/Hc4rTJme4T) or create an issue on [Github]()
