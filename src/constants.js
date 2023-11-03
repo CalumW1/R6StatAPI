@@ -17,8 +17,8 @@ export const UBI_SPACEIDS = [
 
 export const UBI_SERVER_IDS = [
   { id: 'pc', value: 'e3d5ea9e-50bd-43b7-88bf-39794f4e3d40' },
-  { id: 'ps4', value: 'fb4cc4c9-2063-461d-a1e8-84a7d36525fc' },
-  { id: 'xbox', value: '4008612d-3baf-49e4-957a-33066726a7bc' },
+  { id: 'psn', value: 'fb4cc4c9-2063-461d-a1e8-84a7d36525fc' },
+  { id: 'xbl', value: '4008612d-3baf-49e4-957a-33066726a7bc' },
 ];
 
 export const UBI_REGIONID = ['emea', 'ncsa', 'apac'];
