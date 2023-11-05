@@ -51,8 +51,17 @@ export const UBI_RANKED_URI = (spaceId, sandboxId, boardId, seasons, regionId, p
 export const UBI_PROFILEV2_URI = (profileId, platform) =>
   `https://public-ubiservices.ubi.com/v2/spaces/0d2ae42d-4c27-4cb7-af6c-2099062302bb/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
 
-export const UBI_GETSTATS = (userId, spaceId, platform, seasons) =>
-  `/users/${userId}/playerstats?spaceId=${spaceId}&view=seasonal&aggregation=operators&gameMode=all,ranked,casual,unranked&platformGroup=${platform}&teamRole=attacker,defender&seasons=${seasons}`;
+export const UBI_GETSTATS = (
+  userId,
+  spaceId,
+  platform,
+  view,
+  aggregation,
+  gameMode,
+  teamRole,
+  seasons
+) =>
+  `/users/${userId}/playerstats?spaceId=${spaceId}&view=${view}&aggregation=${aggregation}&gameMode=${gameMode}&platformGroup=${platform}&teamRole=${teamRole}&seasons=${seasons}`;
 // DTOs
 
 export class ProgressionDto {
@@ -171,6 +180,92 @@ export class UserRankDtoV2 {
       (this.abandons = abandons),
       (this.wins = wins),
       (this.losses = losses);
+  }
+}
+
+export class operator {
+  constructor(
+    type,
+    statsType,
+    statsDetail,
+    seasonYear,
+    seasonNumber,
+    matchesPlayed,
+    roundsPlayed,
+    minutesPlayed,
+    matchesWon,
+    matchesLost,
+    roundsWon,
+    roundsLost,
+    kills,
+    assists,
+    death,
+    headshots,
+    meleeKills,
+    teamKills,
+    openingKills,
+    openingDeaths,
+    trades,
+    openingKillTrades,
+    openingDeathTrades,
+    revives,
+    distanceTravelled,
+    winLossRatio,
+    killDeathRatio,
+    headshotAccuracy,
+    killsPerRound,
+    roundsWithAKill,
+    roundsWithAMultiKill,
+    roundsWithOpeningKill,
+    roundsWithOpeningDeath,
+    roundsWithKOST,
+    roundsSurvived,
+    roundsWithAnAce,
+    roundsWithClutch,
+    timeAlivePerMatch,
+    timeDeadPerMatch,
+    distancePerRound
+  ) {
+    (this.type = type),
+      (this.statsType = statsType),
+      (this.statsDetail = statsDetail),
+      (this.seasonYear = seasonYear),
+      (this.seasonNumber = seasonNumber),
+      (this.matchesPlayed = matchesPlayed),
+      (this.roundsPlayed = roundsPlayed),
+      (this.minutesPlayed = minutesPlayed),
+      (this.matchesWon = matchesWon),
+      (this.matchesLost = matchesLost),
+      (this.roundsWon = roundsWon),
+      (this.roundsLost = roundsLost),
+      (this.kills = kills),
+      (this.assists = assists),
+      (this.death = death),
+      (this.headshots = headshots),
+      (this.meleeKills = meleeKills),
+      (this.teamKills = teamKills),
+      (this.openingKills = openingKills),
+      (this.openingDeaths = openingDeaths),
+      (this.trades = trades),
+      (this.openingKillTrades = openingKillTrades),
+      (this.openingDeathTrades = openingDeathTrades),
+      (this.revives = revives),
+      (this.distanceTravelled = distanceTravelled),
+      (this.winLossRatio = winLossRatio),
+      (this.killDeathRatio = killDeathRatio),
+      (this.headshotAccuracy = headshotAccuracy),
+      (this.killsPerRound = killsPerRound),
+      (this.roundsWithAKill = roundsWithAKill),
+      (this.roundsWithAMultiKill = roundsWithAMultiKill),
+      (this.roundsWithOpeningKill = roundsWithOpeningKill),
+      (this.roundsWithOpeningDeath = roundsWithOpeningDeath),
+      (this.roundsWithKOST = roundsWithKOST),
+      (this.roundsSurvived = roundsSurvived),
+      (this.roundsWithAnAce = roundsWithAnAce),
+      (this.roundsWithClutch = roundsWithClutch),
+      (this.timeAlivePerMatch = timeAlivePerMatch),
+      (this.timeDeadPerMatch = timeDeadPerMatch),
+      (this.distancePerRound = distancePerRound);
   }
 }
 
