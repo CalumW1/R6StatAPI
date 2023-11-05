@@ -30,6 +30,8 @@ const getUserProgression = async (userId, platform) => {
 
   const data = await response.json();
 
+  console.log(data);
+
   const dto = data['player_profiles'].reduce((acc, player) => {
     const object = new ProgressionDto(
       player.xp,

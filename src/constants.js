@@ -1,6 +1,10 @@
 // export const UBI_APPID = '3587dcbb-7f81-457c-9781-0e3f29f6f56a';
 export const UBI_APPID = 'e3d5ea9e-50bd-43b7-88bf-39794f4e3d40';
 
+export const UBI_DATADEV_APPID = '3587dcbb-7f81-457c-9781-0e3f29f6f56a';
+
+export const UBI_DATADEV_SESSIONID = '7d1ea7b3-023f-49d0-b51a-f2962c9ee041';
+
 export const UBI_AUTH_URI = '/profiles/sessions';
 
 export const UBI_SANDBOXES = [
@@ -29,6 +33,8 @@ export const BASE_UBI_URI = version => `https://public-ubiservices.ubi.com/v${ve
 
 export const UBI_SERVER_STATUS_URI = 'https://game-status-api.ubisoft.com/v1';
 
+export const UBI_DATADEV_URI = 'https://prod.datadev.ubisoft.com/v1';
+
 export const UBI_GETUSERBYUSERNAME_URI = (userName, platform) =>
   `/profiles?namesOnPlatform=${userName}&platformType=${platform}`;
 
@@ -45,6 +51,8 @@ export const UBI_RANKED_URI = (spaceId, sandboxId, boardId, seasons, regionId, p
 export const UBI_PROFILEV2_URI = (profileId, platform) =>
   `https://public-ubiservices.ubi.com/v2/spaces/0d2ae42d-4c27-4cb7-af6c-2099062302bb/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
 
+export const UBI_GETSTATS = (userId, spaceId, platform, seasons) =>
+  `/users/${userId}/playerstats?spaceId=${spaceId}&view=seasonal&aggregation=operators&gameMode=all,ranked,casual,unranked&platformGroup=${platform}&teamRole=attacker,defender&seasons=${seasons}`;
 // DTOs
 
 export class ProgressionDto {
