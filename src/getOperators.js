@@ -32,9 +32,11 @@ const getOperators = async (userId, platform, view, aggregation, gameMode, teamR
 
   const data = await response.json();
 
-  const allAttackers = Object.values(jsonData.profileData[userId].platforms.PC.gameModes).reduce(
+  console.log(data);
+
+  const allAttackers = Object.values(data.profileData[userId].platforms.PC.gameModes).reduce(
     (accumulator, gameMode) => {
-      const attackers = gameMode.teamRoles.Attacker.map(
+      const attackers = gameMode.teamRoles.attacker.map(
         attacker =>
           new operator(
             attacker.type,
@@ -46,7 +48,37 @@ const getOperators = async (userId, platform, view, aggregation, gameMode, teamR
             attacker.roundsPlayed,
             attacker.minutesPlayed,
             attacker.matchesWon,
-            attacker.matchesLost
+            attacker.matchesLost,
+            attacker.roundsWon,
+            attacker.roundsLost,
+            attacker.kills,
+            attacker.assists,
+            attacker.death,
+            attacker.headshots,
+            attacker.meleeKills,
+            attacker.teamKills,
+            attacker.openingKills,
+            attacker.openingDeaths,
+            attacker.trades,
+            attacker.openingKillTrades,
+            attacker.openingDeathTrades,
+            attacker.revives,
+            attacker.distanceTravelled,
+            attacker.winLossRation,
+            attacker.killDeathRatio,
+            attacker.headshotAccuracy,
+            attacker.killsPerRound,
+            attacker.roundsWithAKill,
+            attacker.roundsWithAMultiKill,
+            attacker.roundsWithOpeningKill,
+            attacker.roundsWithOpeningDeath,
+            attacker.roundsWithKOST,
+            attacker.roundsSurvived,
+            attacker.roundsWithAnAce,
+            attacker.roundsWithClutch,
+            attacker.rimeAlivePerMatch,
+            attacker.timeDeadPerMatch,
+            attacker.distancePerRound
           )
       );
       return accumulator.concat(attackers);
