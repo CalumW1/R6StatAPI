@@ -36,103 +36,105 @@ const getOperators = async (userId, platform, view, aggregation, gameMode, teamR
     (accumulator, gameMode) => {
       const attackers = gameMode?.teamRoles?.Attacker;
       const defenders = gameMode?.teamRoles?.Defender;
-      if (attackers !== undefined || attackers.length > 0) {
-        attackers.map(
-          attacker =>
-            new operator(
-              attacker.type,
-              attacker.statsType,
-              attacker.statsDetail,
-              attacker.seasonYear,
-              attacker.seasonNumber,
-              attacker.matchesPlayed,
-              attacker.roundsPlayed,
-              attacker.minutesPlayed,
-              attacker.matchesWon,
-              attacker.matchesLost,
-              attacker.roundsWon,
-              attacker.roundsLost,
-              attacker.kills,
-              attacker.assists,
-              attacker.death,
-              attacker.headshots,
-              attacker.meleeKills,
-              attacker.teamKills,
-              attacker.openingKills,
-              attacker.openingDeaths,
-              attacker.trades,
-              attacker.openingKillTrades,
-              attacker.openingDeathTrades,
-              attacker.revives,
-              attacker.distanceTravelled,
-              attacker.winLossRation,
-              attacker.killDeathRatio,
-              attacker.headshotAccuracy,
-              attacker.killsPerRound,
-              attacker.roundsWithAKill,
-              attacker.roundsWithAMultiKill,
-              attacker.roundsWithOpeningKill,
-              attacker.roundsWithOpeningDeath,
-              attacker.roundsWithKOST,
-              attacker.roundsSurvived,
-              attacker.roundsWithAnAce,
-              attacker.roundsWithClutch,
-              attacker.rimeAlivePerMatch,
-              attacker.timeDeadPerMatch,
-              attacker.distancePerRound
-            )
-        );
+      if (attackers && attackers.length > 0) {
+        attackers.reduce((acc, att) => {
+          const attacker = new operator(
+            att.type,
+            att.statsType,
+            att.statsDetail,
+            att.seasonYear,
+            att.seasonNumber,
+            att.matchesPlayed,
+            att.roundsPlayed,
+            att.minutesPlayed,
+            att.matchesWon,
+            att.matchesLost,
+            att.roundsWon,
+            att.roundsLost,
+            att.kills,
+            att.assists,
+            att.death,
+            att.headshots,
+            att.meleeKills,
+            att.teamKills,
+            att.openingKills,
+            att.openingDeaths,
+            att.trades,
+            att.openingKillTrades,
+            att.openingDeathTrades,
+            att.revives,
+            att.distanceTravelled,
+            att.winLossRation,
+            att.killDeathRatio,
+            att.headshotAccuracy,
+            att.killsPerRound,
+            att.roundsWithAKill,
+            att.roundsWithAMultiKill,
+            att.roundsWithOpeningKill,
+            att.roundsWithOpeningDeath,
+            att.roundsWithKOST,
+            att.roundsSurvived,
+            att.roundsWithAnAce,
+            att.roundsWithClutch,
+            att.rimeAlivePerMatch,
+            att.timeDeadPerMatch,
+            att.distancePerRound
+          );
+          return { ...acc, ...attacker };
+        }, {});
       }
 
-      if (defenders !== undefined || defenders > 0) {
-        defenders.map(
-          attacker =>
-            new operator(
-              attacker.type,
-              attacker.statsType,
-              attacker.statsDetail,
-              attacker.seasonYear,
-              attacker.seasonNumber,
-              attacker.matchesPlayed,
-              attacker.roundsPlayed,
-              attacker.minutesPlayed,
-              attacker.matchesWon,
-              attacker.matchesLost,
-              attacker.roundsWon,
-              attacker.roundsLost,
-              attacker.kills,
-              attacker.assists,
-              attacker.death,
-              attacker.headshots,
-              attacker.meleeKills,
-              attacker.teamKills,
-              attacker.openingKills,
-              attacker.openingDeaths,
-              attacker.trades,
-              attacker.openingKillTrades,
-              attacker.openingDeathTrades,
-              attacker.revives,
-              attacker.distanceTravelled,
-              attacker.winLossRation,
-              attacker.killDeathRatio,
-              attacker.headshotAccuracy,
-              attacker.killsPerRound,
-              attacker.roundsWithAKill,
-              attacker.roundsWithAMultiKill,
-              attacker.roundsWithOpeningKill,
-              attacker.roundsWithOpeningDeath,
-              attacker.roundsWithKOST,
-              attacker.roundsSurvived,
-              attacker.roundsWithAnAce,
-              attacker.roundsWithClutch,
-              attacker.rimeAlivePerMatch,
-              attacker.timeDeadPerMatch,
-              attacker.distancePerRound
-            )
-        );
+      if (defenders && defenders.length > 0) {
+        defenders.reduce((acc, def) => {
+          const defender = new operator(
+            def.type,
+            def.statsType,
+            def.statsDetail,
+            def.seasonYear,
+            def.seasonNumber,
+            def.matchesPlayed,
+            def.roundsPlayed,
+            def.minutesPlayed,
+            def.matchesWon,
+            def.matchesLost,
+            def.roundsWon,
+            def.roundsLost,
+            def.kills,
+            def.assists,
+            def.death,
+            def.headshots,
+            def.meleeKills,
+            def.teamKills,
+            def.openingKills,
+            def.openingDeaths,
+            def.trades,
+            def.openingKillTrades,
+            def.openingDeathTrades,
+            def.revives,
+            def.distanceTravelled,
+            def.winLossRation,
+            def.killDeathRatio,
+            def.headshotAccuracy,
+            def.killsPerRound,
+            def.roundsWithAKill,
+            def.roundsWithAMultiKill,
+            def.roundsWithOpeningKill,
+            def.roundsWithOpeningDeath,
+            def.roundsWithKOST,
+            def.roundsSurvived,
+            def.roundsWithAnAce,
+            def.roundsWithClutch,
+            def.rimeAlivePerMatch,
+            def.timeDeadPerMatch,
+            def.distancePerRound
+          );
+          return { ...acc, ...defender };
+        }, {});
       }
 
-      return accumulator.concat({ attacker: attackers }).concat({ defender: defenders });
+      return accumulator
+        .concat({ attacker: attackers ?? [] })
+        .concat({ defender: defenders ?? [] });
     },
     []
   );
