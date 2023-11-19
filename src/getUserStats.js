@@ -29,9 +29,9 @@ const getUserStats = async (userId, platform, view, aggregation, gameMode, teamR
 
   const data = await response.json();
 
-  console.log(data);
+  // console.log(data);
 
-  const userStats = Object.values(data.profileData[userId].platforms.PC.gameModes).reduce(
+  const userStat = Object.values(data.profileData[userId].platforms.PC.gameModes).reduce(
     (accumulator, gameMode) => {
       const allMode = gameMode?.teamRoles?.all;
       if (allMode && allMode.length > 0) {
@@ -81,10 +81,10 @@ const getUserStats = async (userId, platform, view, aggregation, gameMode, teamR
           return { ...acc, ...user };
         }, {});
       }
-      return { ...accumulator, ...allMode };
-    }
+      return accumulator.concat({player: allMode});
+    }, []
   );
-  return userStats;
+  return userStat;
 };
 
 export default getUserStats;

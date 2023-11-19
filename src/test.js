@@ -14,7 +14,7 @@ const password = 'Trivium19-';
 setInterval(async () => {
   const token = await getAuth(email, password);
   console.log(token);
-}, 60000);
+}, 600000);
 
 const token = await getAuth(email, password);
 console.log(token);
@@ -22,17 +22,17 @@ console.log(token);
 const player = await getUserByUsername('CaleyW1', 'uplay');
 console.log(player);
 
-const operator = await getOperators(
-  player.userId,
-  'uplay',
-  'seasonal',
-  'operators',
-  'all',
-  'Defender',
-  'Y6S3'
-);
+// const operator = await getOperators(
+//   player.userId,
+//   'uplay',
+//   'seasonal',
+//   'operators',
+//   'all',
+//   'Defender',
+//   'Y6S3'
+// );
 
-console.log(operator);
+// console.log(operator);
 
 const userStats = await getUserStats(
   player.userId,
@@ -43,7 +43,7 @@ const userStats = await getUserStats(
   'all',
   'Y6S3'
 );
-console.log(userStats.teamRoles.all[0]);
+console.log(userStats);
 
 // const playerById = await getUserByUserId(player.profiles[0].userId);
 // console.log(playerById);
