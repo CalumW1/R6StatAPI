@@ -47,10 +47,12 @@ console.log(user);
 ### Table of Contents
 1. [Auth](#Auth)
 2. [GetUserByUsername](#get-user-by-username)
-3. [GetUserByUserId]()
-4. [GetUserProgression]()
+3. [GetUserByUserId](#get-user-by-userid)
+4. [GetUserProgression](#get-user-progression)
 5. [GetServerStatus](#get-server-status)
-6. [GetUserRank]()
+6. [GetUserRank](#get-user-rank)
+7. [GetUserStats]()
+8. [GetOperators]()
 
 #### Auth
 Signs into the Ubisoft a returns a token.
@@ -266,6 +268,309 @@ Example response
             "wins": 0
         } 
     }
+  }
+]
+
+```
+
+#### Get User Stats
+Get seasonal user statistics
+
+|Field | Type | Required | options |
+| ----- | ---- | ------- | ------- |
+| userId | id | yes | |
+| platform | string | yes | uplay, xbox, ps4 | 
+| view | string | yes | seasonal |
+| aggregation | string | yes | summary |
+| gameMode | string | yes | All, Casual, Ranked |
+| teamRole | string | yes | All| 
+| season | string | yes | format Y(No.)S(No.) Example Y6S3|
+
+
+```
+const userStats = await getUserStats(
+  userId,
+  platform,
+  view,
+  aggregation,
+  gameMode,
+  teamRole,
+  season
+);
+```
+Example response
+
+```
+[
+  {
+    "player": [
+      {
+        "type": "Seasonal",
+        "statsType": "summary",
+        "statsDetail": "summary",
+        "seasonYear": "Y6",
+        "seasonNumber": "S3",
+        "matchesPlayed": 20,
+        "roundsPlayed": 92,
+        "minutesPlayed": 336,
+        "matchesWon": 5,
+        "matchesLost": 15,
+        "roundsWon": 34,
+        "roundsLost": 58,
+        "kills": 77,
+        "assists": 18,
+        "death": 68,
+        "headshots": 42,
+        "meleeKills": 0,
+        "teamKills": 1,
+        "openingKills": 11,
+        "openingDeaths": 7,
+        "trades": 3,
+        "openingKillTrades": 1,
+        "openingDeathTrades": 0,
+        "revives": 0,
+        "distanceTravelled": 16219,
+        "winLossRatio": 0.3333,
+        "killDeathRatio": {
+          "value": 1.1324,
+          "p": 0
+        },
+        "headshotAccuracy": {
+          "value": 0.5455,
+          "p": 0
+        },
+        "killsPerRound": {
+          "value": 0.837,
+          "p": 0
+        },
+        "roundsWithAKill": {
+          "value": 0.5109,
+          "p": 0
+        },
+        "roundsWithMultiKill": {
+          "value": 0.25,
+          "p": 0
+        },
+        "roundsWithOpeningKill": {
+          "value": 0.1196,
+          "p": 0
+        },
+        "roundsWithOpeningDeath": {
+          "value": 0.0761,
+          "p": 0
+        },
+        "roundsWithKOST": {
+          "value": 0.5543,
+          "p": 0
+        },
+        "roundsSurvived": {
+          "value": 0.2609,
+          "p": 0
+        },
+        "roundsWithAnAce": {
+          "value": 0,
+          "p": 0
+        },
+        "roundsWithClutch": {
+          "value": 0.0109,
+          "p": 0
+        },
+        "timeAlivePerMatch": 486,
+        "timeDeadPerMatch": 132,
+        "distancePerRound": 176.2935
+      }
+    ]
+  }
+]
+```
+
+
+#### Get Operator 
+Operator statistics for a particular season
+
+| Field | Type | Required | options |
+| ----- | ---- | -------- | ------- |
+| userId | Id | Yes|
+| platform | string | Yes | uplay, xbox, ps4|
+| view | string | Yes | seasonal |
+| aggregation | string | Yes | operator |
+| gameMode | string | Yes | All, Casual, Ranked |
+| team role | string | Yes | Attacker, Defender|
+| season | string | Yes | format Y(No.)S(No.) Example Y6S3 |
+
+```
+const operator = await getOperators(
+  userId,
+  platform,
+  view,
+  aggregation,
+  gameMode,
+  teamRole,
+  season
+);
+```
+
+Example Response
+
+```
+[
+  {
+    "attacker": [
+      {
+        "type": "Seasonal",
+        "statsType": "operators",
+        "statsDetail": "Iq",
+        "seasonYear": "Y6",
+        "seasonNumber": "S3",
+        "matchesPlayed": 3,
+        "roundsPlayed": 4,
+        "minutesPlayed": 12,
+        "matchesWon": 1,
+        "matchesLost": 2,
+        "roundsWon": 2,
+        "roundsLost": 2,
+        "kills": 2,
+        "assists": 0,
+        "death": 3,
+        "headshots": 1,
+        "meleeKills": 0,
+        "teamKills": 0,
+        "openingKills": 0,
+        "openingDeaths": 1,
+        "trades": 0,
+        "openingKillTrades": 0,
+        "openingDeathTrades": 0,
+        "revives": 0,
+        "distanceTravelled": 604,
+        "winLossRatio": 0.5,
+        "killDeathRatio": {
+          "value": 0.6667,
+          "p": 0
+        },
+        "headshotAccuracy": {
+          "value": 0.5,
+          "p": 0
+        },
+        "killsPerRound": {
+          "value": 0.5,
+          "p": 0
+        },
+        "roundsWithAKill": {
+          "value": 0.25,
+          "p": 0
+        },
+        "roundsWithMultiKill": {
+          "value": 0.25,
+          "p": 0
+        },
+        "roundsWithOpeningKill": {
+          "value": 0,
+          "p": 0
+        },
+        "roundsWithOpeningDeath": {
+          "value": 0.25,
+          "p": 0
+        },
+        "roundsWithKOST": {
+          "value": 0.25,
+          "p": 0
+        },
+        "roundsSurvived": {
+          "value": 0.25,
+          "p": 0
+        },
+        "roundsWithAnAce": {
+          "value": 0,
+          "p": 0
+        },
+        "roundsWithClutch": {
+          "value": 0,
+          "p": 0
+        },
+        "timeAlivePerMatch": 80,
+        "timeDeadPerMatch": 60,
+        "distancePerRound": 151
+      }
+    ]
+  },
+  {
+    "defender": [
+      {
+        "type": "Seasonal",
+        "statsType": "operators",
+        "statsDetail": "Ela",
+        "seasonYear": "Y6",
+        "seasonNumber": "S3",
+        "matchesPlayed": 3,
+        "roundsPlayed": 3,
+        "minutesPlayed": 10,
+        "matchesWon": 1,
+        "matchesLost": 2,
+        "roundsWon": 1,
+        "roundsLost": 2,
+        "kills": 0,
+        "assists": 2,
+        "death": 3,
+        "headshots": 0,
+        "meleeKills": 0,
+        "teamKills": 0,
+        "openingKills": 0,
+        "openingDeaths": 1,
+        "trades": 0,
+        "openingKillTrades": 0,
+        "openingDeathTrades": 0,
+        "revives": 0,
+        "distanceTravelled": 553,
+        "winLossRatio": 0.5,
+        "killDeathRatio": {
+          "value": 0,
+          "p": 0
+        },
+        "headshotAccuracy": {
+          "value": 0,
+          "p": 0
+        },
+        "killsPerRound": {
+          "value": 0,
+          "p": 0
+        },
+        "roundsWithAKill": {
+          "value": 0,
+          "p": 0
+        },
+        "roundsWithMultiKill": {
+          "value": 0,
+          "p": 0
+        },
+        "roundsWithOpeningKill": {
+          "value": 0,
+          "p": 0
+        },
+        "roundsWithOpeningDeath": {
+          "value": 0.3333,
+          "p": 0
+        },
+        "roundsWithKOST": {
+          "value": 0,
+          "p": 0
+        },
+        "roundsSurvived": {
+          "value": 0,
+          "p": 0
+        },
+        "roundsWithAnAce": {
+          "value": 0,
+          "p": 0
+        },
+        "roundsWithClutch": {
+          "value": 0,
+          "p": 0
+        },
+        "timeAlivePerMatch": 80,
+        "timeDeadPerMatch": 40,
+        "distancePerRound": 184.3333
+      }
+    ]
   }
 ]
 
