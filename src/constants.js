@@ -271,6 +271,7 @@ export class operator {
 
 export class userStats {
   constructor(
+    gameMode,
     type,
     statsType,
     statsDetail,
@@ -312,6 +313,7 @@ export class userStats {
     timeDeadPerMatch,
     distancePerRound
   ) {
+    (this.gameMode = gameMode),
     (this.type = type),
       (this.statsType = statsType),
       (this.statsDetail = statsDetail),

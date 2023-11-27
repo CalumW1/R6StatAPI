@@ -19,31 +19,31 @@ setInterval(async () => {
 const token = await getAuth(email, password);
 console.log(token);
 
-const player = await getUserByUsername('CaleyW1', 'uplay');
+const player = await getUserByUsername('Valor....', 'uplay');
 console.log(player);
 
-const operator = await getOperators(
-  player.userId,
-  'uplay',
-  'seasonal',
-  'operators',
-  'all',
-  'Defender,Attacker',
-  'Y6S3'
-);
-
-console.log(JSON.stringify(operator));
-
-// const userStats = await getUserStats(
+// const operator = await getOperators(
 //   player.userId,
 //   'uplay',
 //   'seasonal',
-//   'summary',
+//   'operators',
 //   'all',
-//   'all',
+//   'Defender,Attacker',
 //   'Y6S3'
 // );
-// console.log(JSON.stringify(userStats));
+
+// console.log(JSON.stringify(operator));
+
+const userStats = await getUserStats(
+  player.userId,
+  'uplay',
+  'seasonal',
+  'summary',
+  'all',
+  'all',
+  'Y8S3'
+);
+console.log(JSON.stringify(userStats));
 
 // const playerById = await getUserByUserId(player.profiles[0].userId);
 // console.log(playerById);
