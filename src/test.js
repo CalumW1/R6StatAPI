@@ -26,7 +26,7 @@ console.log(player);
 //   player.userId,
 //   'uplay',
 //   'seasonal',
-//   'operators',
+//   'operators',s
 //   'all',
 //   'Defender,Attacker',
 //   'Y6S3'
@@ -39,7 +39,7 @@ const userStats = await getUserStats(
   'uplay',
   'seasonal',
   'summary',
-  'all',
+  'all,ranked,casual,unranked',
   'all',
   'Y8S3'
 );

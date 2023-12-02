@@ -29,11 +29,8 @@ const getUserStats = async (userId, platform, view, aggregation, gameMode, teamR
 
   const data = await response.json();
 
-  console.log(data);
-
   const userStat = Object.values(data.profileData[userId].platforms.PC).reduce(
     (accumulator, gameModes) => {
-
       Object.entries(gameModes).map(([gameMode, data]) => {
         if(gameMode === 'ranked') {
           const ranked = mapValues(data, 'ranked')
@@ -43,6 +40,10 @@ const getUserStats = async (userId, platform, view, aggregation, gameMode, teamR
         else if (gameMode === 'all'){
           const all = mapValues(data, 'all')
           accumulator.push(all)
+        }
+        else if (gameMode === 'unranked'){
+          const unranked = mapValues(data, 'unranked')
+          accumulator.push(unranked);
         }
         else if (gameMode === 'casual') {
           const casual = mapValues(data)
