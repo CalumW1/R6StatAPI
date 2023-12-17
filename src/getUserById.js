@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import { UBI_APPID, UBI_GETUSERBYID_URI, BASE_UBI_URI } from './constants.js';
-import getAuth from './auth.js';
+import { getAuth } from './auth.js';
 
 const getUserByUserId = async userId => {
   const token = await getAuth();

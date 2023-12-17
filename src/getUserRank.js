@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import { UBI_APPID, UBI_PROFILEV2_URI } from './constants.js';
-import getAuth from './auth.js';
+import { getAuth } from './auth.js';
 import { UserRankDtoV2 } from './constants.js';
 
 const getUserRank = async (platforms, profileIds) => {

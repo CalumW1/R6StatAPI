@@ -1,4 +1,4 @@
-import getAuth from './auth.js';
+import { getAuth } from './auth.js';
 import getUserByUsername from './getUserByUsername.js';
 import getUserByUserId from './getUserById.js';
 import getUserProgression from './getUserProgression.js';

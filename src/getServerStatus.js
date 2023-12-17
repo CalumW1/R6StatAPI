@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import {ServerStatusDto, UBI_APPID, UBI_GETSERVERSTATUS, UBI_SERVER_IDS, UBI_SERVER_STATUS_URI,} from './constants.js';
-import getAuth from './auth.js';
+import {getAuth} from './auth.js';
 
 const getServerStatus = async plaform => {
   const token = await getAuth();

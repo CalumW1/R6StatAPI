@@ -8,7 +8,7 @@ import {
   boardIdCheck,
   regionIdCheck,
 } from './constants.js';
-import getAuth from './auth.js';
+import { getAuth } from './auth.js';
 import { UserRankDtoV1 } from './constants.js';
 
 const getUserRankV1 = async (platform, boardId, regionId, seasons, profileId) => {

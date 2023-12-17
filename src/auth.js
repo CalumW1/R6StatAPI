@@ -6,14 +6,19 @@ const fileName = 'Auth.json';
 let token = null;
 let nextTokenRefresh = null;
 let currentTime = new Date().getTime();
+let expiration = null;
 
-const getAuth = async (email, password) => {
+export const getAuth = async (email, password) => {
   if (token !== null && currentTime < nextTokenRefresh) {
     return token;
   }
   var newToken = await getTokenFromUbi(email, password);
   return newToken;
 };
+
+export const getExpiryDate = async () => {
+  return expiration;
+}
 
 const getTokenFromUbi = async (email, password) => {
   console.log('refreshing token');
@@ -34,6 +39,7 @@ const getTokenFromUbi = async (email, password) => {
 
   token = data.ticket;
   nextTokenRefresh = new Date(data.expiration).getTime();
+  expiration = data.expiration;
 
   fs.writeFile(fileName, JSON.stringify(data, null, 2), err => {
     if (err) throw err;
@@ -42,5 +48,3 @@ const getTokenFromUbi = async (email, password) => {
 
   return data.ticket;
 };
-
-export default getAuth;

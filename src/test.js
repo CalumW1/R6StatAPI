@@ -1,6 +1,6 @@
 import api from './index.js';
 import getUserByUsername from './getUserByUsername.js';
-import getAuth from './auth.js';
+import { getAuth } from './auth.js';
 import getServerStatus from './getServerStatus.js';
 import getUserRank from './getUserRank.js';
 import getUserRankV1 from './getUserRankV1.js';
@@ -43,7 +43,8 @@ const userStats = await getUserStats(
   'all',
   'Y8S3'
 );
-console.log(JSON.stringify(userStats));
+console.log(userStats);
+
 
 // const playerById = await getUserByUserId(player.profiles[0].userId);
 // console.log(playerById);
@@ -54,8 +55,8 @@ console.log(JSON.stringify(userStats));
 /*const serverStatus = await getServerStatus('pc');
 console.log(serverStatus);*/
 
-/*const rank = await getUserRank('pc', player.userId);
-console.log(rank);*/
+// const rank = await getUserRank('pc', player.userId);
+// console.log(rank.find(x => x.board_id === 'ranked'));
 
 /*const rankV1 = await getUserRankV1('uplay', 'pvp_ranked', 'apac', '23', player.userId);
 console.log(rankV1);*/

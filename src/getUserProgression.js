@@ -6,7 +6,7 @@ import {
   spaceIdCheck,
   sandboxCheck,
 } from './constants.js';
-import getAuth from './auth.js';
+import { getAuth } from './auth.js';
 import { ProgressionDto } from './constants.js';
 
 const getUserProgression = async (userId, platform) => {

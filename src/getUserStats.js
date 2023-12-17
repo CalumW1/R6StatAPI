@@ -6,11 +6,13 @@ import {
   spaceIdCheck,
   userStats,
 } from './constants.js';
-import getAuth from './auth.js';
-import auth from './Auth.json' assert { type: 'json' };
+import { getAuth, getExpiryDate } from './auth.js';
 
 const getUserStats = async (userId, platform, view, aggregation, gameMode, teamRole, season) => {
   const token = await getAuth();
+  const expiration = await getExpiryDate();
+
+  console.log(expiration);
 
   const spaceId = await spaceIdCheck(platform);
 
@@ -18,7 +20,7 @@ const getUserStats = async (userId, platform, view, aggregation, gameMode, teamR
     Authorization: `ubi_v1 t=${token}`,
     'Ubi-SessionId': UBI_DATADEV_SESSIONID,
     'Content-Type': 'application/json',
-    expiration: auth.expiration,
+    expiration: expiration,
   };
 
   const URI =
