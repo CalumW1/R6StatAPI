@@ -32,10 +32,10 @@ const getOperators = async (userId, platform, view, aggregation, gameMode, teamR
 
   const data = await response.json();
 
-  const allAttackers = Object.values(data.profileData[userId].platforms.PC.gameModes).reduce(
-    (accumulator, gameMode) => {
-      const attackers = gameMode?.teamRoles?.Attacker;
-      const defenders = gameMode?.teamRoles?.Defender;
+  const allAttackers = Object.values(data.profileData[userId].platforms.PC).reduce(
+    (accumulator, gameModes) => {
+      const attackers = gameModes?.all.teamRoles?.Attacker;
+      const defenders = gameModes?.all.teamRoles?.Defender;
       if (attackers && attackers.length > 0) {
         attackers.reduce((acc, att) => {
           const attacker = new operator(
@@ -132,9 +132,7 @@ const getOperators = async (userId, platform, view, aggregation, gameMode, teamR
         }, {});
       }
 
-      return accumulator
-        .concat({ attacker: attackers ?? [] })
-        .concat({ defender: defenders ?? [] });
+      return {attackers: attackers, defenders: defenders}
     },
     []
   );

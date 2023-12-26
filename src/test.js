@@ -19,31 +19,40 @@ setInterval(async () => {
 const token = await getAuth(email, password);
 console.log(token);
 
-const player = await getUserByUsername('Valor....', 'uplay');
+const player = await getUserByUsername('CaleyW1', 'uplay');
 console.log(player);
 
-// const operator = await getOperators(
-//   player.userId,
-//   'uplay',
-//   'seasonal',
-//   'operators',s
-//   'all',
-//   'Defender,Attacker',
-//   'Y6S3'
-// );
-
-// console.log(JSON.stringify(operator));
-
-const userStats = await getUserStats(
+  const operator = await getOperators(
   player.userId,
   'uplay',
   'seasonal',
-  'summary',
-  'all,ranked,casual,unranked',
+  'operators',
   'all',
-  'Y8S3'
+  'Defender,Attacker',
+  'Y7S4'
 );
-console.log(userStats);
+
+// console.log(operator);
+
+var operatorName = 'iq'
+
+var attacker = operator.attackers.find(x => x.statsDetail.toLowerCase() === operatorName);
+var defender = operator.defenders.find(x => x.statsDetail.toLowerCase() === operatorName);
+
+var foundOperator = attacker ?? defender;
+console.log(foundOperator)
+
+// const userStats = await getUserStats(
+//   player.userId,
+//   'uplay',
+//   'seasonal',
+//   'summary',
+//   'ranked,casual',
+//   'all',
+//   'Y8S3'
+// );
+// const test = userStats.find(x => x.gameMode === 'ranked')
+// console.log(test);
 
 
 // const playerById = await getUserByUserId(player.profiles[0].userId);
@@ -56,7 +65,7 @@ console.log(userStats);
 console.log(serverStatus);*/
 
 // const rank = await getUserRank('pc', player.userId);
-// console.log(rank.find(x => x.board_id === 'ranked'));
+// console.log(rank);
 
 /*const rankV1 = await getUserRankV1('uplay', 'pvp_ranked', 'apac', '23', player.userId);
 console.log(rankV1);*/

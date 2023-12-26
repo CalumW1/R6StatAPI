@@ -36,13 +36,12 @@ const getUserStats = async (userId, platform, view, aggregation, gameMode, teamR
       Object.entries(gameModes).map(([gameMode, data]) => {
         if(gameMode === 'ranked') {
           const ranked = mapValues(data, 'ranked')
-          console.log(ranked)
           accumulator.push(ranked)
         }
         else if (gameMode === 'all'){
           const all = mapValues(data, 'all')
           accumulator.push(all)
-        }
+        } 
         else if (gameMode === 'unranked'){
           const unranked = mapValues(data, 'unranked')
           accumulator.push(unranked);
@@ -105,7 +104,7 @@ const mapValues = (gameMode, mode) => {
         stats.timeDeadPerMatch,
         stats.distancePerRound
       );
-      return acc;
+      return { ...acc };
     }, {})
   }
   return {};
