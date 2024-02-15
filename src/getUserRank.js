@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { UBI_APPID, UBI_PROFILEV2_URI } from './constants.js';
 import { getAuth } from './auth.js';
-import { UserRankDtoV2 } from './constants.js';
+import { platformCheck } from './constants.js';
 
 const getUserRank = async (platforms, profileIds) => {
   const token = await getAuth();
@@ -13,7 +13,9 @@ const getUserRank = async (platforms, profileIds) => {
     'Content-Type': 'application/json',
   };
 
-  const URI = UBI_PROFILEV2_URI(profileIds, platforms);
+  const platform = platformCheck(platforms);
+
+  const URI = UBI_PROFILEV2_URI(profileIds, platform);
 
   const response = await fetch(URI, {
     method: 'GET',
@@ -22,15 +24,12 @@ const getUserRank = async (platforms, profileIds) => {
 
   const data = await response.json();
 
-  return data.platform_families_full_profiles.reduce(
-      (acc, platformFamily) => {
-        platformFamily.board_ids_full_profiles.forEach(board => {
-          acc.push(board.full_profiles[0]);
-        });
-        return acc;
-      },
-      []
-  );
+  return data.platform_families_full_profiles.reduce((acc, platformFamily) => {
+    platformFamily.board_ids_full_profiles.forEach(board => {
+      acc.push(board.full_profiles[0]);
+    });
+    return acc;
+  }, []);
 };
 
 export default getUserRank;

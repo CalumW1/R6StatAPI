@@ -7,6 +7,8 @@ export const UBI_DATADEV_SESSIONID = '7d1ea7b3-023f-49d0-b51a-f2962c9ee041';
 
 export const UBI_AUTH_URI = '/profiles/sessions';
 
+export const UBI_SESSIONID = '089aa129-cb3a-43d6-9455-e40a5e65f0e7';
+
 export const UBI_SANDBOXES = [
   { id: 'uplay', value: 'OSBOR_PC_LNCH_A' },
   { id: 'psn', value: 'OSBOR_PS4_LNCH_A' },
@@ -14,7 +16,8 @@ export const UBI_SANDBOXES = [
 ];
 
 export const UBI_SPACEIDS = [
-  { id: 'uplay', value: '5172a557-50b5-4665-b7db-e3f2e8c5041d' },
+  // { id: 'uplay', value: '5172a557-50b5-4665-b7db-e3f2e8c5041d' },
+  { id: 'uplay', value: '0d2ae42d-4c27-4cb7-af6c-2099062302bb' },
   { id: 'psn', value: '05bfb3f7-6c21-4c42-be1f-97a33fb5cf66' },
   { id: 'xbl', value: '98a601e5-ca91-4440-b1c5-753f601a2c90' },
 ];
@@ -51,6 +54,9 @@ export const UBI_RANKED_URI = (spaceId, sandboxId, boardId, seasons, regionId, p
 export const UBI_PROFILEV2_URI = (profileId, platform) =>
   `https://public-ubiservices.ubi.com/v2/spaces/0d2ae42d-4c27-4cb7-af6c-2099062302bb/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
 
+export const UBI_GETPLAYERPROGRESSION2 = (spaceId, playerId) =>
+  `/spaces/${spaceId}/title/r6s/rewards/public_profile?profile_id=${playerId}`;
+
 export const UBI_GETSTATS = (
   userId,
   spaceId,
@@ -62,8 +68,12 @@ export const UBI_GETSTATS = (
   seasons
 ) =>
   `/users/${userId}/playerstats?spaceId=${spaceId}&view=${view}&aggregation=${aggregation}&gameMode=${gameMode}&platformGroup=${platform}&teamRole=${teamRole}&seasons=${seasons}`;
-// DTOs
 
+// Helper Functions
+
+export const platformCheck = platform => (platform === 'xbl' || 'psn' ? 'console' : platform);
+
+// DTOs
 export class ProgressionDto {
   constructor(xp, profileId, lootboxProbability, level) {
     (this.xp = xp),
@@ -314,7 +324,7 @@ export class userStats {
     distancePerRound
   ) {
     (this.gameMode = gameMode),
-    (this.type = type),
+      (this.type = type),
       (this.statsType = statsType),
       (this.statsDetail = statsDetail),
       (this.seasonYear = seasonYear),
