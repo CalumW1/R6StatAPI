@@ -1,8 +1,6 @@
 # R6StatAPI
 A wrapper for the Rainbow Six Seige API in Node.JS
 
-⚠️ *This package is still a work in progress, please check out the [support](#support) section if you are having any issues.*
-
 ## Table of Contents
 1. [Installation](#installation)
 2. [Getting Started](#getting-started)
