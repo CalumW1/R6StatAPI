@@ -19,7 +19,7 @@ setInterval(async () => {
 const token = await getAuth(email, password);
 console.log(token);
 
-const player = await getUserByUsername('Bernord_ACG', 'psn');
+const player = await getUserByUsername('CaleyW1', 'uplay');
 console.log(player);
 
 // const progression = await getUserProgression(player.userId, 'uplay');
@@ -60,8 +60,8 @@ console.log(player);
 // const playerById = await getUserByUserId(player.profiles[0].userId);
 // console.log(playerById);
 
-// const progression = await getUserProgression(player.userId, 'xbl');
-// console.log(progression);
+const progression = await getUserProgression(player.userId, 'uplay');
+console.log(progression);
 
 /*const serverStatus = await getServerStatus('pc');
 console.log(serverStatus);*/
