@@ -34,17 +34,17 @@ class api {
       return await getUserRank(platform, userId);
     };
 
-    this.getUserRankV2 = async (platform, boardId, regionId, userId) => {
-      return await getUserRankV1(platform, boardId, regionId, userId);
+    this.getUserRankV2 = async (platform, boardId, regionId, seasons, userId) => {
+      return await getUserRankV1(platform, boardId, regionId, seasons, userId);
     };
 
-    this.getOperators = async(userId, platform, view, aggregation, gameMode, teamRole, season) => {
-      return await getOperators(userId, platform, view, aggregation, gameMode, teamRole, season);   
+    this.getOperators = async (userId, platform, view, aggregation, gameMode, teamRole, season) => {
+      return await getOperators(userId, platform, view, aggregation, gameMode, teamRole, season);
     };
 
-    this.getUserStats = async(userId, platform, view, aggregation, gameMode, teamRole, season) => {
+    this.getUserStats = async (userId, platform, view, aggregation, gameMode, teamRole, season) => {
       return await getUserStats(userId, platform, view, aggregation, gameMode, teamRole, season);
-    }
+    };
   }
 }
 export default api;
