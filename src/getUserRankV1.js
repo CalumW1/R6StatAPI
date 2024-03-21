@@ -9,7 +9,6 @@ import {
   regionIdCheck,
 } from './constants.js';
 import { getAuth } from './auth.js';
-import { UserRankDtoV1 } from './constants.js';
 
 const getUserRankV1 = async (platform, boardId, regionId, seasons, profileId) => {
   const token = await getAuth();
@@ -20,8 +19,10 @@ const getUserRankV1 = async (platform, boardId, regionId, seasons, profileId) =>
     'Content-Type': 'application/json',
   };
 
+  var spaceId = platform === 'uplay' ? 'rankedUplay' : platform;
+
   var sandbox = await sandboxCheck(platform);
-  var space = await spaceIdCheck(platform);
+  var space = await spaceIdCheck(spaceId);
   var board = await boardIdCheck(boardId);
   var region = await regionIdCheck(regionId);
 
@@ -34,43 +35,83 @@ const getUserRankV1 = async (platform, boardId, regionId, seasons, profileId) =>
 
   const data = await response.json();
 
-  const test = data.seasons_player_skill_records.flatMap(season => {
-    return season.regions_player_skill_records.flatMap(region => {
-      return region.boards_player_skill_records.flatMap(board => {
-        return board.players_skill_records.flatMap(player => {
-          return new UserRankDtoV1(
-            player.max_mmr,
-            player.skill_mean,
-            player.deaths,
-            player.profile_id,
-            player.next_rank_mmr,
-            player.rank,
-            player.max_rank,
-            player.board_id,
-            player.skill_stdev,
-            player.kills,
-            player.last_match_skill_stdev_change,
-            player.past_seasons_wins,
-            player.update_time,
-            player.last_match_mmr_change,
-            player.abandons,
-            player.season,
-            player.past_seasons_losses,
-            player.top_rank_position,
-            player.last_match_skill_mean_change,
-            player.mmr,
-            player.previous_rank_mmr,
-            player.last_match_result,
-            player.past_seasons_abandons,
-            player.wins,
-            player.region,
-            player.losses
-          );
-        });
-      });
-    });
-  });
-  return data;
+  return extractValues(data);
 };
+
+function extractValues(data) {
+  const {
+    season_id,
+    regions_player_skill_records: [
+      {
+        region_id,
+        boards_player_skill_records: [
+          {
+            board_id,
+            players_skill_records: [
+              {
+                max_mmr,
+                skill_mean,
+                deaths,
+                profile_id,
+                next_rank_mmr,
+                rank,
+                max_rank,
+                skill_stdev,
+                kills,
+                last_match_skill_stdev_change,
+                past_seasons_wins,
+                update_time,
+                last_match_mmr_change,
+                abandons,
+                season,
+                past_seasons_losses,
+                top_rank_position,
+                last_match_skill_mean_change,
+                mmr,
+                previous_rank_mmr,
+                last_match_result,
+                past_seasons_abandons,
+                wins,
+                region: player_region,
+                losses,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  } = data.seasons_player_skill_records[0];
+
+  return {
+    season_id,
+    region_id,
+    board_id,
+    profile_id,
+    max_mmr,
+    skill_mean,
+    deaths,
+    next_rank_mmr,
+    rank,
+    max_rank,
+    skill_stdev,
+    kills,
+    last_match_skill_stdev_change,
+    past_seasons_wins,
+    update_time,
+    last_match_mmr_change,
+    abandons,
+    season,
+    past_seasons_losses,
+    top_rank_position,
+    last_match_skill_mean_change,
+    mmr,
+    previous_rank_mmr,
+    last_match_result,
+    past_seasons_abandons,
+    wins,
+    region: player_region,
+    losses,
+  };
+}
 
 export default getUserRankV1;
