@@ -7,6 +7,7 @@ import getUserRank from './getUserRank.js';
 import getUserRankV1 from './getUserRankV1.js';
 import getOperators from './getOperators.js';
 import getUserStats from './getUserStats.js';
+import getUserRankV2 from './getUserRankV2.js';
 
 class api {
   constructor() {
@@ -34,7 +35,7 @@ class api {
       return await getUserRank(platform, userId);
     };
 
-    this.getUserRankV2 = async (platform, boardId, regionId, seasons, userId) => {
+    this.getUserRankV1 = async (platform, boardId, regionId, seasons, userId) => {
       return await getUserRankV1(platform, boardId, regionId, seasons, userId);
     };
 
@@ -44,6 +45,10 @@ class api {
 
     this.getUserStats = async (userId, platform, view, aggregation, gameMode, teamRole, season) => {
       return await getUserStats(userId, platform, view, aggregation, gameMode, teamRole, season);
+    };
+
+    this.getUserRankV2 = async (userId, platform) => {
+      return await getUserRankV2(userId, platform);
     };
   }
 }

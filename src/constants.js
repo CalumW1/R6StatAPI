@@ -57,6 +57,9 @@ export const UBI_PROFILEV2_URI = (profileId, platform) =>
 export const UBI_GETPLAYERPROGRESSION2 = (spaceId, playerId) =>
   `/spaces/${spaceId}/title/r6s/rewards/public_profile?profile_id=${playerId}`;
 
+export const UBI_RANKED_URI_V2 = (spaceId, profileId, platform) =>
+  `/spaces/${spaceId}/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
+
 export const UBI_GETSTATS = (
   userId,
   spaceId,
