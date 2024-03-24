@@ -3,18 +3,25 @@ import {
   UBI_DATADEV_SESSIONID,
   UBI_DATADEV_URI,
   UBI_GETSTATS,
-  spaceIdCheck,
   userStats,
+  RANKED_UBI_SPACEIDS,
 } from './constants.js';
 import { getAuth, getExpiryDate } from './auth.js';
 
-const getUserStats = async (userId, platform, view, aggregation, gameMode, teamRole, season) => {
+const getUserStats = async (
+  userId,
+  profileId,
+  platform,
+  view,
+  aggregation,
+  gameMode,
+  teamRole,
+  season
+) => {
   const token = await getAuth();
   const expiration = await getExpiryDate();
 
   console.log(expiration);
-
-  const spaceId = await spaceIdCheck(platform);
 
   const headers = {
     Authorization: `ubi_v1 t=${token}`,
@@ -23,36 +30,50 @@ const getUserStats = async (userId, platform, view, aggregation, gameMode, teamR
     expiration: expiration,
   };
 
+  const platformTransformation = platform === 'uplay' ? 'PC' : 'CONSOLE';
+  console.log(platformTransformation);
+
+  const spaceId = RANKED_UBI_SPACEIDS.find(x => x.id === platformTransformation).value;
+
   const URI =
     UBI_DATADEV_URI +
-    UBI_GETSTATS(userId, spaceId, 'PC', view, aggregation, gameMode, teamRole, season);
+    UBI_GETSTATS(
+      userId,
+      spaceId,
+      platformTransformation,
+      view,
+      aggregation,
+      gameMode,
+      teamRole,
+      season
+    );
 
   const response = await fetch(URI, { method: 'GET', headers: headers });
 
   const data = await response.json();
 
-  const userStat = Object.values(data.profileData[userId].platforms.PC).reduce(
+  const id = platformTransformation === 'PC' ? userId : profileId;
+
+  const userStat = Object.values(data.profileData[id].platforms[platformTransformation]).reduce(
     (accumulator, gameModes) => {
       Object.entries(gameModes).map(([gameMode, data]) => {
-        if(gameMode === 'ranked') {
-          const ranked = mapValues(data, 'ranked')
-          accumulator.push(ranked)
-        }
-        else if (gameMode === 'all'){
-          const all = mapValues(data, 'all')
-          accumulator.push(all)
-        } 
-        else if (gameMode === 'unranked'){
-          const unranked = mapValues(data, 'unranked')
+        if (gameMode === 'ranked') {
+          const ranked = mapValues(data, 'ranked');
+          accumulator.push(ranked);
+        } else if (gameMode === 'all') {
+          const all = mapValues(data, 'all');
+          accumulator.push(all);
+        } else if (gameMode === 'unranked') {
+          const unranked = mapValues(data, 'unranked');
           accumulator.push(unranked);
-        }
-        else if (gameMode === 'casual') {
-          const casual = mapValues(data)
+        } else if (gameMode === 'casual') {
+          const casual = mapValues(data);
           accumulator.push(casual);
-        }    
+        }
       });
       return accumulator;
-    }, []
+    },
+    []
   );
   return userStat;
 };
@@ -105,9 +126,9 @@ const mapValues = (gameMode, mode) => {
         stats.distancePerRound
       );
       return { ...acc };
-    }, {})
+    }, {});
   }
   return {};
-}
+};
 
 export default getUserStats;

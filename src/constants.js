@@ -16,10 +16,14 @@ export const UBI_SANDBOXES = [
 ];
 
 export const UBI_SPACEIDS = [
-  { id: 'rankedUplay', value: '5172a557-50b5-4665-b7db-e3f2e8c5041d' },
   { id: 'uplay', value: '0d2ae42d-4c27-4cb7-af6c-2099062302bb' },
   { id: 'psn', value: '05bfb3f7-6c21-4c42-be1f-97a33fb5cf66' },
   { id: 'xbl', value: '98a601e5-ca91-4440-b1c5-753f601a2c90' },
+];
+
+export const RANKED_UBI_SPACEIDS = [
+  { id: 'CONSOLE', value: '05bfb3f7-6c21-4c42-be1f-97a33fb5cf66' },
+  { id: 'PC', value: '5172a557-50b5-4665-b7db-e3f2e8c5041d' },
 ];
 
 export const UBI_SERVER_IDS = [
