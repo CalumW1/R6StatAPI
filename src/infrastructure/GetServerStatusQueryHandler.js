@@ -1,5 +1,12 @@
-import { ApiClient } from './ApiClient';
-import { AuthCommandHandler } from './AuthCommandHandler';
+import { ApiClient } from './ApiClient.js';
+import { AuthCommandHandler } from './AuthCommandHandler.js';
+import {
+  UBI_APPID,
+  UBI_GETSERVERSTATUS,
+  UBI_SERVER_IDS,
+  UBI_SERVER_STATUS_URI,
+} from '../utils/helperFunctions.js';
+
 export async function GetServerStatusQueryHandler(platform) {
   const token = await AuthCommandHandler();
 
@@ -9,15 +16,12 @@ export async function GetServerStatusQueryHandler(platform) {
     'Content-Type': 'application/json',
   };
 
-  // this will need to come from the helper function.
-  // const serverId = UBI_SERVER_IDS.find(x => x.id === platform).value;
+  const serverId = UBI_SERVER_IDS.find(x => x.id === platform).value;
   const URI = UBI_SERVER_STATUS_URI + UBI_GETSERVERSTATUS(serverId);
 
-  const response = await ApiClient(URI, headers, 'GET');
+  console.log(URI);
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch server status');
-  }
+  const response = await ApiClient(URI, headers, 'GET');
 
   return transformData(response);
 }

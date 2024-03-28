@@ -1,4 +1,4 @@
-import { GetServerStatusQueryHandler } from '../infrastructure/GetServerStatusQueryHandler';
+import { GetServerStatusQueryHandler } from '../infrastructure/GetServerStatusQueryHandler.js';
 
 export const GetServerStatusQuery = async platform => {
   try {
