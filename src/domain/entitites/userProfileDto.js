@@ -1,4 +1,4 @@
-class UserProfileDto {
+export class UserProfileDto {
   constructor(profileId, userId, platformType, idOnPlatform, nameOnPlatform) {
     (this.profileId = profileId),
       (this.userId = userId),
@@ -7,5 +7,3 @@ class UserProfileDto {
       (this.nameOnPlatform = nameOnPlatform);
   }
 }
-
-export default UserProfileDto;

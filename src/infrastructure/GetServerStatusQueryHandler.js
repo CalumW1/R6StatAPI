@@ -26,6 +26,7 @@ export async function GetServerStatusQueryHandler(platform) {
   return transformData(response);
 }
 
+// Change this to use a DTO from helper functions.
 function transformData(data) {
   return data.reduce((acc, status) => {
     const object = {
