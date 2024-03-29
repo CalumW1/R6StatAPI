@@ -1,6 +1,5 @@
 import { AuthCommandHandler } from './AuthCommandHandler.js';
 import { ApiClient } from './ApiClient.js';
-import { UserByUserIdDto } from '../domain/entitites/UserByUserIdDto.js';
 import { UBI_APPID, UBI_GETUSERBYID_URI, BASE_UBI_URI } from '../utils/helperFunctions.js';
 
 export const GetUserByUserIdQueryHandler = async userId => {
