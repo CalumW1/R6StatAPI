@@ -16,6 +16,10 @@ export const AuthCommandHandler = async (email, password) => {
   return newToken;
 };
 
+export const getExpiryDate = async () => {
+  return expiration;
+};
+
 const getTokenFromUbi = async (email, password) => {
   console.log('refreshing token');
 

@@ -1,10 +1,8 @@
-class operator {
+class operatorDto {
   constructor(
     type,
     statsType,
     statsDetail,
-    seasonYear,
-    seasonNumber,
     matchesPlayed,
     roundsPlayed,
     minutesPlayed,
@@ -43,8 +41,6 @@ class operator {
   ) {
     (this.type = type),
       (this.statsType = statsType),
-      (this.statsDetail = statsDetail),
-      (this.seasonYear = seasonYear),
       (this.seasonNumber = seasonNumber),
       (this.matchesPlayed = matchesPlayed),
       (this.roundsPlayed = roundsPlayed),
@@ -84,4 +80,4 @@ class operator {
   }
 }
 
-export default operator;
+export default operatorDto;

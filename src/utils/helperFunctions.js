@@ -1,3 +1,5 @@
+// import AuthData from '../Auth.json' assert { type: 'json' };
+
 // export const UBI_APPID = '3587dcbb-7f81-457c-9781-0e3f29f6f56a';
 export const UBI_APPID = 'e3d5ea9e-50bd-43b7-88bf-39794f4e3d40';
 
@@ -8,6 +10,8 @@ export const UBI_DATADEV_SESSIONID = '7d1ea7b3-023f-49d0-b51a-f2962c9ee041';
 export const UBI_AUTH_URI = '/profiles/sessions';
 
 export const UBI_SESSIONID = '089aa129-cb3a-43d6-9455-e40a5e65f0e7';
+
+export const UBI_RANKED_SESSIONID = '9001da80-6689-453f-baec-d4903a48fdf0';
 
 export const UBI_SANDBOXES = [
   { id: 'uplay', value: 'OSBOR_PC_LNCH_A' },

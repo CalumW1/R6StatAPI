@@ -5,7 +5,6 @@ export const ApiClient = async (URI, Headers, Mehtod) => {
     method: Mehtod,
     headers: Headers,
   });
-
   // we should check the response of the API and handle accordingly.
 
   return await response.json();
