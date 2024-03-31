@@ -22,8 +22,8 @@ export const UBI_SPACEIDS = [
 ];
 
 export const RANKED_UBI_SPACEIDS = [
-  { id: 'CONSOLE', value: '05bfb3f7-6c21-4c42-be1f-97a33fb5cf66' },
-  { id: 'PC', value: '5172a557-50b5-4665-b7db-e3f2e8c5041d' },
+  { id: 'console', value: '05bfb3f7-6c21-4c42-be1f-97a33fb5cf66' },
+  { id: 'pc', value: '5172a557-50b5-4665-b7db-e3f2e8c5041d' },
 ];
 
 export const UBI_SERVER_IDS = [
@@ -61,8 +61,8 @@ export const UBI_PROFILEV2_URI = (profileId, platform) =>
 export const UBI_GETPLAYERPROGRESSION2 = (spaceId, playerId) =>
   `/spaces/${spaceId}/title/r6s/rewards/public_profile?profile_id=${playerId}`;
 
-export const UBI_RANKED_URI_V2 = (spaceId, profileId, platform) =>
-  `/spaces/${spaceId}/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
+export const UBI_RANKED_URI_V2 = (profileId, platform) =>
+  `/spaces/0d2ae42d-4c27-4cb7-af6c-2099062302bb/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
 
 export const UBI_GETSTATS = (
   userId,
