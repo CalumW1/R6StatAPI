@@ -5,7 +5,7 @@ import fs from 'fs/promises';
 const fileName = 'Auth.json';
 let token = null;
 let nextTokenRefresh = null;
-let currentTime = new Date().getTime();
+let currentTime = new Date().toISOString();
 let expiration = null;
 
 export const getAuth = async (email, password) => {
@@ -18,11 +18,12 @@ export const getAuth = async (email, password) => {
 
 export const getExpiryDate = async () => {
   return expiration;
-}
+};
 
 const getTokenFromUbi = async (email, password) => {
   console.log('refreshing token');
 
+  console.log(`Current Time ${currentTime}`);
   const headers = {
     Authorization: `Basic ${Buffer.from(`${email}:${password}`).toString('base64')}`,
     'Ubi-AppId': UBI_APPID,
