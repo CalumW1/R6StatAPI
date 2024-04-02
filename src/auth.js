@@ -5,10 +5,11 @@ import fs from 'fs/promises';
 const fileName = 'Auth.json';
 let token = null;
 let nextTokenRefresh = null;
-let currentTime = new Date().toISOString();
 let expiration = null;
 
 export const getAuth = async (email, password) => {
+  const currentTime = new Date().toISOString();
+
   if (token !== null && currentTime < nextTokenRefresh) {
     return token;
   }
@@ -18,7 +19,7 @@ export const getAuth = async (email, password) => {
     process.env.password = password;
   }
 
-  var newToken = await getTokenFromUbi(email, password);
+  const newToken = await getTokenFromUbi(email, password);
   return newToken;
 };
 
@@ -26,10 +27,19 @@ export const getExpiryDate = async () => {
   return expiration;
 };
 
-const getTokenFromUbi = async (email, password) => {
-  console.log('refreshing token');
+// Start a timer to periodically check and refresh the token
+const startTokenRefreshTimer = () => {
+  setInterval(getAuth, 2 * 60 * 60 * 1000);
+};
 
-  console.log(`Current Time ${currentTime}`);
+startTokenRefreshTimer(); // Start the timer
+
+const getTokenFromUbi = async (email, password) => {
+  console.log('Refreshing token...');
+
+  const currentTime = new Date().toISOString();
+
+  console.log(`Current Time: ${currentTime}`);
 
   const userEmail = email ?? process.env.email;
   const userPassword = password ?? process.env.password;
@@ -54,7 +64,7 @@ const getTokenFromUbi = async (email, password) => {
 
   fs.writeFile(fileName, JSON.stringify(data, null, 2), err => {
     if (err) throw err;
-    console.log('The file has been saved!');
+    console.log('Token data has been saved to file!');
   });
 
   return data.ticket;
