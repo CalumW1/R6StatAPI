@@ -1,9 +1,11 @@
 import fetch from 'node-fetch';
-import {BASE_UBI_URI, UBI_APPID, UBI_GETUSERBYUSERNAME_URI, UserProfileDto} from './constants.js';
+import { BASE_UBI_URI, UBI_APPID, UBI_GETUSERBYUSERNAME_URI, UserProfileDto } from './constants.js';
 import { getAuth } from './auth.js';
 
 const getUserByUsername = async (userName, platform) => {
   const token = await getAuth();
+
+  console.log(token);
 
   const headers = {
     Authorization: `ubi_v1 t=${token}`,
@@ -18,17 +20,19 @@ const getUserByUsername = async (userName, platform) => {
     headers: headers,
   });
 
+  console.log(response);
+
   const data = await response.json();
 
   return data.profiles.reduce((acc, profile) => {
     const object = new UserProfileDto(
-        profile.profileId,
-        profile.userId,
-        profile.platformType,
-        profile.idOnPlatform,
-        profile.nameOnPlatform
+      profile.profileId,
+      profile.userId,
+      profile.platformType,
+      profile.idOnPlatform,
+      profile.nameOnPlatform
     );
-    return {...acc, ...object};
+    return { ...acc, ...object };
   }, {});
 };
 

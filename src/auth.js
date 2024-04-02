@@ -12,6 +12,12 @@ export const getAuth = async (email, password) => {
   if (token !== null && currentTime < nextTokenRefresh) {
     return token;
   }
+
+  if (email && password !== undefined) {
+    process.env.email = email;
+    process.env.password = password;
+  }
+
   var newToken = await getTokenFromUbi(email, password);
   return newToken;
 };
@@ -24,8 +30,12 @@ const getTokenFromUbi = async (email, password) => {
   console.log('refreshing token');
 
   console.log(`Current Time ${currentTime}`);
+
+  const userEmail = email ?? process.env.email;
+  const userPassword = password ?? process.env.password;
+
   const headers = {
-    Authorization: `Basic ${Buffer.from(`${email}:${password}`).toString('base64')}`,
+    Authorization: `Basic ${Buffer.from(`${userEmail}:${userPassword}`).toString('base64')}`,
     'Ubi-AppId': UBI_APPID,
     'Content-Type': 'application/json',
   };
@@ -39,7 +49,7 @@ const getTokenFromUbi = async (email, password) => {
   const data = await response.json();
 
   token = data.ticket;
-  nextTokenRefresh = new Date(data.expiration).getTime();
+  nextTokenRefresh = data.expiration;
   expiration = data.expiration;
 
   fs.writeFile(fileName, JSON.stringify(data, null, 2), err => {
