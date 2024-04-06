@@ -1,4 +1,4 @@
-class operatorDto {
+export class Operator {
   constructor(
     type,
     statsType,
@@ -79,5 +79,3 @@ class operatorDto {
       (this.distancePerRound = distancePerRound);
   }
 }
-
-export default operatorDto;

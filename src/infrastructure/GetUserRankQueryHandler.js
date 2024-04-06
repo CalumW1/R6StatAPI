@@ -8,7 +8,7 @@ import {
 } from '../utils/helperFunctions.js';
 import { ApiClient } from './ApiClient.js';
 
-export const GetUserRankV2QueryHandler = async (userId, platform) => {
+export const GetUserRankQueryHandler = async (userId, platform) => {
   const token = await AuthCommandHandler();
 
   const headers = {

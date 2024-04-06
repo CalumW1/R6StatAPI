@@ -1,4 +1,4 @@
-class ServerStatusDto {
+export class ServerStatus {
   constructor(platform, status, maintenance, impactedFeatures) {
     (this.platform = platform),
       (this.status = status),
@@ -6,5 +6,3 @@ class ServerStatusDto {
       (this.impactedFeatures = impactedFeatures);
   }
 }
-
-export default ServerStatusDto;

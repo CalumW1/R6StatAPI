@@ -1,4 +1,4 @@
-export class UserByUserIdDto {
+export class UserProfile {
   constructor(profileId, userId, platformType, idOnPlatform, nameOnPlatform) {
     (this.profileId = profileId),
       (this.userId = userId),

@@ -1,4 +1,4 @@
-class UserRankDtoV2 {
+export class UserRank {
   constructor(
     boardId,
     id,
@@ -31,5 +31,3 @@ class UserRankDtoV2 {
       (this.losses = losses);
   }
 }
-
-export default UserRankDtoV2;

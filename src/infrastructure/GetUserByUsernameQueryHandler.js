@@ -1,6 +1,6 @@
 import { AuthCommandHandler } from './AuthCommandHandler.js';
 import { ApiClient } from './ApiClient.js';
-import { UserProfileDto } from '../domain/entitites/userProfileDto.js';
+import { UserProfile } from '../domain/entitites/userProfile.js';
 import { BASE_UBI_URI, UBI_APPID, UBI_GETUSERBYUSERNAME_URI } from '../utils/helperFunctions.js';
 
 export const GetUserByUsernameQueryHandler = async (username, platform) => {
@@ -17,7 +17,7 @@ export const GetUserByUsernameQueryHandler = async (username, platform) => {
   const data = await ApiClient(URI, headers, 'GET');
 
   return data.profiles.reduce((acc, profile) => {
-    const object = new UserProfileDto(
+    const object = new UserProfile(
       profile.profileId,
       profile.userId,
       profile.platformType,

@@ -6,7 +6,7 @@ import {
   UBI_DATADEV_URI,
   UBI_GETSTATS,
 } from '../utils/helperFunctions.js';
-import userStats from '../domain/entitites/userStats.js';
+import { UserStats } from '../domain/entitites/userStats.js';
 
 export const GetUserStatsQueryHandler = async (
   userId,
@@ -80,7 +80,7 @@ const mapValues = (gameMode, mode) => {
   const allMode = gameMode?.teamRoles?.all;
   if (allMode && allMode.length > 0) {
     return allMode.reduce((acc, stats) => {
-      acc = new userStats(
+      acc = new UserStats(
         mode,
         stats.type,
         stats.statsType,

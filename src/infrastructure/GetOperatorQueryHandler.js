@@ -7,7 +7,7 @@ import {
   UBI_RANKED_SESSIONID,
   UBI_DATADEV_APPID,
 } from '../utils/helperFunctions.js';
-import operatorDto from '../domain/entitites/operator.js';
+import { Operator } from '../domain/entitites/operator.js';
 
 export const GetOperatorQueryHandler = async (
   userId,
@@ -53,7 +53,7 @@ export const GetOperatorQueryHandler = async (
           for (const operator of operators) {
             if (role === 'attacker') {
               attackers.push(
-                new operatorDto(
+                new Operator(
                   operator.type,
                   operator.statsType,
                   operator.seasonNumber,

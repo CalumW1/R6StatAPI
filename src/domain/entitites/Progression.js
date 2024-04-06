@@ -1,4 +1,4 @@
-class ProgressionDto {
+export class Progression {
   constructor(xp, profileId, lootboxProbability, level) {
     (this.xp = xp),
       (this.profileId = profileId),
@@ -6,5 +6,3 @@ class ProgressionDto {
       (this.level = level);
   }
 }
-
-export default ProgressionDto;

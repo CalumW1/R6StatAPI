@@ -1,4 +1,4 @@
-class userStats {
+export class UserStats {
   constructor(
     gameMode,
     type,
@@ -85,5 +85,3 @@ class userStats {
       (this.distancePerRound = distancePerRound);
   }
 }
-
-export default userStats;
