@@ -1,6 +1,7 @@
 import { AuthCommandHandler } from './AuthCommandHandler.js';
 import { ApiClient } from './ApiClient.js';
 import { UBI_APPID, UBI_GETUSERBYID_URI, BASE_UBI_URI } from '../utils/helperFunctions.js';
+import { UserProfile } from '../domain/entitites/userProfile.js';
 
 export const GetUserByUserIdQueryHandler = async userId => {
   const token = await AuthCommandHandler();
@@ -16,13 +17,9 @@ export const GetUserByUserIdQueryHandler = async userId => {
   const data = await ApiClient(URI, headers, 'GET');
 
   return data.profiles.reduce((accumulator, x) => {
-    accumulator.push({
-      profileId: x.profileId,
-      userId: x.userId,
-      platformType: x.platformType,
-      idOnPlatform: x.idOnPlatform,
-      nameOnPlatform: x.nameOnPlatform,
-    });
+    accumulator.push(
+      new UserProfile(x.profileId, x.userId, x.platformType, x.idOnPlatform, x.nameOnPlatform)
+    );
     return accumulator;
   }, []);
 };

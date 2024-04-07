@@ -6,6 +6,7 @@ import {
   UBI_SERVER_IDS,
   UBI_SERVER_STATUS_URI,
 } from '../utils/helperFunctions.js';
+import { ServerStatus } from '../domain/entitites/ServerStatus.js';
 
 export async function GetServerStatusQueryHandler(platform) {
   const token = await AuthCommandHandler();
@@ -26,15 +27,14 @@ export async function GetServerStatusQueryHandler(platform) {
   return transformData(response);
 }
 
-// Change this to use a DTO from helper functions.
 function transformData(data) {
   return data.reduce((acc, status) => {
-    const object = {
-      platform: status.Platform,
-      status: status.Status,
-      maintenance: status.Maintenance,
-      impactedFeatures: status.ImpactedFeatures,
-    };
+    const object = new ServerStatus(
+      status.Platform,
+      status.Status,
+      status.Maintenance,
+      status.ImpactedFeatures
+    );
     return { ...acc, ...object };
   }, {});
 }
