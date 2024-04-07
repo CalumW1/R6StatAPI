@@ -7,7 +7,7 @@ import {
   UBI_RANKED_SESSIONID,
   UBI_DATADEV_APPID,
 } from '../utils/helperFunctions.js';
-import { Operator } from '../domain/entitites/operator.js';
+import { Operator } from '../domain/entitites/Operator.js';
 
 export const GetOperatorQueryHandler = async (
   userId,
