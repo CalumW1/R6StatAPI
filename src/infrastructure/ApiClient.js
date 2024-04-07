@@ -1,11 +1,18 @@
 import fetch from 'node-fetch';
 
 export const ApiClient = async (URI, Headers, Mehtod) => {
-  const response = await fetch(URI, {
-    method: Mehtod,
-    headers: Headers,
-  });
-  // we should check the response of the API and handle accordingly.
+  try {
+    const response = await fetch(URI, {
+      method: Mehtod,
+      headers: Headers,
+    });
 
-  return await response.json();
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
 };

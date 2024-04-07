@@ -1,4 +1,4 @@
 node_modules/
-/src/Auth.json
+Auth.json
 test.js
 .idea
