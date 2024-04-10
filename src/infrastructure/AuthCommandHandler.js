@@ -30,18 +30,16 @@ const getTokenFromUbi = async (email, password) => {
   };
 
   const URI = BASE_UBI_URI(3) + UBI_AUTH_URI;
-  const response = await ApiClient(URI, headers, 'POST');
+  const response = await ApiClient(URI, headers, 'post');
 
-  var data = response;
+  token = response.ticket;
+  nextTokenRefresh = new Date(response.expiration).getTime();
+  expiration = response.expiration;
 
-  token = data.ticket;
-  nextTokenRefresh = new Date(data.expiration).getTime();
-  expiration = data.expiration;
-
-  fs.writeFile(fileName, JSON.stringify(data, null, 2), err => {
+  fs.writeFile(fileName, JSON.stringify(response, null, 2), err => {
     if (err) throw err;
     console.log('The file has been saved!');
   });
 
-  return data.ticket;
+  return response.ticket;
 };
