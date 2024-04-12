@@ -1,5 +1,5 @@
 # R6StatAPI
-A wrapper for the Rainbow Six Seige API in Node.JS
+An API wrapper for Rainbow Six Seige written in JavaScript.
 
 ## Table of Contents
 1. [Installation](#installation)
@@ -17,26 +17,30 @@ To get started you will need a Ubisoft login, it is best to create a new account
 The example below has the email and password variables hardcoded but it would be better to use [dotenv](https://www.npmjs.com/package/dotenv) to manage environment variables.
 
 ```
+import r6statapi from 'r6statapi';
+
+const api = new r6statapi();
+
 // replace with your own information
 const email = "test@gmail.com"
 const password = "Password123"
-const usermame = "CaleyW1"
-const password = "uplay"
+const usermame = "User1"
+const platform = "uplay"
 
 // login and get token
-const token = await getAuth(email, password)
+const token = await api.getAuth(email, password)
 console.log(token)
 
 // fetch user by username
-const user = await getUserByUsername(userName, platform);
+const user = await api.getUserByUsername(userName, platform);
 console.log(user);
 
 // example response
 {
-  profileId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
-  userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+  profileId: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
+  userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
   platformType: 'uplay',
-  idOnPlatform: 'AFC2AFEC-B9ED-4988-BFFA-58E78EEDFA9D',
+  idOnPlatform: 'AFC2AFEC-B9ED-4988-BFFA-58E78EEDFA93',
   nameOnPlatform: 'CaleyW1'
 }
 ```
@@ -55,7 +59,7 @@ console.log(user);
 #### Auth
 Signs into the Ubisoft a returns a token.
 ```
-await getAuth(email, password)
+await api.getAuth(email, password)
 ```
 
 Example response
@@ -67,16 +71,16 @@ ewogICJ2ZXIiOiAiMSIsCiAgImFpZCI6ICJlM2Q1ZWE5ZS01MGJkLTQzYjctODhiZi0zOTc5NGY0ZTNk
 Gets a user by username
 
 ```
-await getUserByUsername(userName, platform);
+await api.getUserByUsername(userName, platform);
 ```
 
 Example response
 ```
 {
-  profileId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
-  userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+  profileId: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
+  userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
   platformType: 'uplay',
-  idOnPlatform: 'AFC2AFEC-B9ED-4988-BFFA-58E78EEDFA9D',
+  idOnPlatform: 'AFC2AFEC-B9ED-4988-BFFA-58E78EEDFA93',
   nameOnPlatform: 'CaleyW1'
 }
 ```
@@ -84,29 +88,29 @@ Example response
 #### Get user by userId
 Gets a user by userId
 ```
-await getUserById(user.userId, platform);
+await api.getUserById(user.userId, platform);
 ```
 
 Example response
 ```
 [
   {
-    profileId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
-    userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+    profileId: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
+    userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
     platformType: 'uplay',
-    idOnPlatform: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+    idOnPlatform: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
     nameOnPlatform: 'CaleyW1'
   },
   {
-    profileId: 'f02cbe10-2411-43d9-b449-5366888201a8',
-    userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+    profileId: 'f02cbe10-2411-43d9-b449-5366888201a2',
+    userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
     platformType: 'steam',
-    idOnPlatform: '76561198172917986',
-    nameOnPlatform: '76561198172917986'
+    idOnPlatform: '76561198172917981',
+    nameOnPlatform: '76561198172917983'
   },
   {
-    profileId: '91193155-2b57-48f1-b69b-556f5e4ccfeb',
-    userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
+    profileId: '91193155-2b57-48f1-b69b-556f5e4ccfea',
+    userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
     platformType: 'twitch',
     idOnPlatform: '469658264',
     nameOnPlatform: 'calbob'
@@ -117,16 +121,14 @@ Example response
 #### Get user progression
 gets the progression for a user
 ```
-await getUserProgression(user.profileId, platform);
+await api.getUserProgression(user.profileId, platform);
 ``` 
 
 Example response
 ```
-{
-  xp: 12887,
-  profileId: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
-  lootboxProbability: 750,
-  level: 186
+{ 
+  level: 326, 
+  xp: 129949 
 }
 ```
 
@@ -135,7 +137,7 @@ Returns the status of a particular platform
 
 platforms: pc, xbox, ps4
 ```
-await getServerStatus('pc')
+await api.getServerStatus('pc')
 ```
 
 Example response
@@ -151,124 +153,93 @@ Example response
 #### Get user rank
 Returns statistics for different gamemodes
 ```
-await getUserRank('pc', player.userId);
+await api.getUserRank(player.userId, 'pc');
 ```
 
 Example response
 ```
-[                                                
-  {                                              
-    profile: {                                   
-      board_id: 'casual',                        
-      id: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
-      max_rank: 0,                               
-      max_rank_points: 0,                        
-      platform_family: 'pc',                     
-      rank: 0,
-      rank_points: 0,
-      season_id: 31,
-      top_rank_position: 0
-    },
-    season_statistics: { 
-        deaths: 0, 
-        kills: 0, 
-        match_outcomes: {
-            "abandons": 0,
-            "losses": 0,
-            "wins": 0
-        } 
-    }
+{
+  casual: {
+    profile_board_id: 'casual',
+    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
+    max_rank: 0,
+    max_rank_points: 0,
+    platform_family: 'pc',
+    rank: 0,
+    rank_points: 0,
+    season_id: 33,
+    top_rank_position: 0,
+    deaths: 0,
+    kills: 0,
+    abandons: 0,
+    losses: 0,
+    wins: 0
   },
-  {
-    profile: {
-      board_id: 'event',
-      id: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
-      max_rank: 0,
-      max_rank_points: 0,
-      platform_family: 'pc',
-      rank: 0,
-      rank_points: 0,
-      season_id: 31,
-      top_rank_position: 0
-    },
-    season_statistics: { 
-        deaths: 0, 
-        kills: 0, 
-        match_outcomes: {
-            "abandons": 0,
-            "losses": 0,
-            "wins": 0
-        } 
-    }
+  event: {
+    profile_board_id: 'event',
+    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
+    max_rank: 0,
+    max_rank_points: 0,
+    platform_family: 'pc',
+    rank: 0,
+    rank_points: 0,
+    season_id: 33,
+    top_rank_position: 0,
+    deaths: 0,
+    kills: 0,
+    abandons: 0,
+    losses: 0,
+    wins: 0
   },
-  {
-    profile: {
-      board_id: 'warmup',
-      id: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
-      max_rank: 0,
-      max_rank_points: 0,
-      platform_family: 'pc',
-      rank: 0,
-      rank_points: 0,
-      season_id: 31,
-      top_rank_position: 0
-    },
-    season_statistics: { 
-        deaths: 0, 
-        kills: 0, 
-        match_outcomes: {
-            "abandons": 0,
-            "losses": 0,
-            "wins": 0
-        } 
-    }
+  warmup: {
+    profile_board_id: 'warmup',
+    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
+    max_rank: 0,
+    max_rank_points: 0,
+    platform_family: 'pc',
+    rank: 0,
+    rank_points: 0,
+    season_id: 33,
+    top_rank_position: 0,
+    deaths: 12,
+    kills: 14,
+    abandons: 1,
+    losses: 1,
+    wins: 0
   },
-  {
-    profile: {
-      board_id: 'standard',
-      id: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
-      max_rank: 0,
-      max_rank_points: 0,
-      platform_family: 'pc',
-      rank: 0,
-      rank_points: 0,
-      season_id: 31,
-      top_rank_position: 0
-    },
-    season_statistics: { 
-        deaths: 0, 
-        kills: 0, 
-        match_outcomes: {
-            "abandons": 0,
-            "losses": 0,
-            "wins": 0
-        } 
-    }
+  standard: {
+    profile_board_id: 'standard',
+    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
+    max_rank: 0,
+    max_rank_points: 0,
+    platform_family: 'pc',
+    rank: 0,
+    rank_points: 0,
+    season_id: 33,
+    top_rank_position: 0,
+    deaths: 4,
+    kills: 7,
+    abandons: 0,
+    losses: 1,
+    wins: 0
   },
-  {
-    profile: {
-      board_id: 'ranked',
-      id: 'afc2afec-b9ed-4988-bffa-58e78eedfa9d',
-      max_rank: 0,
-      max_rank_points: 1000,
-      platform_family: 'pc',
-      rank: 0,
-      rank_points: 1000,
-      season_id: 31,
-      top_rank_position: 0
-    },
-    season_statistics: { 
-        deaths: 0, 
-        kills: 0, 
-        match_outcomes: {
-            "abandons": 0,
-            "losses": 0,
-            "wins": 0
-        } 
-    }
+  ranked: {
+    profile_board_id: 'ranked',
+    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
+    max_rank: 32,
+    max_rank_points: 4155,
+    platform_family: 'pc',
+    rank: 32,
+    rank_points: 4100,
+    season_id: 33,
+    top_rank_position: 0,
+    deaths: 433,
+    kills: 581,
+    abandons: 1,
+    losses: 56,
+    wins: 49
   }
-]
-
+}
 ```
 
 #### Get User Stats
@@ -286,7 +257,7 @@ Get seasonal user statistics
 
 
 ```
-const userStats = await getUserStats(
+const userStats = await api.getUserStats(
   userId,
   platform,
   view,
@@ -301,83 +272,47 @@ Example response
 ```
 [
   {
-    "player": [
-      {
-        "type": "Seasonal",
-        "statsType": "summary",
-        "statsDetail": "summary",
-        "seasonYear": "Y6",
-        "seasonNumber": "S3",
-        "matchesPlayed": 20,
-        "roundsPlayed": 92,
-        "minutesPlayed": 336,
-        "matchesWon": 5,
-        "matchesLost": 15,
-        "roundsWon": 34,
-        "roundsLost": 58,
-        "kills": 77,
-        "assists": 18,
-        "death": 68,
-        "headshots": 42,
-        "meleeKills": 0,
-        "teamKills": 1,
-        "openingKills": 11,
-        "openingDeaths": 7,
-        "trades": 3,
-        "openingKillTrades": 1,
-        "openingDeathTrades": 0,
-        "revives": 0,
-        "distanceTravelled": 16219,
-        "winLossRatio": 0.3333,
-        "killDeathRatio": {
-          "value": 1.1324,
-          "p": 0
-        },
-        "headshotAccuracy": {
-          "value": 0.5455,
-          "p": 0
-        },
-        "killsPerRound": {
-          "value": 0.837,
-          "p": 0
-        },
-        "roundsWithAKill": {
-          "value": 0.5109,
-          "p": 0
-        },
-        "roundsWithMultiKill": {
-          "value": 0.25,
-          "p": 0
-        },
-        "roundsWithOpeningKill": {
-          "value": 0.1196,
-          "p": 0
-        },
-        "roundsWithOpeningDeath": {
-          "value": 0.0761,
-          "p": 0
-        },
-        "roundsWithKOST": {
-          "value": 0.5543,
-          "p": 0
-        },
-        "roundsSurvived": {
-          "value": 0.2609,
-          "p": 0
-        },
-        "roundsWithAnAce": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithClutch": {
-          "value": 0.0109,
-          "p": 0
-        },
-        "timeAlivePerMatch": 486,
-        "timeDeadPerMatch": 132,
-        "distancePerRound": 176.2935
-      }
-    ]
+    gameMode: 'all',
+    type: 'Seasonal',
+    statsType: 'summary',
+    statsDetail: 'summary',
+    seasonYear: 'Y9',
+    seasonNumber: 'S1',
+    matchesPlayed: 100,
+    roundsPlayed: 619,
+    minutesPlayed: 2451,
+    matchesWon: 47,
+    matchesLost: 53,
+    roundsWon: 303,
+    roundsLost: 316,
+    kills: 574,
+    assists: 116,
+    death: 414,
+    headshots: 217,
+    meleeKills: 2,
+    teamKills: 2,
+    openingKills: 64,
+    openingDeaths: 44,
+    trades: 21,
+    openingKillTrades: 4,
+    openingDeathTrades: 4,
+    revives: 13,
+    distanceTravelled: 113204,
+    winLossRatio: 0.8868,
+    killDeathRatio: { value: 1.3865, p: 0 },
+    headshotAccuracy: { value: 0.378, p: 0 },
+    killsPerRound: { value: 0.9273, p: 0 },
+    roundsWithAKill: { value: 0.5703, p: 0 },
+    roundsWithAMultiKill: { value: 0.2456, p: 0 },
+    roundsWithOpeningKill: { value: 0.1034, p: 0 },
+    roundsWithOpeningDeath: { value: 0.0711, p: 0 },
+    roundsWithKOST: { value: 0.6478, p: 0 },
+    roundsSurvived: { value: 0.3312, p: 0 },
+    roundsWithAnAce: { value: 0.0048, p: 0 },
+    roundsWithClutch: { value: 0.0113, p: 0 },
+    timeAlivePerMatch: 631.35,
+    timeDeadPerMatch: 175.88,
+    distancePerRound: 182.8821
   }
 ]
 ```
@@ -397,7 +332,7 @@ Operator statistics for a particular season
 | season | string | Yes | format Y(No.)S(No.) Example Y6S3 |
 
 ```
-const operator = await getOperators(
+const operator = await api.getOperators(
   userId,
   platform,
   view,
