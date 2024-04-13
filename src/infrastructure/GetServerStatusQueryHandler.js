@@ -20,8 +20,6 @@ export async function GetServerStatusQueryHandler(platform) {
   const serverId = UBI_SERVER_IDS.find(x => x.id === platform).value;
   const URI = UBI_SERVER_STATUS_URI + UBI_GETSERVERSTATUS(serverId);
 
-  console.log(URI);
-
   const response = await ApiClient(URI, headers, 'GET');
 
   return transformData(response);

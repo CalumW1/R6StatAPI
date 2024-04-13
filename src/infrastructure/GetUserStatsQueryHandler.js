@@ -31,7 +31,6 @@ export const GetUserStatsQueryHandler = async (
   };
 
   const platformTransformation = platform === 'uplay' ? 'PC' : 'CONSOLE';
-  console.log(platformTransformation);
 
   const spaceId = RANKED_UBI_SPACEIDS.find(x => x.id === platformTransformation).value;
 
