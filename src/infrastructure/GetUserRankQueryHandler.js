@@ -18,11 +18,9 @@ export const GetUserRankQueryHandler = async (userId, platform) => {
     'Content-Type': 'application/json',
   };
 
-  const spaceId = UBI_SPACEIDS.find(x => x.id === platform).value;
+  const platformChange = platform === 'uplay' ? 'pc' : 'console';
 
-  const platformChange = platform === 'uplay' ? 'pc' : platform;
-
-  const URI = BASE_UBI_URI(2) + UBI_RANKED_URI_V2(spaceId, userId, platformChange);
+  const URI = BASE_UBI_URI(2) + UBI_RANKED_URI_V2(userId, platformChange);
 
   const data = await ApiClient(URI, headers, 'GET');
 

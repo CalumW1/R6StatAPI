@@ -41,6 +41,8 @@ export const GetOperatorQueryHandler = async (
 
   const data = await ApiClient(URI, headers, 'GET');
 
+  console.log(data);
+
   const operatorsByMode = {};
   for (const [platform, platformData] of Object.entries(data.profileData)) {
     for (const [gameMode, modeData] of Object.entries(
@@ -56,7 +58,7 @@ export const GetOperatorQueryHandler = async (
                 new Operator(
                   operator.type,
                   operator.statsType,
-                  operator.seasonNumber,
+                  operator.statsDetail,
                   operator.matchesPlayed,
                   operator.roundsPlayed,
                   operator.minutesPlayed,
@@ -96,7 +98,7 @@ export const GetOperatorQueryHandler = async (
               );
             } else if (role === 'defender') {
               defenders.push(
-                new operatorDto(
+                new Operator(
                   operator.type,
                   operator.statsType,
                   operator.statsDetail,

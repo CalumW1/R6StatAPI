@@ -11,6 +11,8 @@ export const UBI_SESSIONID = '089aa129-cb3a-43d6-9455-e40a5e65f0e7';
 
 export const UBI_RANKED_SESSIONID = '9001da80-6689-453f-baec-d4903a48fdf0';
 
+export const UBI_PROGRESSION_SPACEID = '0d2ae42d-4c27-4cb7-af6c-2099062302bb';
+
 export const UBI_SANDBOXES = [
   { id: 'uplay', value: 'OSBOR_PC_LNCH_A' },
   { id: 'psn', value: 'OSBOR_PS4_LNCH_A' },
@@ -63,8 +65,8 @@ export const UBI_PROFILEV2_URI = (profileId, platform) =>
 export const UBI_GETPLAYERPROGRESSION2 = (spaceId, playerId) =>
   `/spaces/${spaceId}/title/r6s/rewards/public_profile?profile_id=${playerId}`;
 
-export const UBI_RANKED_URI_V2 = (spaceId, profileId, platform) =>
-  `/spaces/${spaceId}/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
+export const UBI_RANKED_URI_V2 = (profileId, platform) =>
+  `/spaces/0d2ae42d-4c27-4cb7-af6c-2099062302bb/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
 
 export const UBI_GETSTATS = (
   userId,

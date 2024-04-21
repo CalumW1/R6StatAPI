@@ -41,7 +41,7 @@ export class Operator {
   ) {
     (this.type = type),
       (this.statsType = statsType),
-      (this.seasonNumber = seasonNumber),
+      (this.statsDetail = statsDetail),
       (this.matchesPlayed = matchesPlayed),
       (this.roundsPlayed = roundsPlayed),
       (this.minutesPlayed = minutesPlayed),
