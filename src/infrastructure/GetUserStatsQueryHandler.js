@@ -21,8 +21,6 @@ export const GetUserStatsQueryHandler = async (
   const token = await AuthCommandHandler();
   const expiration = await getExpiryDate();
 
-  console.log(expiration);
-
   const headers = {
     Authorization: `ubi_v1 t=${token}`,
     'Ubi-SessionId': UBI_DATADEV_SESSIONID,
@@ -48,8 +46,6 @@ export const GetUserStatsQueryHandler = async (
     );
 
   const response = await ApiClient(URI, headers, 'GET');
-
-  // const id = platformTransformation === 'PC' ? userId : profileId;
 
   const userStat = Object.values(
     response.profileData[userId].platforms[platformTransformation]

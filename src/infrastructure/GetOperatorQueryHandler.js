@@ -21,7 +21,6 @@ export const GetOperatorQueryHandler = async (
   const token = await AuthCommandHandler();
 
   const expiration = await getExpiryDate();
-  console.log(expiration);
 
   const platformChange = platform === 'uplay' ? 'PC' : 'CONSOLE';
 
@@ -40,8 +39,6 @@ export const GetOperatorQueryHandler = async (
     UBI_GETSTATS(userId, spaceId, platformChange, view, aggregation, gameMode, teamRole, season);
 
   const data = await ApiClient(URI, headers, 'GET');
-
-  console.log(data);
 
   const operatorsByMode = {};
   for (const [platform, platformData] of Object.entries(data.profileData)) {
