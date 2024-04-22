@@ -1,5 +1,5 @@
-import fetch from 'node-fetch';
-import { BASE_UBI_URI, UBI_APPID, UBI_AUTH_URI } from './constants.js';
+import { UBI_AUTH_URI, UBI_APPID, BASE_UBI_URI } from '../utils/helperFunctions.js';
+import { ApiClient } from './ApiClient.js';
 import fs from 'fs/promises';
 
 const fileName = 'Auth.json';
@@ -8,7 +8,7 @@ let nextTokenRefresh = null;
 let currentTime = new Date().getTime();
 let expiration = null;
 
-export const getAuth = async (email, password) => {
+export const AuthCommandHandler = async (email, password) => {
   if (token !== null && currentTime < nextTokenRefresh) {
     return token;
   }
@@ -18,7 +18,7 @@ export const getAuth = async (email, password) => {
 
 export const getExpiryDate = async () => {
   return expiration;
-}
+};
 
 const getTokenFromUbi = async (email, password) => {
   console.log('refreshing token');
@@ -30,21 +30,16 @@ const getTokenFromUbi = async (email, password) => {
   };
 
   const URI = BASE_UBI_URI(3) + UBI_AUTH_URI;
-  const response = await fetch(URI, {
-    method: 'post',
-    headers: headers,
-  });
+  const response = await ApiClient(URI, headers, 'post');
 
-  const data = await response.json();
+  token = response.ticket;
+  nextTokenRefresh = new Date(response.expiration).getTime();
+  expiration = response.expiration;
 
-  token = data.ticket;
-  nextTokenRefresh = new Date(data.expiration).getTime();
-  expiration = data.expiration;
-
-  fs.writeFile(fileName, JSON.stringify(data, null, 2), err => {
+  fs.writeFile(fileName, JSON.stringify(response, null, 2), err => {
     if (err) throw err;
     console.log('The file has been saved!');
   });
 
-  return data.ticket;
+  return response.ticket;
 };

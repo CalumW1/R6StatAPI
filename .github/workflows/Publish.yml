@@ -10,21 +10,14 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - name: Checkout code
+    - name: Checkout
       uses: actions/checkout@v2
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
+    - name: Setup Node
+      uses: actions/setup-node@v2
       with:
-        node-version: 18
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build package
-      run: npm run build
-
-    - name: Publish to npm
+        node-version: '14.x'
+        registry-url: 'https://registry.npmjs.org'
+    - name: Publish package on NPM 📦
       run: npm publish
       env:
-        NODE_AUTH_TOKEN: ${{secrets.NPMTOKEN}}
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
