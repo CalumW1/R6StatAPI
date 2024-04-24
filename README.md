@@ -121,7 +121,7 @@ Example response
 #### Get user progression
 gets the progression for a user
 ```
-await api.getUserProgression(user.profileId, platform);
+await api.getUserProgression(user.userId, platform);
 ``` 
 
 Example response
