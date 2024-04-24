@@ -33,19 +33,9 @@ class api {
       return await GetUserRankQuery(userId, platform);
     };
 
-    this.GetUserStats = async (
-      userId,
-      profileId,
-      platform,
-      view,
-      aggregation,
-      gameMode,
-      teamRole,
-      season
-    ) => {
+    this.GetUserStats = async (userId, platform, view, aggregation, gameMode, teamRole, season) => {
       return await GetUserStatsQuery(
         userId,
-        profileId,
         platform,
         view,
         aggregation,

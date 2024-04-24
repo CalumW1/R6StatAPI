@@ -137,7 +137,7 @@ Returns the status of a particular platform
 
 platforms: pc, xbox, ps4
 ```
-await api.getServerStatus('pc')
+await api.getServerStatus(platfrom)
 ```
 
 Example response
@@ -153,7 +153,7 @@ Example response
 #### Get user rank
 Returns statistics for different gamemodes
 ```
-await api.getUserRank(player.userId, 'pc');
+await api.getUserRank(player.userId, platfrom);
 ```
 
 Example response
