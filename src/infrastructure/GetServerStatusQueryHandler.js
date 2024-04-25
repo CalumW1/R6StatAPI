@@ -5,7 +5,7 @@ import {
   UBI_GETSERVERSTATUS,
   UBI_SERVER_IDS,
   UBI_SERVER_STATUS_URI,
-} from '../utils/helperFunctions.js';
+} from '../utils/HelperFunctions.js';
 import { ServerStatus } from '../domain/entitites/ServerStatus.js';
 
 export async function GetServerStatusQueryHandler(platform) {

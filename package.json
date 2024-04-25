@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "eslint": "^9.1.1",
     "node-fetch": "^3.3.1"
   },
   "type": "module",
@@ -8,9 +9,8 @@
   },
   "name": "r6statapi",
   "description": "Wrapper for Rainbow Six Siege API",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "src/index.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CalumW1/R6StatAPI.git"

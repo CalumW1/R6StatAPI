@@ -6,7 +6,7 @@ import {
   BASE_UBI_URI,
   UBI_PROGRESSION_SPACEID,
   UBI_SESSIONID,
-} from '../utils/helperFunctions.js';
+} from '../utils/HelperFunctions.js';
 
 export const GetUserProgressionQueryHandler = async (userId, platform) => {
   const token = await AuthCommand();

@@ -5,7 +5,7 @@ import {
   UBI_SPACEIDS,
   UBI_APPID,
   UBI_SESSIONID,
-} from '../utils/helperFunctions.js';
+} from '../utils/HelperFunctions.js';
 import { ApiClient } from './ApiClient.js';
 
 export const GetUserRankQueryHandler = async (userId, platform) => {

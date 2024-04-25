@@ -5,8 +5,8 @@ import {
   UBI_DATADEV_SESSIONID,
   UBI_DATADEV_URI,
   UBI_GETSTATS,
-} from '../utils/helperFunctions.js';
-import { UserStats } from '../domain/entitites/userStats.js';
+} from '../utils/HelperFunctions.js';
+import { UserStats } from '../domain/entitites/UserStats.js';
 
 export const GetUserStatsQueryHandler = async (
   userId,

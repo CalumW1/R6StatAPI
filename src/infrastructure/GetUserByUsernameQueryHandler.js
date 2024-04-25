@@ -1,7 +1,7 @@
 import { AuthCommandHandler } from './AuthCommandHandler.js';
 import { ApiClient } from './ApiClient.js';
-import { UserProfile } from '../domain/entitites/userProfile.js';
-import { BASE_UBI_URI, UBI_APPID, UBI_GETUSERBYUSERNAME_URI } from '../utils/helperFunctions.js';
+import { UserProfile } from '../domain/entitites/UserProfile.js';
+import { BASE_UBI_URI, UBI_APPID, UBI_GETUSERBYUSERNAME_URI } from '../utils/HelperFunctions.js';
 
 export const GetUserByUsernameQueryHandler = async (username, platform) => {
   const token = await AuthCommandHandler();

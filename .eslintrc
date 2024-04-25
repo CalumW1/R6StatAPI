@@ -18,7 +18,7 @@
     "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
     "func-style": ["error", "expression", { "allowArrowFunctions": true }],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    "import/no-unresolved": "off",
+    "import/no-unresolved": ["error", { "caseSensitive": true }],
     "import/no-dynamic-require": "off",
     "import/order": "off",
     "import/extensions": "off",

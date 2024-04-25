@@ -6,7 +6,7 @@ import {
   UBI_GETSTATS,
   UBI_RANKED_SESSIONID,
   UBI_DATADEV_APPID,
-} from '../utils/helperFunctions.js';
+} from '../utils/HelperFunctions.js';
 import { Operator } from '../domain/entitites/Operator.js';
 
 export const GetOperatorQueryHandler = async (
