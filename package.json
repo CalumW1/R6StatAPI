@@ -9,7 +9,7 @@
   },
   "name": "r6statapi",
   "description": "Wrapper for Rainbow Six Siege API",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "src/index.js",
   "repository": {
     "type": "git",
