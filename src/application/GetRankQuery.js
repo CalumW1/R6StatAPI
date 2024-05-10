@@ -1,11 +1,9 @@
-import GetRankQueryHandler from '../infrastructure/GetRankQueryHandler';
+import { GetRankQueryHandler } from '../infrastructure/GetRankQueryHandler.js';
 
-const GetRankQuery = async rank => {
+export const GetRankQuery = async rank => {
   try {
     return await GetRankQueryHandler(rank);
   } catch (error) {
     console.log(error);
   }
 };
-
-export default GetRankQuery;

@@ -1,5 +1,8 @@
-export default class Rank {
-  constructor(imagePath, rankRange, rankName) {
-    (this.imagePath = imagePath), (this.rankRange = rankRange), (this.rankName = rankName);
+export class Rank {
+  constructor(imagePath, minimumRankPoints, maximumRankPoints, rankName) {
+    (this.imagePath = imagePath),
+      (this.minimumRankPoints = minimumRankPoints),
+      (this.maximumRankPoints = maximumRankPoints),
+      (this.rankName = rankName);
   }
 }
