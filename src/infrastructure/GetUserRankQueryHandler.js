@@ -5,6 +5,7 @@ import {
   UBI_SPACEIDS,
   UBI_APPID,
   UBI_SESSIONID,
+  Ranks,
 } from '../utils/HelperFunctions.js';
 import { ApiClient } from './ApiClient.js';
 
@@ -32,7 +33,7 @@ function extractValues(data) {
     platform_families_full_profiles: [{ board_ids_full_profiles }],
   } = data;
 
-  const extractedValues = {};
+  const extractedValues = [];
 
   board_ids_full_profiles.forEach(board => {
     const { board_id, full_profiles } = board;
@@ -71,6 +72,7 @@ function extractValues(data) {
         abandons,
         losses,
         wins,
+        rankImage: Ranks.find(x => x.id === profile.profile.rank).image,
       };
 
       extractedValues[`${board_id}`] = profileData;
