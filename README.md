@@ -91,7 +91,12 @@ Example response
   userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
   platformType: 'uplay',
   idOnPlatform: 'AFC2AFEC-B9ED-4988-BFFA-58E78EEDFA93',
-  nameOnPlatform: 'CaleyW1'
+  nameOnPlatform: 'CaleyW1',
+  avatars: {
+    '146': 'https://avatars.ubisoft.com/afc2afec-b9ed-4988-bffa-58e78eedfa93/default_146_146.png?appId=3587dcbb-7f81-457c-9781-0e3f29f6f56a',
+    '256': 'https://avatars.ubisoft.com/afc2afec-b9ed-4988-bffa-58e78eedfa93/default_256_256.png?appId=3587dcbb-7f81-457c-9781-0e3f29f6f56a',
+    '500': 'https://avatars.ubisoft.com/afc2afec-b9ed-4988-bffa-58e78eedfa93/default_tall.png?appId=3587dcbb-7f81-457c-9781-0e3f29f6f56a'
+  }
 }
 ```
 
@@ -112,21 +117,36 @@ Example response
     userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
     platformType: 'uplay',
     idOnPlatform: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
-    nameOnPlatform: 'CaleyW1'
+    nameOnPlatform: 'CaleyW1',
+    avatars: {
+    '146': 'https://avatars.ubisoft.com/afc2afec-b9ed-4988-bffa-58e78eedfa93/default_146_146.png?appId=3587dcbb-7f81-457c-9781-0e3f29f6f56a',
+    '256': 'https://avatars.ubisoft.com/afc2afec-b9ed-4988-bffa-58e78eedfa93/default_256_256.png?appId=3587dcbb-7f81-457c-9781-0e3f29f6f56a',
+    '500': 'https://avatars.ubisoft.com/afc2afec-b9ed-4988-bffa-58e78eedfa93/default_tall.png?appId=3587dcbb-7f81-457c-9781-0e3f29f6f56a'
+  }
   },
   {
     profileId: 'f02cbe10-2411-43d9-b449-5366888201a2',
     userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
     platformType: 'steam',
     idOnPlatform: '76561198172917981',
-    nameOnPlatform: '76561198172917983'
+    nameOnPlatform: '76561198172917983',
+    avatars: {
+    '146': 'https://avatars.ubisoft.com/afc2afec-b9ed-4988-bffa-58e78eedfa93/default_146_146.png?appId=3587dcbb-7f81-457c-9781-0e3f29f6f56a',
+    '256': 'https://avatars.ubisoft.com/afc2afec-b9ed-4988-bffa-58e78eedfa93/default_256_256.png?appId=3587dcbb-7f81-457c-9781-0e3f29f6f56a',
+    '500': 'https://avatars.ubisoft.com/afc2afec-b9ed-4988-bffa-58e78eedfa93/default_tall.png?appId=3587dcbb-7f81-457c-9781-0e3f29f6f56a'
+  }
   },
   {
     profileId: '91193155-2b57-48f1-b69b-556f5e4ccfea',
     userId: 'afc2afec-b9ed-4988-bffa-58e78eedfa93',
     platformType: 'twitch',
     idOnPlatform: '469658264',
-    nameOnPlatform: 'calbob'
+    nameOnPlatform: 'calbob',
+    avatars: {
+    '146': 'https://avatars.ubisoft.com/afc2afec-b9ed-4988-bffa-58e78eedfa93/default_146_146.png?appId=3587dcbb-7f81-457c-9781-0e3f29f6f56a',
+    '256': 'https://avatars.ubisoft.com/afc2afec-b9ed-4988-bffa-58e78eedfa93/default_256_256.png?appId=3587dcbb-7f81-457c-9781-0e3f29f6f56a',
+    '500': 'https://avatars.ubisoft.com/afc2afec-b9ed-4988-bffa-58e78eedfa93/default_tall.png?appId=3587dcbb-7f81-457c-9781-0e3f29f6f56a'
+  }
   }
 ]
 ```
@@ -189,6 +209,7 @@ Example response
     platform_family: 'pc',
     rank: 0,
     rank_points: 0,
+    rank_name: 'Unranked',
     season_id: 33,
     top_rank_position: 0,
     deaths: 0,
@@ -205,6 +226,7 @@ Example response
     platform_family: 'pc',
     rank: 0,
     rank_points: 0,
+    rank_name: 'Unranked',
     season_id: 33,
     top_rank_position: 0,
     deaths: 0,
@@ -221,6 +243,7 @@ Example response
     platform_family: 'pc',
     rank: 0,
     rank_points: 0,
+    rank_name: 'Unranked',
     season_id: 33,
     top_rank_position: 0,
     deaths: 12,
@@ -237,6 +260,7 @@ Example response
     platform_family: 'pc',
     rank: 0,
     rank_points: 0,
+    rank_name: 'Unranked',
     season_id: 33,
     top_rank_position: 0,
     deaths: 4,
@@ -253,6 +277,7 @@ Example response
     platform_family: 'pc',
     rank: 32,
     rank_points: 4100,
+    rank_name: 'Unranked',
     season_id: 33,
     top_rank_position: 0,
     deaths: 433,
