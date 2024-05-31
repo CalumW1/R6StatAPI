@@ -1,7 +1,12 @@
 import { AuthCommandHandler } from './AuthCommandHandler.js';
 import { ApiClient } from './ApiClient.js';
 import { UserProfile } from '../domain/entitites/UserProfile.js';
-import { BASE_UBI_URI, UBI_APPID, UBI_GETUSERBYUSERNAME_URI } from '../utils/HelperFunctions.js';
+import {
+  BASE_UBI_URI,
+  UBI_APPID,
+  UBI_GETUSERBYUSERNAME_URI,
+  AvatarImages,
+} from '../utils/HelperFunctions.js';
 
 export const GetUserByUsernameQueryHandler = async (username, platform) => {
   const token = await AuthCommandHandler();
@@ -22,7 +27,8 @@ export const GetUserByUsernameQueryHandler = async (username, platform) => {
       profile.userId,
       profile.platformType,
       profile.idOnPlatform,
-      profile.nameOnPlatform
+      profile.nameOnPlatform,
+      AvatarImages(profile.userId)
     );
     return { ...acc, ...object };
   }, {});

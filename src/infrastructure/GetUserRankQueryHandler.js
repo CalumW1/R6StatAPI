@@ -5,6 +5,7 @@ import {
   UBI_SPACEIDS,
   UBI_APPID,
   UBI_SESSIONID,
+  Ranks,
 } from '../utils/HelperFunctions.js';
 import { ApiClient } from './ApiClient.js';
 
@@ -64,6 +65,7 @@ function extractValues(data) {
         platform_family,
         rank,
         rank_points,
+        rank_name: Ranks.find(x => x.id === rank).name,
         season_id,
         top_rank_position,
         deaths,
