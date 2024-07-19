@@ -5,12 +5,14 @@
   },
   "type": "module",
   "scripts": {
-    "start": "node ./src/index.js"
+    "start": "node ./src/index.js",
+    "build": "babel src --out-dir lib"
   },
   "name": "r6statapi",
   "description": "Wrapper for Rainbow Six Siege API",
-  "version": "1.2.6",
-  "main": "src/index.js",
+  "version": "1.2.7",
+  "module": "src/index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CalumW1/R6StatAPI.git"
@@ -26,5 +28,10 @@
   "bugs": {
     "url": "https://github.com/CalumW1/R6StatAPI/issues"
   },
-  "homepage": "https://github.com/CalumW1/R6StatAPI#readme"
+  "homepage": "https://github.com/CalumW1/R6StatAPI#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.24.8",
+    "@babel/core": "^7.24.9",
+    "@babel/preset-env": "^7.24.8"
+  }
 }
