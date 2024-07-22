@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "eslint": "^9.1.1",
-    "node-fetch": "^3.3.1"
+    "node-fetch": "^2.6.2"
   },
   "scripts": {
     "start": "node ./src/index.js",
@@ -29,6 +29,8 @@
   },
   "homepage": "https://github.com/CalumW1/R6StatAPI#readme",
   "devDependencies": {
+    "@types/node": "^20.14.11",
+    "@types/node-fetch": "^2.6.11",
     "typescript": "^5.5.3"
   }
 }

@@ -1,3 +1,4 @@
+import { url } from 'inspector';
 import { UBI_AUTH_URI, UBI_APPID, BASE_UBI_URI } from '../utils/HelperFunctions.js';
 import { ApiClient } from './ApiClient.js';
 import fs from 'fs/promises';
@@ -50,6 +51,7 @@ const getTokenFromUbi = async (email, password) => {
   };
 
   const URI = BASE_UBI_URI(3) + UBI_AUTH_URI;
+
   const data = await ApiClient(URI, headers, 'post');
 
   token = data.ticket;
