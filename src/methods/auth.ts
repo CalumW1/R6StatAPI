@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import { UBI_APPID, BASE_UBI_URI, UBI_AUTH_URI } from '../constants';
 import { writeFile } from 'fs';
+import { promises } from 'dns';
 
 export interface Authorise {
   platformType: string;
@@ -31,7 +32,7 @@ let Experation: string = '';
 export const Auth = async (email: string, password: string): Promise<string> => {
   const currentTime = new Date().toISOString();
 
-  if (Token !== null && currentTime < NextRefresh) {
+  if (Token !== '' && currentTime < NextRefresh) {
     return Token;
   }
 
@@ -78,4 +79,13 @@ const RequestToken = async (email: string, password: string): Promise<Authorise>
   });
 
   return data;
+};
+
+export const CheckToken = async (): Promise<string> => {
+  var currentTime = new Date().toISOString();
+
+  if (Token !== '' && currentTime < NextRefresh) {
+    console.log('Retreving token from memory');
+    return Token;
+  } else return (await RequestToken(Email, Password)).ticket;
 };
