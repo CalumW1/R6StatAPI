@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { UBI_APPID, BASE_UBI_URI, UBI_AUTH_URI } from '../constants';
 import { writeFile } from 'fs';
-import { promises } from 'dns';
+import { ApiClient } from './ApiClient';
 
 export interface Authorise {
   platformType: string;
@@ -57,12 +57,7 @@ const RequestToken = async (email: string, password: string): Promise<Authorise>
 
   const URI = BASE_UBI_URI(3) + UBI_AUTH_URI;
 
-  const response = await fetch(URI, {
-    method: 'POST',
-    headers: headers,
-  });
-
-  if (!response.ok) throw Error('Login was not successful');
+  const response = await ApiClient(URI, headers, 'POST');
 
   const data = (await response.json()) as Authorise;
 

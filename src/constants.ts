@@ -69,8 +69,8 @@ export const UBI_RANKED_URI = (
 export const UBI_PROFILEV2_URI = (profileId: string, platform: string) =>
   `https://public-ubiservices.ubi.com/v2/spaces/0d2ae42d-4c27-4cb7-af6c-2099062302bb/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
 
-export const UBI_GETPLAYERPROGRESSION2 = (spaceId: string, playerId: string) =>
-  `/spaces/${spaceId}/title/r6s/rewards/public_profile?profile_id=${playerId}`;
+export const UBI_GETPLAYERPROGRESSION2 = (spaceId: string, userId: string) =>
+  `/spaces/${spaceId}/title/r6s/rewards/public_profile?profile_id=${userId}`;
 
 export const UBI_RANKED_URI_V2 = (profileId: string, platform: string) =>
   `/spaces/0d2ae42d-4c27-4cb7-af6c-2099062302bb/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;

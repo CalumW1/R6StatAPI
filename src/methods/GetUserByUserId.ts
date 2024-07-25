@@ -1,5 +1,6 @@
 import { CheckToken } from './Auth';
 import { UBI_APPID, BASE_UBI_URI, UBI_GETUSERBYID_URI, AvatarImages } from '../constants';
+import { ApiClient } from './ApiClient';
 
 interface Profiles {
   profiles: User[];
@@ -31,12 +32,7 @@ export const GetUserByUserId = async (userId: string): Promise<User[] | null> =>
 
   const URI = BASE_UBI_URI(3) + UBI_GETUSERBYID_URI(userId);
 
-  const response = await fetch(URI, {
-    method: 'GET',
-    headers: headers,
-  });
-
-  if (!response.ok) throw Error('Login was not successful');
+  const response = await ApiClient(URI, headers, 'GET');
 
   const data = (await response.json()) as Profiles;
 
