@@ -3,6 +3,7 @@ import { GetUserByUsername, User } from './methods/GetUserByUsername';
 import { GetUserByUserId } from './methods/GetUserByUserId';
 import { GetUserProgression, Progression } from './methods/GetUserProgression';
 import { GetServerStatus, ServerStatus } from './methods/GetServerStatus';
+import { GetUserRank, UserRank } from './methods/GetUserRank';
 
 export class R6StatAPI {
   public async Login(email: string, password: string): Promise<string> {
@@ -23,5 +24,9 @@ export class R6StatAPI {
 
   public async GetServerStatus(platform: string): Promise<ServerStatus> {
     return await GetServerStatus(platform);
+  }
+
+  public async GetUserRank(userId: string, platform: string): Promise<UserRank> {
+    return await GetUserRank(userId, platform);
   }
 }
