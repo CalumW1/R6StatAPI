@@ -11,7 +11,7 @@ export interface Authorise {
   userId: string;
   nameOnPlatform: string;
   environment: string;
-  experation: string;
+  expiration: string;
   spaceId: string;
   clientIp: string;
   clientIpCountry: string;
@@ -62,8 +62,8 @@ const RequestToken = async (email: string, password: string): Promise<Authorise>
   const data = (await response.json()) as Authorise;
 
   Token = data.ticket;
-  NextRefresh = data.experation;
-  Experation = data.experation;
+  NextRefresh = data.expiration;
+  Experation = data.expiration;
 
   writeFile(FileName, JSON.stringify(data, null, 2), err => {
     if (err) {
@@ -83,4 +83,8 @@ export const CheckToken = async (): Promise<string> => {
     console.log('Retreving token from memory');
     return Token;
   } else return (await RequestToken(Email, Password)).ticket;
+};
+
+export const GetExperation = async (): Promise<string> => {
+  return Experation;
 };
