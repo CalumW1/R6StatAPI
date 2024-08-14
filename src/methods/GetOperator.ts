@@ -8,7 +8,14 @@ import {
   RANKED_UBI_SPACEIDS,
 } from '../constants';
 
-export interface Operators {
+export interface GameModes {
+  ranked: Operators;
+  unranked: Operators;
+  casual: Operators;
+  all: Operators;
+}
+
+interface Operators {
   attackers: OperatorStats[];
   defenders: OperatorStats[];
 }
@@ -61,7 +68,7 @@ export const GetOperator = async (
   gameMode: string,
   teamRole: string,
   season: string
-): Promise<Operators> => {
+): Promise<GameModes> => {
   var token = await CheckToken();
   var expiration = await GetExperation();
 
@@ -83,46 +90,65 @@ export const GetOperator = async (
 
   const data = await ApiClient(URI, headers, 'GET');
 
-  const operators: Operators = await ExtractOperators(await data.json(), userId);
+  const operators: GameModes = await ExtractOperators(await data.json(), userId, gameMode);
 
   return operators;
 };
 
-const ExtractOperators = async (data: any, userId: string): Promise<Operators> => {
-  const operators: Operators = {
-    attackers: [],
-    defenders: [],
+const ExtractOperators = async (
+  data: any,
+  userId: string,
+  gameMode: string
+): Promise<GameModes> => {
+  const gameModes: GameModes = {
+    ranked: {
+      attackers: [],
+      defenders: [],
+    },
+    unranked: {
+      attackers: [],
+      defenders: [],
+    },
+    all: {
+      attackers: [],
+      defenders: [],
+    },
+    casual: {
+      attackers: [],
+      defenders: [],
+    },
   };
 
-  const profile = data.profileData[`${userId}`].platforms.PC.gameModes.ranked.teamRoles;
-  const attackers = profile.attacker;
-  const defenders = profile.defender;
+  const splitGameModes: string[] = gameMode.split(',');
 
-  console.log(`Attackers count: ${attackers.length}, Defenders count: ${defenders.length}`);
+  for (const mode of splitGameModes) {
+    var profile = data.profileData[`${userId}`].platforms.PC.gameModes[`${mode}`]?.teamRoles ?? [];
+    const attackers = profile.Attacker ?? {};
+    const defenders = profile.Defender ?? {};
 
-  if (attackers.length > 0) {
-    const attackersPromise = attackers.map(async (operator: any) => {
-      const operatorStats: OperatorStats = await BuildOperator(operator);
-      return operatorStats;
-    });
+    const selectMode = gameModes[mode as keyof GameModes];
 
-    const resolvedAttackers = await Promise.all(attackersPromise);
-    operators.attackers.push(...resolvedAttackers);
+    if (attackers.length > 0) {
+      const attackersPromise = attackers.map(async (operator: any) => {
+        const operatorStats: OperatorStats = await BuildOperator(operator);
+        return operatorStats;
+      });
+
+      const resolvedAttackers = await Promise.all(attackersPromise);
+      selectMode.attackers.push(...resolvedAttackers);
+    }
+
+    if (defenders.length > 0) {
+      const defendersPromise = defenders.map(async (operator: any) => {
+        const operatorStats: OperatorStats = await BuildOperator(operator);
+        return operatorStats;
+      });
+
+      const resolvedDefender = await Promise.all(defendersPromise);
+      selectMode.defenders.push(...resolvedDefender);
+    }
   }
-
-  if (defenders.length > 0) {
-    const defendersPromise = defenders.map(async (operator: any) => {
-      const operatorStats: OperatorStats = await BuildOperator(operator);
-      return operatorStats;
-    });
-
-    const resolvedDefender = await Promise.all(defendersPromise);
-    operators.defenders.push(...resolvedDefender);
-  }
-
-  // console.log(`Attackers length: ${operators.attackers.length}`);
-  // console.log(`Defenders length: ${operators.defenders.length}`);
-  return operators;
+  return gameModes;
 };
 
 const BuildOperator = async (operator: any): Promise<OperatorStats> => {

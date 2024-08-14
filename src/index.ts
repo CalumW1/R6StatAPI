@@ -4,7 +4,7 @@ import { GetUserByUserId } from './methods/GetUserByUserId';
 import { GetUserProgression, Progression } from './methods/GetUserProgression';
 import { GetServerStatus, ServerStatus } from './methods/GetServerStatus';
 import { GetUserRank, UserRank } from './methods/GetUserRank';
-import { GetOperator, Operators } from './methods/GetOperator';
+import { GetOperator, GameModes } from './methods/GetOperator';
 
 export class R6StatAPI {
   public async Login(email: string, password: string): Promise<string> {
@@ -39,7 +39,7 @@ export class R6StatAPI {
     gameMode: string,
     teamRole: string,
     season: string
-  ): Promise<Operators> {
+  ): Promise<GameModes> {
     return await GetOperator(userId, platform, view, aggregation, gameMode, teamRole, season);
   }
 }

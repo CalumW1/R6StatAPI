@@ -1,4 +1,3 @@
-// export const UBI_APPID = '3587dcbb-7f81-457c-9781-0e3f29f6f56a';
 export const UBI_APPID = 'e3d5ea9e-50bd-43b7-88bf-39794f4e3d40';
 
 export const UBI_DATADEV_APPID = '3587dcbb-7f81-457c-9781-0e3f29f6f56a';
