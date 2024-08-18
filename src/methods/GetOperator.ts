@@ -44,7 +44,7 @@ interface OperatorStats {
   revives: number;
   distanceTravelled: number;
   winLossRatio: number;
-  KillDeathRatio: number;
+  killDeathRatio: number;
   headshotAccuracy: number;
   killsPerRound: number;
   roundsWithAKill: number;
@@ -88,9 +88,18 @@ export const GetOperator = async (
     UBI_DATADEV_URI +
     UBI_GETSTATS(userId, spaceId, platformChange, view, aggregation, gameMode, teamRole, season);
 
+  // https://prod.datadev.ubisoft.com/v1/users/488cd0dd-b8e0-4718-a9da-2767ea44c399/playerstats?spaceId=05bfb3f7-6c21-4c42-be1f-97a33fb5cf66&view=current&aggregation=operators&gameMode=all,ranked,casual,unranked&platformGroup=CONSOLE&teamRole=attacker,defender&seasons=Y9S2
+  // https://prod.datadev.ubisoft.com/v1/users/488cd0dd-b8e0-4718-a9da-2767ea44c399/playerstats?spaceId=05bfb3f7-6c21-4c42-be1f-97a33fb5cf66&view=current&aggregation=operators&gameMode=ranked,casual&platformGroup=CONSOLE&teamRole=defender,attacker&seasons=Y9S2
+  console.log(URI);
+
   const data = await ApiClient(URI, headers, 'GET');
 
-  const operators: GameModes = await ExtractOperators(await data.json(), userId, gameMode);
+  const operators: GameModes = await ExtractOperators(
+    await data.json(),
+    userId,
+    gameMode,
+    platformChange
+  );
 
   return operators;
 };
@@ -98,7 +107,8 @@ export const GetOperator = async (
 const ExtractOperators = async (
   data: any,
   userId: string,
-  gameMode: string
+  gameMode: string,
+  platform: string
 ): Promise<GameModes> => {
   const gameModes: GameModes = {
     ranked: {
@@ -122,7 +132,8 @@ const ExtractOperators = async (
   const splitGameModes: string[] = gameMode.split(',');
 
   for (const mode of splitGameModes) {
-    var profile = data.profileData[`${userId}`].platforms.PC.gameModes[`${mode}`]?.teamRoles ?? [];
+    var profile =
+      data.profileData[`${userId}`].platforms[`${platform}`].gameModes[`${mode}`]?.teamRoles ?? [];
     const attackers = profile.Attacker ?? {};
     const defenders = profile.Defender ?? {};
 
@@ -176,7 +187,7 @@ const BuildOperator = async (operator: any): Promise<OperatorStats> => {
     revives: operator.revives,
     distanceTravelled: operator.distanceTravelled,
     winLossRatio: operator.winLossRatio,
-    KillDeathRatio: operator.killDeathRatio.value,
+    killDeathRatio: operator.killDeathRatio.value,
     headshotAccuracy: operator.headshotAccuracy.value,
     killsPerRound: operator.killsPerRound.value,
     roundsWithAKill: operator.killsPerRound.value,

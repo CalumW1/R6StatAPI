@@ -1,6 +1,6 @@
 # R6StatAPI
 
-An API wrapper for Rainbow Six Seige written in JavaScript.
+An API wrapper for Rainbow Six Seige written in Typescript.
 
 ## Table of Contents
 
@@ -21,8 +21,11 @@ The example below has the email and password variables hardcoded but it would be
 
 ```
 import r6statapi from 'r6statapi';
-
 const api = new r6statapi();
+
+// or CommonJS
+const { R6StatAPI } = require("r6statapi");
+const api = new R6StatAPI();
 
 // replace with your own information
 const email = "test@gmail.com"
@@ -31,7 +34,7 @@ const usermame = "User1"
 const platform = "uplay"
 
 // login and get token
-const token = await api.getAuth(email, password)
+const token = await api.login(email, password)
 console.log(token)
 
 // fetch user by username
@@ -52,21 +55,21 @@ console.log(user);
 
 ### Table of Contents
 
-1. [Auth](#Auth)
+1. [Login](#Login)
 2. [GetUserByUsername](#get-user-by-username)
 3. [GetUserByUserId](#get-user-by-userid)
 4. [GetUserProgression](#get-user-progression)
 5. [GetServerStatus](#get-server-status)
 6. [GetUserRank](#get-user-rank)
-7. [GetUserStats]()
-8. [GetOperators]()
+7. [GetUserStats](#get-user-stats)
+8. [GetOperators](#get-operator)
 
-#### Auth
+#### Login
 
 Signs into the Ubisoft a returns a token.
 
 ```
-await api.getAuth(email, password)
+await api.Login(email, password)
 ```
 
 Example response
@@ -182,7 +185,11 @@ Example response
 
 ```
 {
-  platform: 'PC',
+  MDM: '4075',
+  SpaceID: '98a601e5-ca91-4440-b1c5-753f601a2c90',
+  Category: 'Instance',
+  Name: 'Rainbow Six Siege - XBOXONE - LIVE',
+  platform: 'XBOXONE',
   status: 'Online',
   maintenance: null,
   impactedFeatures: []
@@ -203,31 +210,31 @@ Example response
 {
   casual: {
     profile_board_id: 'casual',
-    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
+    id: 'casual',
     max_rank: 0,
     max_rank_points: 0,
-    platform_family: 'pc',
+    platform_family: 'console',
     rank: 0,
     rank_points: 0,
-    rank_name: 'Unranked',
-    season_id: 33,
+    rank_name: undefined,
+    season_id: 34,
     top_rank_position: 0,
-    deaths: 0,
-    kills: 0,
-    abandons: 0,
-    losses: 0,
-    wins: 0
+    deaths: 14,
+    kills: 15,
+    abandons: 3,
+    losses: 4,
+    wins: 2
   },
   event: {
     profile_board_id: 'event',
-    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
+    id: 'event',
     max_rank: 0,
     max_rank_points: 0,
-    platform_family: 'pc',
+    platform_family: 'console',
     rank: 0,
     rank_points: 0,
-    rank_name: 'Unranked',
-    season_id: 33,
+    rank_name: undefined,
+    season_id: 34,
     top_rank_position: 0,
     deaths: 0,
     kills: 0,
@@ -237,54 +244,54 @@ Example response
   },
   warmup: {
     profile_board_id: 'warmup',
-    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
+    id: 'warmup',
     max_rank: 0,
     max_rank_points: 0,
-    platform_family: 'pc',
+    platform_family: 'console',
     rank: 0,
     rank_points: 0,
-    rank_name: 'Unranked',
-    season_id: 33,
+    rank_name: undefined,
+    season_id: 34,
     top_rank_position: 0,
-    deaths: 12,
-    kills: 14,
+    deaths: 10,
+    kills: 21,
     abandons: 1,
-    losses: 1,
-    wins: 0
+    losses: 0,
+    wins: 1
   },
   standard: {
     profile_board_id: 'standard',
-    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
+    id: 'standard',
     max_rank: 0,
     max_rank_points: 0,
-    platform_family: 'pc',
+    platform_family: 'console',
     rank: 0,
     rank_points: 0,
-    rank_name: 'Unranked',
-    season_id: 33,
+    rank_name: undefined,
+    season_id: 34,
     top_rank_position: 0,
-    deaths: 4,
-    kills: 7,
+    deaths: 0,
+    kills: 0,
     abandons: 0,
-    losses: 1,
+    losses: 0,
     wins: 0
   },
   ranked: {
     profile_board_id: 'ranked',
-    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
-    max_rank: 32,
-    max_rank_points: 4155,
-    platform_family: 'pc',
-    rank: 32,
-    rank_points: 4100,
-    rank_name: 'Unranked',
-    season_id: 33,
-    top_rank_position: 0,
-    deaths: 433,
-    kills: 581,
-    abandons: 1,
-    losses: 56,
-    wins: 49
+    id: 'ranked',
+    max_rank: 36,
+    max_rank_points: 6788,
+    platform_family: 'console',
+    rank: 36,
+    rank_points: 6788,
+    rank_name: undefined,
+    season_id: 34,
+    top_rank_position: 3,
+    deaths: 2473,
+    kills: 4759,
+    abandons: 7,
+    losses: 41,
+    wins: 964
   }
 }
 ```
@@ -394,167 +401,55 @@ const operator = await api.getOperators(
 Example Response
 
 ```
-[
-  {
-    "attacker": [
+{
+  ranked: {
+    attackers: [
       {
-        "type": "Seasonal",
-        "statsType": "operators",
-        "statsDetail": "Iq",
-        "seasonYear": "Y6",
-        "seasonNumber": "S3",
-        "matchesPlayed": 3,
-        "roundsPlayed": 4,
-        "minutesPlayed": 12,
-        "matchesWon": 1,
-        "matchesLost": 2,
-        "roundsWon": 2,
-        "roundsLost": 2,
-        "kills": 2,
-        "assists": 0,
-        "death": 3,
-        "headshots": 1,
-        "meleeKills": 0,
-        "teamKills": 0,
-        "openingKills": 0,
-        "openingDeaths": 1,
-        "trades": 0,
-        "openingKillTrades": 0,
-        "openingDeathTrades": 0,
-        "revives": 0,
-        "distanceTravelled": 604,
-        "winLossRatio": 0.5,
-        "killDeathRatio": {
-          "value": 0.6667,
-          "p": 0
-        },
-        "headshotAccuracy": {
-          "value": 0.5,
-          "p": 0
-        },
-        "killsPerRound": {
-          "value": 0.5,
-          "p": 0
-        },
-        "roundsWithAKill": {
-          "value": 0.25,
-          "p": 0
-        },
-        "roundsWithMultiKill": {
-          "value": 0.25,
-          "p": 0
-        },
-        "roundsWithOpeningKill": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithOpeningDeath": {
-          "value": 0.25,
-          "p": 0
-        },
-        "roundsWithKOST": {
-          "value": 0.25,
-          "p": 0
-        },
-        "roundsSurvived": {
-          "value": 0.25,
-          "p": 0
-        },
-        "roundsWithAnAce": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithClutch": {
-          "value": 0,
-          "p": 0
-        },
-        "timeAlivePerMatch": 80,
-        "timeDeadPerMatch": 60,
-        "distancePerRound": 151
+        type: 'Generalized',
+        statsType: 'operators',
+        statsDetail: 'Montagne',
+        matchesPlayed: 84,
+        roundsPlayed: 114,
+        minutesPlayed: 343,
+        matchesWon: 81,
+        matchesLost: 3,
+        roundsWon: 92,
+        roundsLost: 22,
+        kills: 81,
+        assists: 16,
+        deaths: 44,
+        headshots: 4,
+        meleeKills: 51,
+        teamKills: 0,
+        openingKills: 5,
+        trades: 5,
+        openingKillTrades: 2,
+        openingDeathTrades: 0,
+        revives: 1,
+        distanceTravelled: 14418,
+        winLossRatio: 27,
+        killDeathRatio: 1.8409,
+        headshotAccuracy: 0.0494,
+        killsPerRound: 0.7105,
+        roundsWithAKill: 0.7105,
+        roundsWithMultiKill: 0.1667,
+        roundsWithOpeningKill: 0.0439,
+        roundsWithOpeningDeath: 0.0614,
+        roundsWithKOST: 0.7544,
+        roundsSurvived: 0.614,
+        roundsWithAnAce: 0,
+        roundsWithClutch: 0.0175,
+        timeAlivePerMatch: 109.6905,
+        timeDeadPerMatch: 20.1667,
+        distancePerRound: 126.4737
       }
-    ]
+    ],
+    defenders: []
   },
-  {
-    "defender": [
-      {
-        "type": "Seasonal",
-        "statsType": "operators",
-        "statsDetail": "Ela",
-        "seasonYear": "Y6",
-        "seasonNumber": "S3",
-        "matchesPlayed": 3,
-        "roundsPlayed": 3,
-        "minutesPlayed": 10,
-        "matchesWon": 1,
-        "matchesLost": 2,
-        "roundsWon": 1,
-        "roundsLost": 2,
-        "kills": 0,
-        "assists": 2,
-        "death": 3,
-        "headshots": 0,
-        "meleeKills": 0,
-        "teamKills": 0,
-        "openingKills": 0,
-        "openingDeaths": 1,
-        "trades": 0,
-        "openingKillTrades": 0,
-        "openingDeathTrades": 0,
-        "revives": 0,
-        "distanceTravelled": 553,
-        "winLossRatio": 0.5,
-        "killDeathRatio": {
-          "value": 0,
-          "p": 0
-        },
-        "headshotAccuracy": {
-          "value": 0,
-          "p": 0
-        },
-        "killsPerRound": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithAKill": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithMultiKill": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithOpeningKill": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithOpeningDeath": {
-          "value": 0.3333,
-          "p": 0
-        },
-        "roundsWithKOST": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsSurvived": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithAnAce": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithClutch": {
-          "value": 0,
-          "p": 0
-        },
-        "timeAlivePerMatch": 80,
-        "timeDeadPerMatch": 40,
-        "distancePerRound": 184.3333
-      }
-    ]
-  }
-]
-
+  unranked: { attackers: [], defenders: [] },
+  all: { attackers: [], defenders: [] },
+  casual: { attackers: [], defenders: [] }
+}
 ```
 
 ## Support

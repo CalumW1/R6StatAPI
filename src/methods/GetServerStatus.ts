@@ -32,5 +32,18 @@ export const GetServerStatus = async (platform: string): Promise<ServerStatus> =
 
   const response = await ApiClient(URI, headers, 'GET');
 
-  return (await response.json()) as ServerStatus;
+  const data = await response.json();
+
+  const serverStatus: ServerStatus = {
+    MDM: data[0].MDM,
+    SpaceID: data[0].SpaceID,
+    Category: data[0].Category,
+    Name: data[0].Name,
+    platform: data[0].Platform,
+    status: data[0].Status,
+    maintenance: data[0].Maintenance,
+    impactedFeatures: data[0].ImpactedFeatures,
+  };
+
+  return serverStatus;
 };
