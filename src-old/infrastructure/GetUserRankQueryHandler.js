@@ -2,7 +2,6 @@ import { AuthCommandHandler } from './AuthCommandHandler.js';
 import {
   BASE_UBI_URI,
   UBI_RANKED_URI_V2,
-  UBI_SPACEIDS,
   UBI_APPID,
   UBI_SESSIONID,
   Ranks,

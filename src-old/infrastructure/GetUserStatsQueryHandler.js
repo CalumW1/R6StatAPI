@@ -45,7 +45,11 @@ export const GetUserStatsQueryHandler = async (
       season
     );
 
+  console.log(URI);
+
   const response = await ApiClient(URI, headers, 'GET');
+
+  console.log(JSON.stringify(response));
 
   const userStat = Object.values(
     response.profileData[userId].platforms[platformTransformation]

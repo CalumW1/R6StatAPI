@@ -72,6 +72,11 @@ console.log(user);
 
 Signs into the Ubisoft a returns a token.
 
+| Field    | Type   | Required |
+| -------- | ------ | -------- |
+| email    | string | yes      |
+| password | string | yes      |
+
 ```
 await api.Login(email, password)
 ```
@@ -85,6 +90,11 @@ ewogICJ2ZXIiOiAiMSIsCiAgImFpZCI6ICJlM2Q1ZWE5ZS01MGJkLTQzYjctODhiZi0zOTc5NGY0ZTNk
 #### Get user by username
 
 Gets a user by username
+
+| Field    | Type   | Required | options         |
+| -------- | ------ | -------- | --------------- |
+| username | string | yes      |                 |
+| platform | string | yes      | uplay, xbl, psn |
 
 ```
 await api.getUserByUsername(userName, platform);
@@ -110,6 +120,11 @@ Example response
 #### Get user by userId
 
 Gets a user by userId
+
+| Field    | Type   | Required | options         |
+| -------- | ------ | -------- | --------------- |
+| userId   | string | yes      |                 |
+| platform | string | yes      | uplay, xbl, psn |
 
 ```
 await api.getUserById(user.userId, platform);
@@ -162,6 +177,11 @@ Example response
 
 gets the progression for a user
 
+| Field    | Type   | Required | options         |
+| -------- | ------ | -------- | --------------- |
+| userId   | string | yes      |                 |
+| platform | string | yes      | uplay, xbl, psn |
+
 ```
 await api.getUserProgression(user.userId, platform);
 ```
@@ -203,6 +223,11 @@ Example response
 #### Get user rank
 
 Returns statistics for different gamemodes
+
+| Field    | Type   | Required | options         |
+| -------- | ------ | -------- | --------------- |
+| userId   | id     | yes      |                 |
+| platform | string | yes      | uplay, xbl, psn |
 
 ```
 await api.getUserRank(player.userId, platfrom);
@@ -306,8 +331,8 @@ Get seasonal user statistics
 
 | Field       | Type   | Required | options                          |
 | ----------- | ------ | -------- | -------------------------------- |
-| userId      | id     | yes      |                                  |
-| platform    | string | yes      | uplay, xbox, ps4                 |
+| userId      | string | yes      |                                  |
+| platform    | string | yes      | uplay, xbl, psn                  |
 | view        | string | yes      | seasonal                         |
 | aggregation | string | yes      | summary                          |
 | gameMode    | string | yes      | All, Casual, Ranked              |
@@ -383,7 +408,7 @@ Gets seasonal operator statistics
 | Field       | Type   | Required | options                          |
 | ----------- | ------ | -------- | -------------------------------- |
 | userId      | Id     | Yes      |
-| platform    | string | Yes      | uplay, xbox, ps4                 |
+| platform    | string | Yes      | uplay, xbl, psn                  |
 | view        | string | Yes      | seasonal                         |
 | aggregation | string | Yes      | operator                         |
 | gameMode    | string | Yes      | All, Casual, Ranked              |

@@ -80,6 +80,12 @@ export const UBI_GETSTATS = (
 ) =>
   `/users/${userId}/playerstats?spaceId=${spaceId}&view=${view}&aggregation=${aggregation}&gameMode=${gameMode}&platformGroup=${platform}&teamRole=${teamRole}&seasons=${seasons}`;
 
+// https://prod.datadev.ubisoft.com/v1/users/afc2afec-b9ed-4988-bffa-58e78eedfa9d/playerstats?spaceId=5172a557-50b5-4665-b7db-e3f2e8c5041d&view=seasonal&aggregation=summary&gameMode=all,ranked,unranked,casual&platform=PC&teamRole=all,Attacker,Defender&seasons=Y7S3
+
+// https://prod.datadev.ubisoft.com/v1/users/1230ade7-7981-4ac8-9a04-8da6ac143f77/playerstats?spaceId=05bfb3f7-6c21-4c42-be1f-97a33fb5cf66&view=seasonal&aggregation=summary&gameMode=all,ranked,casual,unranked&platformGroup=CONSOLE&teamRole=all,Attacker,Defender&seasons=Y9S1
+// https://prod.datadev.ubisoft.com/v1/users/1230ade7-7981-4ac8-9a04-8da6ac143f77/playerstats?spaceId=05bfb3f7-6c21-4c42-be1f-97a33fb5cf66&view=seasonal&aggregation=summary&gameMode=all,ranked,casual,unranked&platformGroup=CONSOLE&teamRole=all,Attacker,Defender&seasons=Y9S1
+
+// https://prod.datadev.ubisoft.com/v1/users/afc2afec-b9ed-4988-bffa-58e78eedfa9d/playerstats?spaceId=5172a557-50b5-4665-b7db-e3f2e8c5041d&view=seasonal&aggregation=summary&gameMode=all,ranked,casual,unranked&platform=PC
 export const AvatarURI = (userId, size) =>
   `https://avatars.ubisoft.com/${userId}/default_${
     size === 500 ? 'tall' : `${size}_${size}`
