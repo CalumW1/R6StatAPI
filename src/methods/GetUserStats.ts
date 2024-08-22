@@ -123,10 +123,21 @@ const BuildUserStats = async (data: any, userId: any, plaform: any): Promise<Use
   const all = data.profileData[userId].platforms[plaform].gameModes.all;
   const casual = data.profileData[userId].platforms[plaform].gameModes.casual;
 
-  stats.all = await BuildStats(all);
-  stats.ranked = await BuildStats(ranked);
-  stats.unranked = await BuildStats(unranked);
-  stats.casual = await BuildStats(casual);
+  if (all !== undefined) {
+    stats.all = await BuildStats(all);
+  }
+
+  if (ranked !== undefined) {
+    stats.ranked = await BuildStats(ranked);
+  }
+
+  if (unranked !== undefined) {
+    stats.unranked = await BuildStats(unranked);
+  }
+
+  if (casual !== undefined) {
+    stats.casual = await BuildStats(casual);
+  }
 
   return stats;
 };
@@ -134,20 +145,18 @@ const BuildUserStats = async (data: any, userId: any, plaform: any): Promise<Use
 const BuildStats = async (gameMode: any): Promise<Role> => {
   const roles: Role = {};
 
-  const all = gameMode.teamRoles.all[0];
-  const attackers = gameMode.teamRoles.Attacker[0];
-  const defenders = gameMode.teamRoles.Defender[0];
+  const teamRoles = gameMode.teamRoles;
 
-  if (all !== undefined) {
-    roles.all = await MapStats(all);
+  if (Array.isArray(teamRoles.all) && teamRoles.all.length > 0) {
+    roles.all = await MapStats(teamRoles.all[0]);
   }
 
-  if (attackers !== undefined) {
-    roles.attackers = await MapStats(attackers);
+  if (Array.isArray(teamRoles.Attacker) && teamRoles.Attacker.length > 0) {
+    roles.attackers = await MapStats(teamRoles.Attacker[0]);
   }
 
-  if (defenders !== undefined) {
-    roles.defenders = await MapStats(defenders);
+  if (Array.isArray(teamRoles.Defender) && teamRoles.Defender.length > 0) {
+    roles.defenders = await MapStats(teamRoles.Defender[0]);
   }
 
   return roles;
