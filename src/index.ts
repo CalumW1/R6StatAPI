@@ -44,15 +44,16 @@ export class R6StatAPI {
     return await GetOperator(userId, platform, view, aggregation, gameMode, teamRole, season);
   }
 
-  public async getUserStats(
-    userId: string,
-    platform: string,
-    view: string,
-    aggregation: string,
-    gameMode: string,
-    teamRole: string,
-    season: string
-  ): Promise<UserStats> {
-    return await GetUserStats(userId, platform, view, aggregation, gameMode, teamRole, season);
-  }
+  // TODO fix this
+  // public async getUserStats(
+  //   userId: string,
+  //   platform: string,
+  //   view: string,
+  //   aggregation: string,
+  //   gameMode: string,
+  //   teamRole: string,
+  //   season: string
+  // ): Promise<UserStats> {
+  //   return await GetUserStats(userId, platform, view, aggregation, gameMode, teamRole, season);
+  // }
 }
