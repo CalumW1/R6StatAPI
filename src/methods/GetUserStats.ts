@@ -6,6 +6,7 @@ import {
   UBI_DATADEV_URI,
   UBI_GETSTATS,
 } from '../constants';
+import { GetUserByUserId, User } from './GetUserByUserId';
 
 export interface UserStats {
   all: Role;
@@ -82,6 +83,8 @@ export const GetUserStats = async (
     expiration: experation,
   };
 
+  const user: User[] | [] = await GetUserByUserId(userId);
+
   const platformTransformation = platform === 'uplay' ? 'PC' : 'CONSOLE';
 
   const spaceId: any = RANKED_UBI_SPACEIDS.find(x => x.id === platformTransformation)?.value;
@@ -103,14 +106,20 @@ export const GetUserStats = async (
 
   const usersStats: UserStats = await BuildUserStats(
     await response.json(),
-    userId,
-    platformTransformation
+    user,
+    platformTransformation,
+    platform
   );
 
   return usersStats;
 };
 
-const BuildUserStats = async (data: any, userId: any, plaform: any): Promise<UserStats> => {
+const BuildUserStats = async (
+  data: any,
+  user: User[] | [],
+  plaform: any,
+  originalPlatform: any
+): Promise<UserStats> => {
   const stats: UserStats = {
     all: {},
     ranked: {},
@@ -118,10 +127,15 @@ const BuildUserStats = async (data: any, userId: any, plaform: any): Promise<Use
     casual: {},
   };
 
-  const ranked = data.profileData[userId].platforms[plaform].gameModes.ranked;
-  const unranked = data.profileData[userId].platforms[plaform].gameModes.unranked;
-  const all = data.profileData[userId].platforms[plaform].gameModes.all;
-  const casual = data.profileData[userId].platforms[plaform].gameModes.casual;
+  const id =
+    originalPlatform === 'psn'
+      ? user.find(x => x.platformType == originalPlatform)?.profileId ?? ''
+      : user[0].userId;
+
+  const ranked = data.profileData[id].platforms[plaform].gameModes.ranked;
+  const unranked = data.profileData[id].platforms[plaform].gameModes.unranked;
+  const all = data.profileData[id].platforms[plaform].gameModes.all;
+  const casual = data.profileData[id].platforms[plaform].gameModes.casual;
 
   if (all !== undefined) {
     stats.all = await BuildStats(all);

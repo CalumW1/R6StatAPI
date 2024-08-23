@@ -21,7 +21,7 @@ interface Avatars {
   '500': string;
 }
 
-export const GetUserByUserId = async (userId: string): Promise<User[] | null> => {
+export const GetUserByUserId = async (userId: string): Promise<User[] | []> => {
   var token = await CheckToken();
 
   const headers = {

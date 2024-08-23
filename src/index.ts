@@ -16,7 +16,7 @@ export class R6StatAPI {
     return await GetUserByUsername(username, platform);
   }
 
-  public async getUserByUserId(userId: string): Promise<User[] | null> {
+  public async getUserByUserId(userId: string): Promise<User[] | []> {
     return await GetUserByUserId(userId);
   }
 
