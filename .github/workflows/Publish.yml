@@ -17,6 +17,8 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
+      - name: NPM Install
+        run: npm install
       - name: NPM Build
         run: npm run build
       - name: Publish package on NPM 📦
