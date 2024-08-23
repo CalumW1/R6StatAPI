@@ -1,6 +1,10 @@
-# R6StatAPI
+![Banner](/assests/readme/Banner.png)
 
-An API wrapper for Rainbow Six Seige written in JavaScript.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+![Discord](https://img.shields.io/discord/834396720061218887?style=flat&labelColor=62C6F2&color=FAFAFA)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/CalumW1/R6StatAPI/Publish.yml?labelColor=62C6F2&color=FAFAFA)
+![NPM Version](https://img.shields.io/npm/v/r6statapi?labelColor=62C6F2&color=FAFAFA)
+![GitHub License](https://img.shields.io/github/license/CalumW1/R6StatAPI?labelColor=62C6F2&color=FAFAFA)
 
 ## Table of Contents
 
@@ -21,8 +25,11 @@ The example below has the email and password variables hardcoded but it would be
 
 ```
 import r6statapi from 'r6statapi';
-
 const api = new r6statapi();
+
+// or CommonJS
+const { R6StatAPI } = require("r6statapi");
+const api = new R6StatAPI();
 
 // replace with your own information
 const email = "test@gmail.com"
@@ -31,7 +38,7 @@ const usermame = "User1"
 const platform = "uplay"
 
 // login and get token
-const token = await api.getAuth(email, password)
+const token = await api.login(email, password)
 console.log(token)
 
 // fetch user by username
@@ -52,21 +59,26 @@ console.log(user);
 
 ### Table of Contents
 
-1. [Auth](#Auth)
+1. [Login](#Login)
 2. [GetUserByUsername](#get-user-by-username)
 3. [GetUserByUserId](#get-user-by-userid)
 4. [GetUserProgression](#get-user-progression)
 5. [GetServerStatus](#get-server-status)
 6. [GetUserRank](#get-user-rank)
-7. [GetUserStats]()
-8. [GetOperators]()
+7. [GetUserStats](#get-user-stats)
+8. [GetOperators](#get-operator)
 
-#### Auth
+#### Login
 
 Signs into the Ubisoft a returns a token.
 
+| Field    | Type   | Required |
+| -------- | ------ | -------- |
+| email    | string | yes      |
+| password | string | yes      |
+
 ```
-await api.getAuth(email, password)
+await api.Login(email, password)
 ```
 
 Example response
@@ -78,6 +90,11 @@ ewogICJ2ZXIiOiAiMSIsCiAgImFpZCI6ICJlM2Q1ZWE5ZS01MGJkLTQzYjctODhiZi0zOTc5NGY0ZTNk
 #### Get user by username
 
 Gets a user by username
+
+| Field    | Type   | Required | options         |
+| -------- | ------ | -------- | --------------- |
+| username | string | yes      |                 |
+| platform | string | yes      | uplay, xbl, psn |
 
 ```
 await api.getUserByUsername(userName, platform);
@@ -103,6 +120,11 @@ Example response
 #### Get user by userId
 
 Gets a user by userId
+
+| Field    | Type   | Required | options         |
+| -------- | ------ | -------- | --------------- |
+| userId   | string | yes      |                 |
+| platform | string | yes      | uplay, xbl, psn |
 
 ```
 await api.getUserById(user.userId, platform);
@@ -155,6 +177,11 @@ Example response
 
 gets the progression for a user
 
+| Field    | Type   | Required | options         |
+| -------- | ------ | -------- | --------------- |
+| userId   | string | yes      |                 |
+| platform | string | yes      | uplay, xbl, psn |
+
 ```
 await api.getUserProgression(user.userId, platform);
 ```
@@ -182,7 +209,11 @@ Example response
 
 ```
 {
-  platform: 'PC',
+  MDM: '4075',
+  SpaceID: '98a601e5-ca91-4440-b1c5-753f601a2c90',
+  Category: 'Instance',
+  Name: 'Rainbow Six Siege - XBOXONE - LIVE',
+  platform: 'XBOXONE',
   status: 'Online',
   maintenance: null,
   impactedFeatures: []
@@ -192,6 +223,11 @@ Example response
 #### Get user rank
 
 Returns statistics for different gamemodes
+
+| Field    | Type   | Required | options         |
+| -------- | ------ | -------- | --------------- |
+| userId   | id     | yes      |                 |
+| platform | string | yes      | uplay, xbl, psn |
 
 ```
 await api.getUserRank(player.userId, platfrom);
@@ -203,31 +239,31 @@ Example response
 {
   casual: {
     profile_board_id: 'casual',
-    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
+    id: 'casual',
     max_rank: 0,
     max_rank_points: 0,
-    platform_family: 'pc',
+    platform_family: 'console',
     rank: 0,
     rank_points: 0,
-    rank_name: 'Unranked',
-    season_id: 33,
+    rank_name: undefined,
+    season_id: 34,
     top_rank_position: 0,
-    deaths: 0,
-    kills: 0,
-    abandons: 0,
-    losses: 0,
-    wins: 0
+    deaths: 14,
+    kills: 15,
+    abandons: 3,
+    losses: 4,
+    wins: 2
   },
   event: {
     profile_board_id: 'event',
-    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
+    id: 'event',
     max_rank: 0,
     max_rank_points: 0,
-    platform_family: 'pc',
+    platform_family: 'console',
     rank: 0,
     rank_points: 0,
-    rank_name: 'Unranked',
-    season_id: 33,
+    rank_name: undefined,
+    season_id: 34,
     top_rank_position: 0,
     deaths: 0,
     kills: 0,
@@ -237,70 +273,70 @@ Example response
   },
   warmup: {
     profile_board_id: 'warmup',
-    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
+    id: 'warmup',
     max_rank: 0,
     max_rank_points: 0,
-    platform_family: 'pc',
+    platform_family: 'console',
     rank: 0,
     rank_points: 0,
-    rank_name: 'Unranked',
-    season_id: 33,
+    rank_name: undefined,
+    season_id: 34,
     top_rank_position: 0,
-    deaths: 12,
-    kills: 14,
+    deaths: 10,
+    kills: 21,
     abandons: 1,
-    losses: 1,
-    wins: 0
+    losses: 0,
+    wins: 1
   },
   standard: {
     profile_board_id: 'standard',
-    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
+    id: 'standard',
     max_rank: 0,
     max_rank_points: 0,
-    platform_family: 'pc',
+    platform_family: 'console',
     rank: 0,
     rank_points: 0,
-    rank_name: 'Unranked',
-    season_id: 33,
+    rank_name: undefined,
+    season_id: 34,
     top_rank_position: 0,
-    deaths: 4,
-    kills: 7,
+    deaths: 0,
+    kills: 0,
     abandons: 0,
-    losses: 1,
+    losses: 0,
     wins: 0
   },
   ranked: {
     profile_board_id: 'ranked',
-    id: '7acf490b-4bfd-40df-97b6-ebbbe6ebc702',
-    max_rank: 32,
-    max_rank_points: 4155,
-    platform_family: 'pc',
-    rank: 32,
-    rank_points: 4100,
-    rank_name: 'Unranked',
-    season_id: 33,
-    top_rank_position: 0,
-    deaths: 433,
-    kills: 581,
-    abandons: 1,
-    losses: 56,
-    wins: 49
+    id: 'ranked',
+    max_rank: 36,
+    max_rank_points: 6788,
+    platform_family: 'console',
+    rank: 36,
+    rank_points: 6788,
+    rank_name: undefined,
+    season_id: 34,
+    top_rank_position: 3,
+    deaths: 2473,
+    kills: 4759,
+    abandons: 7,
+    losses: 41,
+    wins: 964
   }
 }
 ```
 
-#### Get User Stats
+<!-- #### Get User Stats
 
 Get seasonal user statistics
 
-| Field       | Type   | Required | options                          |
-| ----------- | ------ | -------- | -------------------------------- |
-| userId      | id     | yes      |                                  |
-| platform    | string | yes      | uplay, xbox, ps4                 |
+| Field       | Type   | Required | Options                          | Notes                                                  |
+| ----------- | ------ | -------- | -------------------------------- | ------------------------------------------------------ |
+| userId      | string | yes      |                                  |
+| platform    | string | yes      | uplay, xbl, psn                  |
 | view        | string | yes      | seasonal                         |
 | aggregation | string | yes      | summary                          |
-| gameMode    | string | yes      | All, Casual, Ranked              |
-| teamRole    | string | yes      | All                              |
+| gameMode    | string | yes      | all, casual, ranked, unranked    |
+| teamRole    | string | yes      | all, Attacker, Defender          | "Defender" and "Attacker" need to start with capitals. |
 | season      | string | yes      | format Y(No.)S(No.) Example Y6S3 |
 
 ```
@@ -313,74 +349,427 @@ const userStats = await api.getUserStats(
   teamRole,
   season
 );
+
+// Sample
+const userStats = await api.getUserStats(
+  user.userId,
+  "xbl",
+  "seasonal",
+  "summary",
+  "all,ranked,casual,unranked",
+  "all,Attacker,Defender",
+  "Y9S1"
+)
 ```
 
 Example response
 
 ```
-[
-  {
-    gameMode: 'all',
-    type: 'Seasonal',
-    statsType: 'summary',
-    statsDetail: 'summary',
-    seasonYear: 'Y9',
-    seasonNumber: 'S1',
-    matchesPlayed: 100,
-    roundsPlayed: 619,
-    minutesPlayed: 2451,
-    matchesWon: 47,
-    matchesLost: 53,
-    roundsWon: 303,
-    roundsLost: 316,
-    kills: 574,
-    assists: 116,
-    death: 414,
-    headshots: 217,
-    meleeKills: 2,
-    teamKills: 2,
-    openingKills: 64,
-    openingDeaths: 44,
-    trades: 21,
-    openingKillTrades: 4,
-    openingDeathTrades: 4,
-    revives: 13,
-    distanceTravelled: 113204,
-    winLossRatio: 0.8868,
-    killDeathRatio: { value: 1.3865, p: 0 },
-    headshotAccuracy: { value: 0.378, p: 0 },
-    killsPerRound: { value: 0.9273, p: 0 },
-    roundsWithAKill: { value: 0.5703, p: 0 },
-    roundsWithAMultiKill: { value: 0.2456, p: 0 },
-    roundsWithOpeningKill: { value: 0.1034, p: 0 },
-    roundsWithOpeningDeath: { value: 0.0711, p: 0 },
-    roundsWithKOST: { value: 0.6478, p: 0 },
-    roundsSurvived: { value: 0.3312, p: 0 },
-    roundsWithAnAce: { value: 0.0048, p: 0 },
-    roundsWithClutch: { value: 0.0113, p: 0 },
-    timeAlivePerMatch: 631.35,
-    timeDeadPerMatch: 175.88,
-    distancePerRound: 182.8821
-  }
-]
-```
+{
+  all: {
+    all: {
+      type: 'Seasonal',
+      statsType: 'summary',
+      statsDetail: 'summary',
+      seasonYear: 'Y9',
+      seasonNumber: 'S1',
+      matchesPlayed: 82,
+      roundsPlayed: 361,
+      minutesPlayed: 1026,
+      matchesWon: 69,
+      matchesLost: 13,
+      roundsWon: 261,
+      roundsLost: 100,
+      kills: 402,
+      assists: 82,
+      deaths: 188,
+      headshots: 181,
+      meleeKills: 1,
+      teamKills: 3,
+      openingKills: 53,
+      openingDeaths: 24,
+      trades: 29,
+      openingKillTrades: 3,
+      openingDeathTrades: 2,
+      revives: 2,
+      distanceTravelled: 68782,
+      winLossRatio: 5.3077,
+      killDeathRatio: 2.1383,
+      headshotAccuracy: 0.4502,
+      killsPerRound: 1.1136,
+      roundsWithAKill: 0.651,
+      roundsWithMultiKill: 0.3241,
+      roundsWithOpeningKill: 0.1468,
+      roundsWithOpeningDeath: 0.0665,
+      roundsWithKOST: 0.7867,
+      roundsSurvived: 0.4792,
+      roundsWithAnAce: 0.0028,
+      roundsWithClutch: 0.0277,
+      timeAlivePerMatch: 428.2073,
+      timeDeadPerMatch: 88.4268,
+      distancePerRound: 190.5319
+    },
+    attackers: {
+      type: 'Seasonal',
+      statsType: 'summary',
+      statsDetail: 'summary',
+      seasonYear: 'Y9',
+      seasonNumber: 'S1',
+      matchesPlayed: 82,
+      roundsPlayed: 180,
+      minutesPlayed: 575,
+      matchesWon: 69,
+      matchesLost: 13,
+      roundsWon: 128,
+      roundsLost: 52,
+      kills: 198,
+      assists: 32,
+      deaths: 88,
+      headshots: 95,
+      meleeKills: 1,
+      teamKills: 1,
+      openingKills: 24,
+      openingDeaths: 12,
+      trades: 13,
+      openingKillTrades: 0,
+      openingDeathTrades: 2,
+      revives: 1,
+      distanceTravelled: 27019,
+      winLossRatio: 5.3077,
+      killDeathRatio: 2.25,
+      headshotAccuracy: 0.4798,
+      killsPerRound: 1.1,
+      roundsWithAKill: 0.6111,
+      roundsWithMultiKill: 0.3556,
+      roundsWithOpeningKill: 0.1333,
+      roundsWithOpeningDeath: 0.0667,
+      roundsWithKOST: 0.7778,
+      roundsSurvived: 0.5111,
+      roundsWithAnAce: 0,
+      roundsWithClutch: 0.0333,
+      timeAlivePerMatch: 195.1463,
+      timeDeadPerMatch: 39.6585,
+      distancePerRound: 150.1056
+    },
+    defenders: {
+      type: 'Seasonal',
+      statsType: 'summary',
+      statsDetail: 'summary',
+      seasonYear: 'Y9',
+      seasonNumber: 'S1',
+      matchesPlayed: 82,
+      roundsPlayed: 181,
+      minutesPlayed: 641,
+      matchesWon: 69,
+      matchesLost: 13,
+      roundsWon: 133,
+      roundsLost: 48,
+      kills: 204,
+      assists: 50,
+      deaths: 100,
+      headshots: 86,
+      meleeKills: 0,
+      teamKills: 2,
+      openingKills: 29,
+      openingDeaths: 12,
+      trades: 16,
+      openingKillTrades: 3,
+      openingDeathTrades: 0,
+      revives: 1,
+      distanceTravelled: 41763,
+      winLossRatio: 5.3077,
+      killDeathRatio: 2.04,
+      headshotAccuracy: 0.4216,
+      killsPerRound: 1.1271,
+      roundsWithAKill: 0.6906,
+      roundsWithMultiKill: 0.2928,
+      roundsWithOpeningKill: 0.1602,
+      roundsWithOpeningDeath: 0.0663,
+      roundsWithKOST: 0.7956,
+      roundsSurvived: 0.4475,
+      roundsWithAnAce: 0.0055,
+      roundsWithClutch: 0.0221,
+      timeAlivePerMatch: 233.061,
+      timeDeadPerMatch: 48.7683,
+      distancePerRound: 230.7348
+    }
+  },
+  ranked: {
+    all: {
+      type: 'Seasonal',
+      statsType: 'summary',
+      statsDetail: 'summary',
+      seasonYear: 'Y9',
+      seasonNumber: 'S1',
+      matchesPlayed: 77,
+      roundsPlayed: 334,
+      minutesPlayed: 931,
+      matchesWon: 65,
+      matchesLost: 12,
+      roundsWon: 243,
+      roundsLost: 91,
+      kills: 382,
+      assists: 74,
+      deaths: 168,
+      headshots: 171,
+      meleeKills: 1,
+      teamKills: 3,
+      openingKills: 49,
+      openingDeaths: 20,
+      trades: 28,
+      openingKillTrades: 2,
+      openingDeathTrades: 2,
+      revives: 2,
+      distanceTravelled: 65023,
+      winLossRatio: 5.4167,
+      killDeathRatio: 2.2738,
+      headshotAccuracy: 0.4476,
+      killsPerRound: 1.1437,
+      roundsWithAKill: 0.6677,
+      roundsWithMultiKill: 0.3323,
+      roundsWithOpeningKill: 0.1467,
+      roundsWithOpeningDeath: 0.0599,
+      roundsWithKOST: 0.8084,
+      roundsSurvived: 0.497,
+      roundsWithAnAce: 0.003,
+      roundsWithClutch: 0.0299,
+      timeAlivePerMatch: 434.7922,
+      timeDeadPerMatch: 77.0779,
+      distancePerRound: 194.6796
+    },
+    attackers: {
+      type: 'Seasonal',
+      statsType: 'summary',
+      statsDetail: 'summary',
+      seasonYear: 'Y9',
+      seasonNumber: 'S1',
+      matchesPlayed: 77,
+      roundsPlayed: 165,
+      minutesPlayed: 529,
+      matchesWon: 65,
+      matchesLost: 12,
+      roundsWon: 115,
+      roundsLost: 50,
+      kills: 183,
+      assists: 28,
+      deaths: 79,
+      headshots: 87,
+      meleeKills: 1,
+      teamKills: 1,
+      openingKills: 21,
+      openingDeaths: 9,
+      trades: 13,
+      openingKillTrades: 0,
+      openingDeathTrades: 2,
+      revives: 1,
+      distanceTravelled: 25284,
+      winLossRatio: 5.4167,
+      killDeathRatio: 2.3165,
+      headshotAccuracy: 0.4754,
+      killsPerRound: 1.1091,
+      roundsWithAKill: 0.6182,
+      roundsWithMultiKill: 0.3576,
+      roundsWithOpeningKill: 0.1273,
+      roundsWithOpeningDeath: 0.0545,
+      roundsWithKOST: 0.7939,
+      roundsSurvived: 0.5212,
+      roundsWithAnAce: 0,
+      roundsWithClutch: 0.0364,
+      timeAlivePerMatch: 195.8571,
+      timeDeadPerMatch: 34.4545,
+      distancePerRound: 153.2364
+    },
+    defenders: {
+      type: 'Seasonal',
+      statsType: 'summary',
+      statsDetail: 'summary',
+      seasonYear: 'Y9',
+      seasonNumber: 'S1',
+      matchesPlayed: 77,
+      roundsPlayed: 169,
+      minutesPlayed: 600,
+      matchesWon: 65,
+      matchesLost: 12,
+      roundsWon: 128,
+      roundsLost: 41,
+      kills: 199,
+      assists: 46,
+      deaths: 89,
+      headshots: 84,
+      meleeKills: 0,
+      teamKills: 2,
+      openingKills: 28,
+      openingDeaths: 11,
+      trades: 15,
+      openingKillTrades: 2,
+      openingDeathTrades: 0,
+      revives: 1,
+      distanceTravelled: 39739,
+      winLossRatio: 5.4167,
+      killDeathRatio: 2.236,
+      headshotAccuracy: 0.4221,
+      killsPerRound: 1.1775,
+      roundsWithAKill: 0.716,
+      roundsWithMultiKill: 0.3077,
+      roundsWithOpeningKill: 0.1657,
+      roundsWithOpeningDeath: 0.0651,
+      roundsWithKOST: 0.8225,
+      roundsSurvived: 0.4734,
+      roundsWithAnAce: 0.0059,
+      roundsWithClutch: 0.0237,
+      timeAlivePerMatch: 238.9351,
+      timeDeadPerMatch: 42.6234,
+      distancePerRound: 235.142
+    }
+  },
+  unranked: {
+    all: {
+      type: 'Seasonal',
+      statsType: 'summary',
+      statsDetail: 'summary',
+      seasonYear: 'Y9',
+      seasonNumber: 'S1',
+      matchesPlayed: 5,
+      roundsPlayed: 27,
+      minutesPlayed: 94,
+      matchesWon: 4,
+      matchesLost: 1,
+      roundsWon: 18,
+      roundsLost: 9,
+      kills: 20,
+      assists: 8,
+      deaths: 20,
+      headshots: 10,
+      meleeKills: 0,
+      teamKills: 0,
+      openingKills: 4,
+      openingDeaths: 4,
+      trades: 1,
+      openingKillTrades: 1,
+      openingDeathTrades: 0,
+      revives: 0,
+      distanceTravelled: 3759,
+      winLossRatio: 4,
+      killDeathRatio: 1,
+      headshotAccuracy: 0.5,
+      killsPerRound: 0.7407,
+      roundsWithAKill: 0.4444,
+      roundsWithMultiKill: 0.2222,
+      roundsWithOpeningKill: 0.1481,
+      roundsWithOpeningDeath: 0.1481,
+      roundsWithKOST: 0.5185,
+      roundsSurvived: 0.2593,
+      roundsWithAnAce: 0,
+      roundsWithClutch: 0,
+      timeAlivePerMatch: 326.8,
+      timeDeadPerMatch: 263.2,
+      distancePerRound: 139.2222
+    },
+    attackers: {
+      type: 'Seasonal',
+      statsType: 'summary',
+      statsDetail: 'summary',
+      seasonYear: 'Y9',
+      seasonNumber: 'S1',
+      matchesPlayed: 5,
+      roundsPlayed: 15,
+      minutesPlayed: 46,
+      matchesWon: 4,
+      matchesLost: 1,
+      roundsWon: 13,
+      roundsLost: 2,
+      kills: 15,
+      assists: 4,
+      deaths: 9,
+      headshots: 8,
+      meleeKills: 0,
+      teamKills: 0,
+      openingKills: 3,
+      openingDeaths: 3,
+      trades: 0,
+      openingKillTrades: 0,
+      openingDeathTrades: 0,
+      revives: 0,
+      distanceTravelled: 1735,
+      winLossRatio: 4,
+      killDeathRatio: 1.6667,
+      headshotAccuracy: 0.5333,
+      killsPerRound: 1,
+      roundsWithAKill: 0.5333,
+      roundsWithMultiKill: 0.3333,
+      roundsWithOpeningKill: 0.2,
+      roundsWithOpeningDeath: 0.2,
+      roundsWithKOST: 0.6,
+      roundsSurvived: 0.4,
+      roundsWithAnAce: 0,
+      roundsWithClutch: 0,
+      timeAlivePerMatch: 184.2,
+      timeDeadPerMatch: 119.8,
+      distancePerRound: 115.6667
+    },
+    defenders: {
+      type: 'Seasonal',
+      statsType: 'summary',
+      statsDetail: 'summary',
+      seasonYear: 'Y9',
+      seasonNumber: 'S1',
+      matchesPlayed: 5,
+      roundsPlayed: 12,
+      minutesPlayed: 40,
+      matchesWon: 4,
+      matchesLost: 1,
+      roundsWon: 5,
+      roundsLost: 7,
+      kills: 5,
+      assists: 4,
+      deaths: 11,
+      headshots: 2,
+      meleeKills: 0,
+      teamKills: 0,
+      openingKills: 1,
+      openingDeaths: 1,
+      trades: 1,
+      openingKillTrades: 1,
+      openingDeathTrades: 0,
+      revives: 0,
+      distanceTravelled: 2024,
+      winLossRatio: 4,
+      killDeathRatio: 0.4545,
+      headshotAccuracy: 0.4,
+      killsPerRound: 0.4167,
+      roundsWithAKill: 0.3333,
+      roundsWithMultiKill: 0.0833,
+      roundsWithOpeningKill: 0.0833,
+      roundsWithOpeningDeath: 0.0833,
+      roundsWithKOST: 0.4167,
+      roundsSurvived: 0.0833,
+      roundsWithAnAce: 0,
+      roundsWithClutch: 0,
+      timeAlivePerMatch: 142.6,
+      timeDeadPerMatch: 143.4,
+      distancePerRound: 168.6667
+    }
+  },
+  casual: {}
+}
+``` -->
 
 #### Get Operator
 
 Gets seasonal operator statistics
 
-| Field       | Type   | Required | options                          |
-| ----------- | ------ | -------- | -------------------------------- |
-| userId      | Id     | Yes      |
-| platform    | string | Yes      | uplay, xbox, ps4                 |
+| Field       | Type   | Required | options                          | Notes                                                  |
+| ----------- | ------ | -------- | -------------------------------- | ------------------------------------------------------ |
+| userId      | Id     | Yes      |                                  |
+| platform    | string | Yes      | uplay, xbl, psn                  |
 | view        | string | Yes      | seasonal                         |
 | aggregation | string | Yes      | operator                         |
-| gameMode    | string | Yes      | All, Casual, Ranked              |
-| team role   | string | Yes      | Attacker, Defender               |
+| gameMode    | string | Yes      | all, casual, ranked, unranked    |
+| team role   | string | Yes      | Attacker, Defender               | "Defender" and "Attacker" need to start with capitals. |
 | season      | string | Yes      | format Y(No.)S(No.) Example Y6S3 |
 
 ```
-const operator = await api.getOperators(
+const operator = await api.getUserOperators(
   userId,
   platform,
   view,
@@ -389,172 +778,72 @@ const operator = await api.getOperators(
   teamRole,
   season
 );
+
+// sample
+const operators = await api.getUserOperators(
+  user.userId,
+  "uplay",
+  "current",
+  "operators",
+  "all,ranked,casual,unranked",
+  "Defender,Attacker",
+  "Y9S2"
+);
+
 ```
 
 Example Response
 
 ```
-[
-  {
-    "attacker": [
+{
+  ranked: {
+    attackers: [
       {
-        "type": "Seasonal",
-        "statsType": "operators",
-        "statsDetail": "Iq",
-        "seasonYear": "Y6",
-        "seasonNumber": "S3",
-        "matchesPlayed": 3,
-        "roundsPlayed": 4,
-        "minutesPlayed": 12,
-        "matchesWon": 1,
-        "matchesLost": 2,
-        "roundsWon": 2,
-        "roundsLost": 2,
-        "kills": 2,
-        "assists": 0,
-        "death": 3,
-        "headshots": 1,
-        "meleeKills": 0,
-        "teamKills": 0,
-        "openingKills": 0,
-        "openingDeaths": 1,
-        "trades": 0,
-        "openingKillTrades": 0,
-        "openingDeathTrades": 0,
-        "revives": 0,
-        "distanceTravelled": 604,
-        "winLossRatio": 0.5,
-        "killDeathRatio": {
-          "value": 0.6667,
-          "p": 0
-        },
-        "headshotAccuracy": {
-          "value": 0.5,
-          "p": 0
-        },
-        "killsPerRound": {
-          "value": 0.5,
-          "p": 0
-        },
-        "roundsWithAKill": {
-          "value": 0.25,
-          "p": 0
-        },
-        "roundsWithMultiKill": {
-          "value": 0.25,
-          "p": 0
-        },
-        "roundsWithOpeningKill": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithOpeningDeath": {
-          "value": 0.25,
-          "p": 0
-        },
-        "roundsWithKOST": {
-          "value": 0.25,
-          "p": 0
-        },
-        "roundsSurvived": {
-          "value": 0.25,
-          "p": 0
-        },
-        "roundsWithAnAce": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithClutch": {
-          "value": 0,
-          "p": 0
-        },
-        "timeAlivePerMatch": 80,
-        "timeDeadPerMatch": 60,
-        "distancePerRound": 151
+        type: 'Generalized',
+        statsType: 'operators',
+        statsDetail: 'Montagne',
+        matchesPlayed: 84,
+        roundsPlayed: 114,
+        minutesPlayed: 343,
+        matchesWon: 81,
+        matchesLost: 3,
+        roundsWon: 92,
+        roundsLost: 22,
+        kills: 81,
+        assists: 16,
+        deaths: 44,
+        headshots: 4,
+        meleeKills: 51,
+        teamKills: 0,
+        openingKills: 5,
+        trades: 5,
+        openingKillTrades: 2,
+        openingDeathTrades: 0,
+        revives: 1,
+        distanceTravelled: 14418,
+        winLossRatio: 27,
+        killDeathRatio: 1.8409,
+        headshotAccuracy: 0.0494,
+        killsPerRound: 0.7105,
+        roundsWithAKill: 0.7105,
+        roundsWithMultiKill: 0.1667,
+        roundsWithOpeningKill: 0.0439,
+        roundsWithOpeningDeath: 0.0614,
+        roundsWithKOST: 0.7544,
+        roundsSurvived: 0.614,
+        roundsWithAnAce: 0,
+        roundsWithClutch: 0.0175,
+        timeAlivePerMatch: 109.6905,
+        timeDeadPerMatch: 20.1667,
+        distancePerRound: 126.4737
       }
-    ]
+    ],
+    defenders: []
   },
-  {
-    "defender": [
-      {
-        "type": "Seasonal",
-        "statsType": "operators",
-        "statsDetail": "Ela",
-        "seasonYear": "Y6",
-        "seasonNumber": "S3",
-        "matchesPlayed": 3,
-        "roundsPlayed": 3,
-        "minutesPlayed": 10,
-        "matchesWon": 1,
-        "matchesLost": 2,
-        "roundsWon": 1,
-        "roundsLost": 2,
-        "kills": 0,
-        "assists": 2,
-        "death": 3,
-        "headshots": 0,
-        "meleeKills": 0,
-        "teamKills": 0,
-        "openingKills": 0,
-        "openingDeaths": 1,
-        "trades": 0,
-        "openingKillTrades": 0,
-        "openingDeathTrades": 0,
-        "revives": 0,
-        "distanceTravelled": 553,
-        "winLossRatio": 0.5,
-        "killDeathRatio": {
-          "value": 0,
-          "p": 0
-        },
-        "headshotAccuracy": {
-          "value": 0,
-          "p": 0
-        },
-        "killsPerRound": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithAKill": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithMultiKill": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithOpeningKill": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithOpeningDeath": {
-          "value": 0.3333,
-          "p": 0
-        },
-        "roundsWithKOST": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsSurvived": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithAnAce": {
-          "value": 0,
-          "p": 0
-        },
-        "roundsWithClutch": {
-          "value": 0,
-          "p": 0
-        },
-        "timeAlivePerMatch": 80,
-        "timeDeadPerMatch": 40,
-        "distancePerRound": 184.3333
-      }
-    ]
-  }
-]
-
+  unranked: { attackers: [], defenders: [] },
+  all: { attackers: [], defenders: [] },
+  casual: { attackers: [], defenders: [] }
+}
 ```
 
 ## Support

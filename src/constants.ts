@@ -1,4 +1,3 @@
-// export const UBI_APPID = '3587dcbb-7f81-457c-9781-0e3f29f6f56a';
 export const UBI_APPID = 'e3d5ea9e-50bd-43b7-88bf-39794f4e3d40';
 
 export const UBI_DATADEV_APPID = '3587dcbb-7f81-457c-9781-0e3f29f6f56a';
@@ -40,52 +39,59 @@ export const UBI_REGIONID = ['emea', 'ncsa', 'apac'];
 
 export const UBI_BOARDID = ['pvp_ranked', 'pvp_casual', 'pvp_newcomer', 'pvp_event'];
 
-export const BASE_UBI_URI = version => `https://public-ubiservices.ubi.com/v${version}`;
+export const BASE_UBI_URI = (version: number) => `https://public-ubiservices.ubi.com/v${version}`;
 
 export const UBI_SERVER_STATUS_URI = 'https://game-status-api.ubisoft.com/v1';
 
 export const UBI_DATADEV_URI = 'https://prod.datadev.ubisoft.com/v1';
 
-export const UBI_GETUSERBYUSERNAME_URI = (userName, platform) =>
+export const UBI_GETUSERBYUSERNAME_URI = (userName: string, platform: string) =>
   `/profiles?namesOnPlatform=${userName}&platformType=${platform}`;
 
-export const UBI_GETUSERBYID_URI = userId => `/profiles?userIds=${userId}`;
+export const UBI_GETUSERBYID_URI = (userId: string) => `/profiles?userIds=${userId}`;
 
-export const UBI_GETPLAYERPROGRESSION = (spaceId, sandbox, playerIds) =>
+export const UBI_GETPLAYERPROGRESSION = (spaceId: string, sandbox: string, playerIds: string) =>
   `/spaces/${spaceId}/sandboxes/${sandbox}/r6playerprofile/playerprofile/progressions?profile_ids=${playerIds}`;
 
-export const UBI_GETSERVERSTATUS = serverId => `/instances?appIds=${serverId}`;
+export const UBI_GETSERVERSTATUS = (serverId: string) => `/instances?appIds=${serverId}`;
 
-export const UBI_RANKED_URI = (spaceId, sandboxId, boardId, seasons, regionId, profileIds) =>
+export const UBI_RANKED_URI = (
+  spaceId: string,
+  sandboxId: string,
+  boardId: string,
+  seasons: string,
+  regionId: string,
+  profileIds: string
+) =>
   `/spaces/${spaceId}/sandboxes/${sandboxId}/r6karma/player_skill_records?board_ids=${boardId}&season_ids=${seasons}&region_ids=${regionId}&profile_ids=${profileIds}`;
 
-export const UBI_PROFILEV2_URI = (profileId, platform) =>
+export const UBI_PROFILEV2_URI = (profileId: string, platform: string) =>
   `https://public-ubiservices.ubi.com/v2/spaces/0d2ae42d-4c27-4cb7-af6c-2099062302bb/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
 
-export const UBI_GETPLAYERPROGRESSION2 = (spaceId, playerId) =>
-  `/spaces/${spaceId}/title/r6s/rewards/public_profile?profile_id=${playerId}`;
+export const UBI_GETPLAYERPROGRESSION2 = (spaceId: string, userId: string) =>
+  `/spaces/${spaceId}/title/r6s/rewards/public_profile?profile_id=${userId}`;
 
-export const UBI_RANKED_URI_V2 = (profileId, platform) =>
+export const UBI_RANKED_URI_V2 = (profileId: string, platform: string) =>
   `/spaces/0d2ae42d-4c27-4cb7-af6c-2099062302bb/title/r6s/skill/full_profiles?profile_ids=${profileId}&platform_families=${platform}`;
 
 export const UBI_GETSTATS = (
-  userId,
-  spaceId,
-  platform,
-  view,
-  aggregation,
-  gameMode,
-  teamRole,
-  seasons
+  userId: string,
+  spaceId: string,
+  platform: string,
+  view: string,
+  aggregation: string,
+  gameMode: string,
+  teamRole: string,
+  seasons: string
 ) =>
   `/users/${userId}/playerstats?spaceId=${spaceId}&view=${view}&aggregation=${aggregation}&gameMode=${gameMode}&platformGroup=${platform}&teamRole=${teamRole}&seasons=${seasons}`;
 
-export const AvatarURI = (userId, size) =>
+export const AvatarURI = (userId: string, size: number) =>
   `https://avatars.ubisoft.com/${userId}/default_${
     size === 500 ? 'tall' : `${size}_${size}`
   }.png?appId=${UBI_DATADEV_APPID}`;
 
-export const AvatarImages = userId => {
+export const AvatarImages = (userId: string) => {
   return {
     146: AvatarURI(userId, 146),
     256: AvatarURI(userId, 256),
