@@ -1,6 +1,6 @@
 import { UBI_APPID, BASE_UBI_URI, UBI_GETUSERBYUSERNAME_URI, AvatarImages } from '../constants';
-import { CheckToken } from './Auth';
-import { ApiClient } from './ApiClient';
+import { CheckToken } from './auth';
+import { ApiClient } from './apiClient';
 
 interface Profiles {
   profiles: User[];

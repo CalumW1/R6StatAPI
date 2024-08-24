@@ -1,11 +1,11 @@
-import { Auth } from './methods/Auth';
-import { GetUserByUsername, User } from './methods/GetUserByUsername';
-import { GetUserByUserId } from './methods/GetUserByUserId';
-import { GetUserProgression, Progression } from './methods/GetUserProgression';
-import { GetServerStatus, ServerStatus } from './methods/GetServerStatus';
-import { GetUserRank, UserRank } from './methods/GetUserRank';
-import { GetOperator, GameModes } from './methods/GetOperator';
-import { GetUserStats, UserStats } from './methods/GetUserStats';
+import { Auth } from './methods/auth';
+import { GetUserByUsername, User } from './methods/getUserByUsername';
+import { GetUserByUserId } from './methods/getUserByUserId';
+import { GetUserProgression, Progression } from './methods/getUserProgression.js';
+import { GetServerStatus, ServerStatus } from './methods/getServerStatus';
+import { GetUserRank, UserRank } from './methods/getUserRank.js';
+import { GetOperator, GameModes } from './methods/getOperator';
+// import { GetUserStats, UserStats } from './methods/GetUserStats';
 
 export class R6StatAPI {
   public async login(email: string, password: string): Promise<string> {

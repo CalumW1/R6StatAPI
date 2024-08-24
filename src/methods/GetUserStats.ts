@@ -1,12 +1,12 @@
-import { ApiClient } from './ApiClient';
-import { CheckToken, GetExperation } from './Auth';
+import { ApiClient } from './apiClient';
+import { CheckToken, GetExperation } from './auth';
 import {
   RANKED_UBI_SPACEIDS,
   UBI_DATADEV_SESSIONID,
   UBI_DATADEV_URI,
   UBI_GETSTATS,
 } from '../constants';
-import { GetUserByUserId, User } from './GetUserByUserId';
+import { GetUserByUserId, User } from './getUserByUserId';
 
 export interface UserStats {
   all: Role;
