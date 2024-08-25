@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { UBI_APPID, BASE_UBI_URI, UBI_AUTH_URI } from '../constants';
 import { writeFile } from 'fs';
 import { ApiClient } from './apiClient';
