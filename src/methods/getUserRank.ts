@@ -29,6 +29,9 @@ interface RankStats {
 }
 
 export const GetUserRank = async (userId: string, platform: string): Promise<UserRank> => {
+  if (userId || platform === '')
+    throw new Error(`Please check userId: ${userId} and platform: ${platform}`);
+
   const token = await CheckToken();
 
   const headers = {

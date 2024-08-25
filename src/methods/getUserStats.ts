@@ -73,6 +73,11 @@ export const GetUserStats = async (
   teamRole: string,
   season: string
 ): Promise<UserStats> => {
+  if (userId || platform || view || aggregation || gameMode || teamRole || season === '')
+    throw new Error(
+      `Please check userId: ${userId}, platform: ${platform}, view: ${view}, aggregation: ${aggregation}, gameMode: ${gameMode}, teamRole: ${teamRole}, season: ${season}`
+    );
+
   const token = await CheckToken();
   const experation = await GetExperation();
 
@@ -88,6 +93,8 @@ export const GetUserStats = async (
   const platformTransformation = platform === 'uplay' ? 'PC' : 'CONSOLE';
 
   const spaceId: any = RANKED_UBI_SPACEIDS.find(x => x.id === platformTransformation)?.value;
+
+  if (spaceId === '') throw new Error('SpaceId was not found');
 
   const URI =
     UBI_DATADEV_URI +

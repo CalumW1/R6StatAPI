@@ -22,7 +22,9 @@ interface Avatars {
 }
 
 export const GetUserByUsername = async (username: string, platform: string): Promise<User> => {
-  // TODO fix this, this is dumb
+  if (username || platform === '')
+    throw new Error(`Please check username: ${username} and platform: ${platform}`);
+
   var token = await CheckToken();
 
   const headers = {

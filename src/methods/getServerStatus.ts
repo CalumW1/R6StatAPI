@@ -19,6 +19,8 @@ export interface ServerStatus {
 }
 
 export const GetServerStatus = async (platform: string): Promise<ServerStatus> => {
+  if (platform === '') throw new Error(`please check platform: ${platform}`);
+
   const token = await CheckToken();
 
   const headers = {
@@ -27,8 +29,11 @@ export const GetServerStatus = async (platform: string): Promise<ServerStatus> =
     'Content-Type': 'application/json',
   };
 
-  const serverId = UBI_SERVER_IDS.find(x => x.id === platform);
-  const URI = UBI_SERVER_STATUS_URI + UBI_GETSERVERSTATUS(serverId?.value as string);
+  const serverId = UBI_SERVER_IDS.find(x => x.id === platform)?.value;
+
+  if (serverId === '') throw new Error('unable to find serverId');
+
+  const URI = UBI_SERVER_STATUS_URI + UBI_GETSERVERSTATUS(serverId as string);
 
   const response = await ApiClient(URI, headers, 'GET');
 
