@@ -22,7 +22,7 @@ or
 ! To work with bun you have to add /bun behind your import. As an Example your import should look like this
 
 ```ts
-import { R6StatAPI }  from 'r6statapi/bun';
+import { R6StatAPI }  from 'r6statapi/bun/src';
 ```
 
 ## Getting Started
