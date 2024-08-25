@@ -4,8 +4,8 @@ import {
   UBI_SERVER_STATUS_URI,
   UBI_GETSERVERSTATUS,
 } from '../constants';
-import { CheckToken } from './Auth';
-import { ApiClient } from './ApiClient';
+import { CheckToken } from './auth';
+import { ApiClient } from './apiClient';
 
 export interface ServerStatus {
   MDM: string;

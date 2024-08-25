@@ -1,5 +1,5 @@
-import { ApiClient } from './ApiClient';
-import { CheckToken, GetExperation } from './Auth';
+import { ApiClient } from './apiClient';
+import { CheckToken, GetExperation } from './auth';
 import {
   UBI_RANKED_SESSIONID,
   UBI_DATADEV_APPID,

@@ -1,5 +1,5 @@
-import { ApiClient } from './ApiClient';
-import { CheckToken } from './Auth';
+import { ApiClient } from './apiClient';
+import { CheckToken } from './auth';
 import { UBI_APPID, UBI_SESSIONID, BASE_UBI_URI, UBI_RANKED_URI_V2 } from '../constants';
 
 export interface UserRank {
