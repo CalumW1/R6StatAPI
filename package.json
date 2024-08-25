@@ -3,7 +3,8 @@
     "eslint": "^9.1.1"
     },
   "scripts": {
-    "start": "bun ./src/index.ts"
+    "start": "bun ./src/index.ts",
+    "postinstall": "echo 'This is the Bun version of the API wrapper. Please use the normal official version if you don't use bun'"
   },
   "name": "bunr6statapi",
   "description": "Wrapper for Rainbow Six Siege API",
@@ -20,7 +21,7 @@
     "Six",
     "Seige"
   ],
-  "author": "Calum Wilson",
+  "author": "Calum Wilson, Fabian Maier",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CalumW1/R6StatAPI/issues"
