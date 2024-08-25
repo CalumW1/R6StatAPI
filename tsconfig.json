@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "CommonJS",
+      "declaration": true,
+      "outDir": "./dist/npm",  // Ausgabeverzeichnis für npm-Version
+      "strict": true,
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "skipLibCheck": true,
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "resolveJsonModule": true
+    },
+    "include": ["npm/**/*.ts"],  // NUR npm Verzeichnis einbeziehen
+    "exclude": ["node_modules", "dist", "bun"]  // Bun-Verzeichnis ausschließen
+  }
+  

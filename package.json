@@ -1,19 +1,19 @@
 {
-  "name": "r6statsapi",
-  "version": "2.0.0",
+  "name": "@esportsapp/test",
+  "version": "2.0.4",
   "dependencies": {
     "eslint": "^9.1.1",
     "node-fetch": "^2.6.2"
   },
   "description": "Wrapper for Rainbow Six Siege API, with support for both Node.js and Bun.",
-  "main": "./npm/index.js",
+  "main": "./npm/src/index.js",
   "exports": {
-    ".": "./npm/index.js",
-    "./bun": "./bun/index.js"
+    ".": "./npm/src/index.js",
+    "./bun": "./bun/src/index.js"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json && bun ./bun/index.ts",
-    "start": "bun ./bun/index.ts"
+    "build": "tsc -p tsconfig.json",
+    "start": "bun ./bun/src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -33,10 +33,10 @@
   },
   "homepage": "https://github.com/CalumW1/r6statsapi#readme",
   "devDependencies": {
-    "@types/node": "^20.14.11",
-    "typescript": "^5.5.3",
     "@types/bun": "latest",
-    "eslint": "^9.1.1"
+    "@types/node": "^20.14.11",
+    "eslint": "^9.1.1",
+    "typescript": "^5.5.4"
   },
   "type": "module"
 }
