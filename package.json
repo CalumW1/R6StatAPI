@@ -1,17 +1,15 @@
 {
   "dependencies": {
-    "eslint": "^9.1.1",
-    "node-fetch": "^2.6.2"
-  },  
+    "eslint": "^9.1.1"
+    },
   "scripts": {
-    "start": "node ./src/index.js",
-    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json"
+    "start": "bun ./src/index.ts"
   },
-  "name": "r6statapi",
+  "name": "bunr6statapi",
   "description": "Wrapper for Rainbow Six Siege API",
   "version": "2.0.0",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CalumW1/R6StatAPI.git"
@@ -30,7 +28,8 @@
   "homepage": "https://github.com/CalumW1/R6StatAPI#readme",
   "devDependencies": {
     "@types/node": "^20.14.11",
-    "@types/node-fetch": "^2.6.11",
-    "typescript": "^5.5.3"
-  }
+    "typescript": "^5.5.3",
+    "@types/bun": "latest"
+  },
+  "type": "module"
 }
