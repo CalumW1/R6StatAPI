@@ -3,7 +3,7 @@
   "version": "2.0.4",
   "dependencies": {
     "eslint": "^9.1.1",
-    "node-fetch": "^2.6.2"
+    "node-fetch": "^2.6.7"
   },
   "description": "Wrapper for Rainbow Six Siege API, with support for both Node.js and Bun.",
   "main": "./npm/src/index.js",
