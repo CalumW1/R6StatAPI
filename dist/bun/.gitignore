@@ -3,3 +3,9 @@ Auth.json
 test.js
 .idea
 dist
+
+/bun/node_modules
+/bun/Auth.json
+
+/npm/node_modules
+/npm/Auth.json
