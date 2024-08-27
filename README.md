@@ -16,14 +16,11 @@
 ## Installation
 
 `npm i r6statapi`
-or
-`bun add r6statapi` 
-###### for a lighter version wich only contains bun run `bun add bunr6statapi`
-! To work with bun you have to add /bun behind your import. As an Example your import should look like this
 
-```ts
-import { R6StatAPI }  from 'r6statapi/bun/src';
-```
+## Suported Runtimes
+
+- Node.js (20.13.0+)
+- Bun (1.1.26)
 
 ## Getting Started
 
