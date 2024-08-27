@@ -1,42 +1,35 @@
 {
-  "name": "@esportsapp/test",
-  "version": "2.0.4",
   "dependencies": {
-    "eslint": "^9.1.1",
-    "node-fetch": "^2.6.7"
-  },
-  "description": "Wrapper for Rainbow Six Siege API, with support for both Node.js and Bun.",
-  "main": "./npm/src/index.js",
-  "exports": {
-    ".": "./npm/src/index.js",
-    "./bun": "./bun/src/index.js"
+    "axios": "^1.7.5",
+    "eslint": "^9.1.1"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "start": "bun ./bun/src/index.ts"
+    "start": "node ./dist/cjs/index.js",
+    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json"
   },
+  "name": "r6statapi",
+  "description": "Wrapper for Rainbow Six Siege API",
+  "version": "2.0.0",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CalumW1/r6statsapi.git"
+    "url": "git+https://github.com/CalumW1/R6StatAPI.git"
   },
   "keywords": [
     "Ubisoft",
-    "Rainbow Six Siege",
-    "API",
-    "Bun",
-    "Node.js"
+    "Rainbow",
+    "Six",
+    "Siege"
   ],
   "author": "Calum Wilson, Fabian Maier",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CalumW1/r6statsapi/issues"
+    "url": "https://github.com/CalumW1/R6StatAPI/issues"
   },
-  "homepage": "https://github.com/CalumW1/r6statsapi#readme",
+  "homepage": "https://github.com/CalumW1/R6StatAPI#readme",
   "devDependencies": {
-    "@types/bun": "latest",
-    "@types/node": "^20.14.11",
-    "eslint": "^9.1.1",
-    "typescript": "^5.5.4"
-  },
-  "type": "module"
+    "@types/node-fetch": "^2.6.11",
+    "typescript": "^5.5.3"
+  }
 }

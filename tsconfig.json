@@ -1,18 +1,16 @@
 {
     "compilerOptions": {
-      "target": "ES6",
+      "target": "ES2020",
       "module": "CommonJS",
+      "outDir": "./dist",
       "declaration": true,
-      "outDir": "./dist/npm",  // Ausgabeverzeichnis für npm-Version
+      "sourceMap": true,
       "strict": true,
       "esModuleInterop": true,
-      "forceConsistentCasingInFileNames": true,
-      "skipLibCheck": true,
       "moduleResolution": "node",
-      "sourceMap": true,
-      "resolveJsonModule": true
+      "skipLibCheck": true
     },
-    "include": ["npm/**/*.ts"],  // NUR npm Verzeichnis einbeziehen
-    "exclude": ["node_modules", "dist", "bun"]  // Bun-Verzeichnis ausschließen
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
   }
   
