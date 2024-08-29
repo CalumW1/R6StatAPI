@@ -7,7 +7,6 @@ import {
   UBI_GETSTATS,
   RANKED_UBI_SPACEIDS,
 } from '../constants';
-import { AxiosHeaders, AxiosRequestHeaders, RawAxiosRequestHeaders } from 'axios';
 
 export interface GameModes {
   ranked: Operators;
