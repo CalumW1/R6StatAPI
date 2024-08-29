@@ -1,6 +1,10 @@
-import axios, { AxiosRequestHeaders, Method } from 'axios';
+import axios, { Method, RawAxiosRequestHeaders } from 'axios';
 
-export const ApiClient = async (url: string, header: AxiosRequestHeaders, method: Method): Promise<any> => {
+export const ApiClient = async (
+  url: string,
+  header: RawAxiosRequestHeaders,
+  method: Method
+): Promise<any> => {
   try {
     const response = await axios({
       url: url,

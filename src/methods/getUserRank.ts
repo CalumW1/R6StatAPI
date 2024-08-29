@@ -44,7 +44,7 @@ export const GetUserRank = async (userId: string, platform: string): Promise<Use
 
   const response = await ApiClient(URI, headers, 'GET');
 
-  const result: UserRank = await extractValues(await response.json());
+  const result: UserRank = await extractValues(await response);
 
   return result;
 };
