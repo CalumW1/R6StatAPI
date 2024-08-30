@@ -17,6 +17,11 @@
 
 `npm i r6statapi`
 
+## Suported Runtimes
+
+- Node.js (20.13.0+)
+- Bun (1.1.26)
+
 ## Getting Started
 
 To get started you will need a Ubisoft login, it is best to create a new account and not the account you normally use. Create a new account [here](account.ubisoft.com/login)

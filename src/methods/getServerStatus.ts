@@ -31,13 +31,13 @@ export const GetServerStatus = async (platform: string): Promise<ServerStatus> =
 
   const serverId = UBI_SERVER_IDS.find(x => x.id === platform)?.value;
 
-  if (serverId === '') throw new Error('unable to find serverId');
+  if (!serverId) throw new Error('unable to find serverId');
 
   const URI = UBI_SERVER_STATUS_URI + UBI_GETSERVERSTATUS(serverId as string);
 
   const response = await ApiClient(URI, headers, 'GET');
 
-  const data = await response.json();
+  const data = await response;
 
   const serverStatus: ServerStatus = {
     MDM: data[0].MDM,

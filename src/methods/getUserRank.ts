@@ -29,7 +29,7 @@ interface RankStats {
 }
 
 export const GetUserRank = async (userId: string, platform: string): Promise<UserRank> => {
-  if (userId || platform === '')
+  if (!userId || !platform)
     throw new Error(`Please check userId: ${userId} and platform: ${platform}`);
 
   const token = await CheckToken();
@@ -47,7 +47,7 @@ export const GetUserRank = async (userId: string, platform: string): Promise<Use
 
   const response = await ApiClient(URI, headers, 'GET');
 
-  const result: UserRank = await extractValues(await response.json());
+  const result: UserRank = await extractValues(await response);
 
   return result;
 };

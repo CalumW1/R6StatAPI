@@ -14,7 +14,7 @@ export interface Progression {
 }
 
 export const GetUserProgression = async (userId: string): Promise<Progression> => {
-  if (userId === '') throw new Error('Please check userId');
+  if (!userId) throw new Error('Please check userId');
 
   var token = await CheckToken();
 
@@ -29,5 +29,5 @@ export const GetUserProgression = async (userId: string): Promise<Progression> =
 
   const response = await ApiClient(URI, headers, 'GET');
 
-  return (await response.json()) as Progression;
+  return (await response) as Progression;
 };

@@ -22,7 +22,7 @@ interface Avatars {
 }
 
 export const GetUserByUsername = async (username: string, platform: string): Promise<User> => {
-  if (username || platform === '')
+  if (!username || !platform)
     throw new Error(`Please check username: ${username} and platform: ${platform}`);
 
   var token = await CheckToken();
@@ -37,7 +37,7 @@ export const GetUserByUsername = async (username: string, platform: string): Pro
 
   const response = await ApiClient(URI, headers, 'GET');
 
-  const data = (await response.json()) as Profiles;
+  const data = (await response) as Profiles;
 
   data.profiles = data.profiles.map(profile => ({
     ...profile,

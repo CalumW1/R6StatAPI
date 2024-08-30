@@ -22,7 +22,7 @@ interface Avatars {
 }
 
 export const GetUserByUserId = async (userId: string): Promise<User[] | []> => {
-  if (userId === '') throw new Error('Please enter valid userId');
+  if (!userId) throw new Error('Please enter valid userId');
 
   var token = await CheckToken();
 
@@ -36,7 +36,7 @@ export const GetUserByUserId = async (userId: string): Promise<User[] | []> => {
 
   const response = await ApiClient(URI, headers, 'GET');
 
-  const data = (await response.json()) as Profiles;
+  const data = (await response) as Profiles;
 
   data.profiles = data.profiles.map(profile => ({
     ...profile,

@@ -73,7 +73,7 @@ export const GetUserStats = async (
   teamRole: string,
   season: string
 ): Promise<UserStats> => {
-  if (userId || platform || view || aggregation || gameMode || teamRole || season === '')
+  if (!userId || !platform || !view || !aggregation || !gameMode || !teamRole || !season)
     throw new Error(
       `Please check userId: ${userId}, platform: ${platform}, view: ${view}, aggregation: ${aggregation}, gameMode: ${gameMode}, teamRole: ${teamRole}, season: ${season}`
     );
@@ -112,7 +112,7 @@ export const GetUserStats = async (
   const response = await ApiClient(URI, headers, 'GET');
 
   const usersStats: UserStats = await BuildUserStats(
-    await response.json(),
+    await response,
     user,
     platformTransformation,
     platform

@@ -1,20 +1,19 @@
-import fetch from 'node-fetch';
+import axios, { Method, RawAxiosRequestHeaders } from 'axios';
 
-export const ApiClient = async (url: string, header: any, method: string): Promise<any> => {
+export const ApiClient = async (
+  url: string,
+  header: RawAxiosRequestHeaders,
+  method: Method
+): Promise<any> => {
   try {
-    const response = await fetch(url, {
+    const response = await axios({
+      url: url,
       method: method,
       headers: header,
     });
 
-    if (!response.ok) throw Error(`HTTP Error: ${response.status} - ${response.statusText}`);
-
-    return response;
+    return response.data;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(`An error has occured ${error.message}`);
-    } else {
-      console.error(`Unknown error has occured`);
-    }
+    throw new Error(`Error with response: ${(error as any).message}`);
   }
 };
