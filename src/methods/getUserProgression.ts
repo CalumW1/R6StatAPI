@@ -27,5 +27,5 @@ export const GetUserProgression = async (userId: string): Promise<Progression> =
 
   const response = await ApiClient(URI, headers, 'GET');
 
-  return (await response.json()) as Progression;
+  return (await response) as Progression;
 };

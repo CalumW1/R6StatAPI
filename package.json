@@ -1,10 +1,10 @@
 {
   "dependencies": {
-    "eslint": "^9.1.1",
-    "node-fetch": "^2.6.2"
-  },  
+    "axios": "^1.7.5",
+    "eslint": "^9.1.1"
+  },
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "node ./dist/cjs/index.js",
     "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json"
   },
   "name": "r6statapi",
@@ -20,16 +20,15 @@
     "Ubisoft",
     "Rainbow",
     "Six",
-    "Seige"
+    "Siege"
   ],
-  "author": "Calum Wilson",
+  "author": "Calum Wilson, Fabian Maier",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CalumW1/R6StatAPI/issues"
   },
   "homepage": "https://github.com/CalumW1/R6StatAPI#readme",
   "devDependencies": {
-    "@types/node": "^20.14.11",
     "@types/node-fetch": "^2.6.11",
     "typescript": "^5.5.3"
   }

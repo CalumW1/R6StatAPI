@@ -1,7 +1,6 @@
-import fetch from 'node-fetch';
+import axios from 'axios';
 import { UBI_APPID, BASE_UBI_URI, UBI_AUTH_URI } from '../constants';
 import { writeFile } from 'fs';
-import { ApiClient } from './apiClient';
 
 export interface Authorise {
   platformType: string;
@@ -57,9 +56,9 @@ const RequestToken = async (email: string, password: string): Promise<Authorise>
 
   const URI = BASE_UBI_URI(3) + UBI_AUTH_URI;
 
-  const response = await ApiClient(URI, headers, 'POST');
+  const response = await axios.post(URI, {}, { headers });
 
-  const data = (await response.json()) as Authorise;
+  const data = response.data as Authorise;
 
   Token = data.ticket;
   NextRefresh = data.expiration;
@@ -77,10 +76,10 @@ const RequestToken = async (email: string, password: string): Promise<Authorise>
 };
 
 export const CheckToken = async (): Promise<string> => {
-  var currentTime = new Date().toISOString();
+  const currentTime = new Date().toISOString();
 
   if (Token !== '' && currentTime < NextRefresh) {
-    console.log('Retreving token from memory');
+    console.log('Retrieving token from memory');
     return Token;
   } else return (await RequestToken(Email, Password)).ticket;
 };

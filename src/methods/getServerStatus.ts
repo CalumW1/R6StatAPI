@@ -32,7 +32,7 @@ export const GetServerStatus = async (platform: string): Promise<ServerStatus> =
 
   const response = await ApiClient(URI, headers, 'GET');
 
-  const data = await response.json();
+  const data = await response;
 
   const serverStatus: ServerStatus = {
     MDM: data[0].MDM,

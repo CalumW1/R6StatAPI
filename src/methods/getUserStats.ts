@@ -105,7 +105,7 @@ export const GetUserStats = async (
   const response = await ApiClient(URI, headers, 'GET');
 
   const usersStats: UserStats = await BuildUserStats(
-    await response.json(),
+    await response,
     user,
     platformTransformation,
     platform

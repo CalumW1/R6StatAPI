@@ -72,11 +72,11 @@ export const GetOperator = async (
   var token = await CheckToken();
   var expiration = await GetExperation();
 
-  const headers = {
+  const header = {
+    'Content-Type': 'application/json',
     Authorization: `ubi_v1 t=${token}`,
     'Ubi-SessionId': UBI_RANKED_SESSIONID,
     'Ubi-AppId': UBI_DATADEV_APPID,
-    'Content-Type': 'application/json',
     expiration: expiration,
   };
 
@@ -90,16 +90,10 @@ export const GetOperator = async (
 
   // https://prod.datadev.ubisoft.com/v1/users/488cd0dd-b8e0-4718-a9da-2767ea44c399/playerstats?spaceId=05bfb3f7-6c21-4c42-be1f-97a33fb5cf66&view=current&aggregation=operators&gameMode=all,ranked,casual,unranked&platformGroup=CONSOLE&teamRole=attacker,defender&seasons=Y9S2
   // https://prod.datadev.ubisoft.com/v1/users/488cd0dd-b8e0-4718-a9da-2767ea44c399/playerstats?spaceId=05bfb3f7-6c21-4c42-be1f-97a33fb5cf66&view=current&aggregation=operators&gameMode=ranked,casual&platformGroup=CONSOLE&teamRole=defender,attacker&seasons=Y9S2
-  console.log(URI);
 
-  const data = await ApiClient(URI, headers, 'GET');
+  const data = await ApiClient(URI, header, 'GET');
 
-  const operators: GameModes = await ExtractOperators(
-    await data.json(),
-    userId,
-    gameMode,
-    platformChange
-  );
+  const operators: GameModes = await ExtractOperators(await data, userId, gameMode, platformChange);
 
   return operators;
 };
