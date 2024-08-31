@@ -99,6 +99,10 @@ export const AvatarImages = (userId: string) => {
   };
 };
 
+export const GetRanksById = (id: number) => {
+  return Ranks.find(x => x.id == id);
+};
+
 export const Ranks = [
   {
     id: 0,

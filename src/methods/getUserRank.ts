@@ -1,6 +1,12 @@
 import { ApiClient } from './apiClient';
 import { CheckToken } from './auth';
-import { UBI_APPID, UBI_SESSIONID, BASE_UBI_URI, UBI_RANKED_URI_V2 } from '../constants';
+import {
+  UBI_APPID,
+  UBI_SESSIONID,
+  BASE_UBI_URI,
+  UBI_RANKED_URI_V2,
+  GetRanksById,
+} from '../constants';
 
 export interface UserRank {
   casual?: RankStats;
@@ -26,6 +32,7 @@ interface RankStats {
   abandons: number;
   losses: number;
   wins: number;
+  rankImage: string;
 }
 
 export const GetUserRank = async (userId: string, platform: string): Promise<UserRank> => {
@@ -74,6 +81,7 @@ const extractValues = async (profiles: any): Promise<UserRank> => {
         abandons: seasonStatistics.match_outcomes.abandons,
         losses: seasonStatistics.match_outcomes.losses,
         wins: seasonStatistics.match_outcomes.wins,
+        rankImage: GetRanksById(fullProfile.rank)?.image ?? '',
       };
       (ranks as any)[boardId] = rank;
     });
