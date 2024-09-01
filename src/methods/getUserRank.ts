@@ -65,6 +65,8 @@ const extractValues = async (profiles: any): Promise<UserRank> => {
       const fullProfile = profile.full_profiles[0].profile;
       const seasonStatistics = profile.full_profiles[0].season_statistics;
 
+      const getRank = GetRanksById(fullProfile.rank);
+
       const rank: RankStats = {
         profile_board_id: boardId,
         id: fullProfile.board_id,
@@ -73,7 +75,7 @@ const extractValues = async (profiles: any): Promise<UserRank> => {
         platform_family: fullProfile.platform_family,
         rank: fullProfile.rank,
         rank_points: fullProfile.rank_points,
-        rank_name: fullProfile.rank_name,
+        rank_name: getRank?.name ?? '',
         season_id: fullProfile.season_id,
         top_rank_position: fullProfile.top_rank_position,
         deaths: seasonStatistics.deaths,
@@ -81,7 +83,7 @@ const extractValues = async (profiles: any): Promise<UserRank> => {
         abandons: seasonStatistics.match_outcomes.abandons,
         losses: seasonStatistics.match_outcomes.losses,
         wins: seasonStatistics.match_outcomes.wins,
-        rankImage: GetRanksById(fullProfile.rank)?.image ?? '',
+        rankImage: getRank?.image ?? '',
       };
       (ranks as any)[boardId] = rank;
     });

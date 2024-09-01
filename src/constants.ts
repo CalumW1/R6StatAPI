@@ -358,7 +358,7 @@ export const Ranks = [
   },
   {
     id: 36,
-    name: 'Champions',
+    name: 'Champion',
     minimumRankPoints: 4500,
     maximumRankPoints: 9999,
     image: 'https://github.com/CalumW1/R6StatAPI/blob/main/assests/images/ranks/champion.png',
