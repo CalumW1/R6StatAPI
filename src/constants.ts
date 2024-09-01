@@ -99,6 +99,10 @@ export const AvatarImages = (userId: string) => {
   };
 };
 
+export const GetRanksById = (id: number) => {
+  return Ranks.find(x => x.id == id);
+};
+
 export const Ranks = [
   {
     id: 0,
@@ -354,7 +358,7 @@ export const Ranks = [
   },
   {
     id: 36,
-    name: 'Champions',
+    name: 'Champion',
     minimumRankPoints: 4500,
     maximumRankPoints: 9999,
     image: 'https://github.com/CalumW1/R6StatAPI/blob/main/assests/images/ranks/champion.png',
