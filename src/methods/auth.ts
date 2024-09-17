@@ -31,6 +31,9 @@ let Experation: string = '';
 export const Auth = async (email: string, password: string): Promise<string> => {
   const currentTime = new Date().toISOString();
 
+  if (!email || !password)
+    throw new Error(`Please check email: ${email} and password: ${password}`);
+
   if (Token !== '' && currentTime < NextRefresh) {
     return Token;
   }

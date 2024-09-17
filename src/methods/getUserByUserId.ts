@@ -22,6 +22,8 @@ interface Avatars {
 }
 
 export const GetUserByUserId = async (userId: string): Promise<User[] | []> => {
+  if (!userId) throw new Error('Please enter valid userId');
+
   var token = await CheckToken();
 
   const headers = {

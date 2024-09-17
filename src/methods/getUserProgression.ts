@@ -14,6 +14,8 @@ export interface Progression {
 }
 
 export const GetUserProgression = async (userId: string): Promise<Progression> => {
+  if (!userId) throw new Error('Please check userId');
+
   var token = await CheckToken();
 
   const headers = {

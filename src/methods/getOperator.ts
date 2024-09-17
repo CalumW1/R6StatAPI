@@ -69,6 +69,11 @@ export const GetOperator = async (
   teamRole: string,
   season: string
 ): Promise<GameModes> => {
+  if (userId || platform || view || aggregation || gameMode || teamRole || season === '')
+    throw new Error(
+      `Please check userId: ${userId}, platform: ${platform}, view: ${view}, aggregation: ${aggregation}, gameMode: ${gameMode}, teamRole: ${teamRole}, season: ${season}`
+    );
+
   var token = await CheckToken();
   var expiration = await GetExperation();
 
@@ -83,6 +88,8 @@ export const GetOperator = async (
   const platformChange = platform === 'uplay' ? 'PC' : 'CONSOLE';
 
   const spaceId: any = RANKED_UBI_SPACEIDS.find(x => x.id === platformChange)?.value;
+
+  if (!spaceId) throw new Error('Unable to find spaceId');
 
   const URI =
     UBI_DATADEV_URI +
