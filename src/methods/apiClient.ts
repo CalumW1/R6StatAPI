@@ -1,16 +1,21 @@
-import axios, { Method, RawAxiosRequestHeaders } from 'axios';
+import axios, { AxiosRequestConfig, Method, RawAxiosRequestHeaders } from 'axios';
 
 export const ApiClient = async (
   url: string,
   header: RawAxiosRequestHeaders,
-  method: Method
+  method: Method,
+  body?: object
 ): Promise<any> => {
   try {
-    const response = await axios({
+    const config: AxiosRequestConfig = {
       url: url,
       method: method,
       headers: header,
-    });
+    };
+
+    if (body && method === 'POST') config.data = body;
+
+    const response = await axios(config);
 
     return response.data;
   } catch (error) {

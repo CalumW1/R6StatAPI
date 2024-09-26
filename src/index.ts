@@ -6,6 +6,7 @@ import { GetServerStatus, ServerStatus } from './methods/getServerStatus';
 import { GetUserRank, UserRank } from './methods/getUserRank.js';
 import { GetOperator, GameModes } from './methods/getOperator';
 // import { GetUserStats, UserStats } from './methods/GetUserStats';
+import { Search, Items } from './methods/searchMarketplace';
 
 export class R6StatAPI {
   public async login(email: string, password: string): Promise<string> {
@@ -56,4 +57,8 @@ export class R6StatAPI {
   // ): Promise<UserStats> {
   //   return await GetUserStats(userId, platform, view, aggregation, gameMode, teamRole, season);
   // }
+
+  public async SearchMarketplace(searchQuery: string): Promise<Items> {
+    return await Search(searchQuery);
+  }
 }
