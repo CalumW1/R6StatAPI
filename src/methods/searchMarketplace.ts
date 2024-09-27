@@ -8,36 +8,16 @@ import {
   GraphQL_SearchQuery,
   UBI_MARKETPLACE_URI,
 } from '../constants';
+import {
+  Items,
+  Item,
+  SellStats,
+  BuyStats,
+  LastSoldAt,
+  MarketData,
+} from '../interfaces/marketplace';
 import { ApiClient } from './apiClient';
-
-export interface Items {
-  items: Item[];
-}
-
-interface Item {
-  id: string;
-  assetUrl: string;
-  itemId: string;
-  name: string;
-  tags: string[];
-  type: string;
-  marktetData: MarketData;
-}
-
-interface MarketData {
-  id: string;
-  sellStats?: SellStats;
-  buyStats?: BuyStats;
-  lastSoldAt?: LastSoldAt;
-}
-
-interface SellStats {
-  id: string;
-  paymentItemId: string;
-  lowestPrice: number;
-  highestPrice: number;
-  activeCount: number;
-}
+import { MapMarketData } from '../utils/helperFunctions';
 
 const defaultSellStats: SellStats = {
   id: '',
@@ -47,14 +27,6 @@ const defaultSellStats: SellStats = {
   activeCount: 0,
 };
 
-interface BuyStats {
-  id: string;
-  paymentItemId: string;
-  lowestPrice: number;
-  highestPrice: number;
-  activeCount: number;
-}
-
 const defaultBuyStats: BuyStats = {
   id: '',
   paymentItemId: '',
@@ -62,13 +34,6 @@ const defaultBuyStats: BuyStats = {
   highestPrice: 0,
   activeCount: 0,
 };
-
-interface LastSoldAt {
-  id: string;
-  paymentItemId: string;
-  price: number;
-  performedAt: string;
-}
 
 const defaultLostSoldAt: LastSoldAt = {
   id: '',
@@ -93,7 +58,6 @@ export const Search = async (searchQuery: string): Promise<Items> => {
     'Ubi-AppId': UBI_APPID_Marketplace,
     'Ubi-SessionId': UBI_SESSIONID_MARKETPLACE,
     'ubi-localecode': UBI_LOCALECODE,
-    'ubi-profileid': '',
     'ubi-regionid': UBI_REGIONID_MARKETPLACE,
     'x-platform-appid': X_PLATFORM_APPID,
     'Content-Type': 'application/json',
@@ -134,21 +98,23 @@ const MapSearchResults = async (data: any): Promise<Items> => {
   data.forEach((element: any) => {
     const itemDetails = element.data.game;
 
-    if (itemDetails.marketableItems && itemDetails.marketableItems.nodes.length > 0) {
-      itemDetails.marketableItems.nodes.forEach(async (marketableItem: any) => {
-        const tags = marketableItem.item.tags as string[];
+    if (
+      itemDetails.marketplaceRecommendations &&
+      itemDetails.marketplaceRecommendations.nodes.length > 0
+    ) {
+      itemDetails.marketplaceRecommendations.nodes.forEach(async (recItem: any) => {
+        const tags = recItem.item.tags as string[];
 
-        // this contains buy, sell and last sold information.
-        const marketPlaceData = await MapMarketData(marketableItem.marketData);
+        const marketData = await MapMarketData(recItem.marketData);
 
         const newItem: Item = {
-          id: marketableItem.item.id,
-          assetUrl: marketableItem.item.assetUrl,
-          itemId: marketableItem.item.itemId,
-          name: marketableItem.item.name,
+          id: recItem.item.id,
+          assetUrl: recItem.item.assetUrl,
+          itemId: recItem.item.itemId,
+          name: recItem.item.name,
           tags: tags,
-          type: marketableItem.item.type,
-          marktetData: marketPlaceData,
+          type: recItem.item.type,
+          marktetData: marketData,
         };
 
         items.items.push(newItem);
@@ -156,49 +122,4 @@ const MapSearchResults = async (data: any): Promise<Items> => {
     }
   });
   return items;
-};
-
-const MapMarketData = async (marketplaceData: any): Promise<MarketData> => {
-  const id = marketplaceData.id;
-
-  const sellStats: SellStats =
-    Array.isArray(marketplaceData?.sellStats) && marketplaceData.sellStats.length > 0
-      ? {
-          id: marketplaceData.sellStats[0].id,
-          paymentItemId: marketplaceData.sellStats[0].paymentItemId,
-          lowestPrice: marketplaceData.sellStats[0].lowestPrice,
-          highestPrice: marketplaceData.sellStats[0].highestPrice,
-          activeCount: marketplaceData.sellStats[0].activeCount,
-        }
-      : defaultSellStats;
-
-  const buyStats: BuyStats =
-    Array.isArray(marketplaceData?.buyStats) && marketplaceData.buyStats.length > 0
-      ? {
-          id: marketplaceData.buyStats[0].id,
-          paymentItemId: marketplaceData.buyStats[0].paymentItemId,
-          lowestPrice: marketplaceData.buyStats[0].lowestPrice,
-          highestPrice: marketplaceData.buyStats[0].highestPrice,
-          activeCount: marketplaceData.buyStats[0].activeCount,
-        }
-      : defaultBuyStats;
-
-  const lastSoldAt: LastSoldAt =
-    Array.isArray(marketplaceData?.lastSoldAt) && marketplaceData.lastSoldAt.length > 0
-      ? {
-          id: marketplaceData.lastSoldAt[0].id,
-          paymentItemId: marketplaceData.lastSoldAt[0].paymentItemId,
-          price: marketplaceData.lastSoldAt[0].price,
-          performedAt: marketplaceData.lastSoldAt[0].performedAt,
-        }
-      : defaultLostSoldAt;
-
-  const marketData: MarketData = {
-    id: id,
-    sellStats: sellStats,
-    buyStats: buyStats,
-    lastSoldAt: lastSoldAt,
-  };
-
-  return marketData;
 };
