@@ -7,9 +7,10 @@ import { GetUserRank, UserRank } from './methods/getUserRank.js';
 import { GetOperator, GameModes } from './methods/getOperator';
 // import { GetUserStats, UserStats } from './methods/GetUserStats';
 import { Search } from './methods/searchMarketplace';
-import { Item, Items } from './interfaces/marketplace';
+import { Item, Items, MarkplaceSearchType, Tags, Types } from './interfaces/marketplace';
 import { RecommendedItems } from './methods/recommendedItems';
 import { getItemDetails } from './methods/getItemDetails';
+import { AdvancedSearch } from './methods/advancedSearchMarketplace';
 
 export class R6StatAPI {
   public async login(email: string, password: string): Promise<string> {
@@ -71,5 +72,14 @@ export class R6StatAPI {
 
   public async getItemDetails(itemId: string): Promise<Item> {
     return await getItemDetails(itemId);
+  }
+
+  public async advancedMarketplaceSearch(
+    searchTerm: string,
+    marketplaceType: MarkplaceSearchType,
+    types: Types,
+    tags: Tags
+  ) {
+    return await AdvancedSearch(searchTerm, marketplaceType, types, tags);
   }
 }

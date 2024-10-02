@@ -1,4 +1,17 @@
-import { MarketData, SellStats, BuyStats, LastSoldAt } from '../interfaces/marketplace';
+import {
+  MarketData,
+  SellStats,
+  BuyStats,
+  LastSoldAt,
+  ItemRarity,
+  Weapons,
+  Operators,
+  Event,
+  EsportsTeams,
+  OtherTypes,
+} from '../interfaces/marketplace';
+
+// ============== Marketplace Helper Functions ==============
 
 const defaultSellStats: SellStats = {
   id: '',
@@ -64,6 +77,90 @@ export const MapMarketData = async (marketplaceData: any): Promise<MarketData> =
     buyStats: buyStats,
     lastSoldAt: lastSoldAt,
   };
-
   return marketData;
 };
+
+export const BuildItemRarity = async (ItemRarityArray: string[]): Promise<string[]> => {
+  if (ItemRarityArray.length === 0) return [];
+  const rarity: string[] = [];
+
+  ItemRarityArray.forEach(itemRarity => {
+    const enumValue = ItemRarity[itemRarity as keyof typeof ItemRarity];
+    if (enumValue) rarity.push(enumValue);
+    else console.log("Enum values doesn't exists");
+  });
+
+  return rarity;
+};
+
+export const BuildWeapons = async (WeaponsArray: string[]): Promise<string[]> => {
+  if (WeaponsArray.length === 0) return [];
+
+  const weapons: string[] = [];
+
+  WeaponsArray.forEach(weapon => {
+    const enumValue = Weapons[weapon as keyof typeof Weapons];
+    if (enumValue) weapons.push(enumValue);
+    else console.log('Enum value not found');
+  });
+
+  return weapons;
+};
+
+export const BuildOperators = async (operatorsArray: string[]): Promise<string[]> => {
+  if (operatorsArray.length === 0) return [];
+
+  const operators: string[] = [];
+
+  operatorsArray.forEach(operator => {
+    const enumValue = Operators[operator as keyof typeof Operators];
+    if (enumValue) operators.push(enumValue);
+    else console.log('enum value was not found');
+  });
+
+  return operators;
+};
+
+export const BuildEvents = async (eventsArray: string[]): Promise<string[]> => {
+  if (eventsArray.length === 0) return [];
+
+  const events: string[] = [];
+
+  eventsArray.forEach(event => {
+    const enumValue = Event[event as keyof typeof Event];
+    if (enumValue) events.push(enumValue);
+    else console.log('enum value not found');
+  });
+
+  return events;
+};
+
+export const BuildEsportTeams = async (esportTeamsArray: string[]): Promise<string[]> => {
+  if (esportTeamsArray.length === 0) return [];
+
+  const esportsTeam: string[] = [];
+
+  esportTeamsArray.forEach(team => {
+    const enumValue = EsportsTeams[team as keyof typeof EsportsTeams];
+    if (enumValue) esportsTeam.push(enumValue);
+    else console.log('enum value not found');
+  });
+
+  return esportsTeam;
+};
+
+export const BuildOtherTypes = async (otherTypesArray: string[]): Promise<string[]> => {
+  if (otherTypesArray.length === 0) return [];
+
+  const otherTypes: string[] = [];
+
+  otherTypesArray.forEach(otherType => {
+    const enumValue = OtherTypes[otherType as keyof typeof OtherTypes];
+    if (enumValue) otherTypes.push(enumValue);
+    else console.log('enum value not found');
+  });
+
+  return otherTypes;
+};
+
+// ==========================================================
