@@ -7,7 +7,7 @@ import {
   UBI_SESSIONID_MARKETPLACE,
   X_PLATFORM_APPID,
 } from '../constants';
-import { MarkplaceSearchType, Tags, Types } from '../interfaces/marketplace';
+import { Item, Items, MarkplaceSearchType, Tags, Types } from '../interfaces/marketplace';
 import {
   BuildEsportTeams,
   BuildEvents,
@@ -15,6 +15,7 @@ import {
   BuildOperators,
   BuildOtherTypes,
   BuildWeapons,
+  MapMarketData,
 } from '../utils/helperFunctions';
 import { ApiClient } from './apiClient';
 import { CheckToken } from './auth';
@@ -24,7 +25,7 @@ export const AdvancedSearch = async (
   searchType: MarkplaceSearchType,
   types: Types,
   tags: Tags
-) => {
+): Promise<Items> => {
   var token = await CheckToken();
 
   const query = searchTerm
@@ -46,8 +47,7 @@ export const AdvancedSearch = async (
 
   const nonEmptyTypes: any[][] = [];
 
-  var test = await BuildTagsFilterArray(tags);
-  console.log(test);
+  var tagFilters = await BuildTagsFilterArray(tags);
 
   Object.values(types).forEach(value => {
     if (Array.isArray(value) && value.length > 0) {
@@ -65,7 +65,7 @@ export const AdvancedSearch = async (
         offset: 0,
         filterBy: {
           text: query,
-          tags: test, // Filters: Rarity, season, operator, weapon, event, Esports team, , other
+          tags: tagFilters, // Filters: Rarity, season, operator, weapon, event, Esports team, , other
           types: nonEmptyTypes, // Filters: types
         },
         sortBy: {
@@ -79,10 +79,8 @@ export const AdvancedSearch = async (
     },
   ];
 
-  // console.log(JSON.stringify(body));
-
   const response = await ApiClient(UBI_MARKETPLACE_URI, headers, 'POST', body);
-  console.log(JSON.stringify(response));
+  return await MapResults(response);
 };
 
 const BuildTagsFilterArray = async (tagsArray: Tags): Promise<any[][]> => {
@@ -123,4 +121,36 @@ const BuildTagsFilterArray = async (tagsArray: Tags): Promise<any[][]> => {
   }
 
   return tags;
+};
+
+const MapResults = async (data: any): Promise<Items> => {
+  const items: Items = {
+    items: [],
+  };
+
+  data.forEach((element: any) => {
+    const itemDetails = element.data.game.viewer.meta;
+
+    if (itemDetails.marketableItems && itemDetails.marketableItems.nodes.length > 0) {
+      itemDetails.marketableItems.nodes.forEach(async (recItem: any) => {
+        console.log(JSON.stringify(recItem));
+        const tags = recItem.item.tags as string[];
+
+        const marketData = await MapMarketData(recItem.marketData);
+
+        const newItem: Item = {
+          id: recItem.item.id,
+          assetUrl: recItem.item.assetUrl,
+          itemId: recItem.item.itemId,
+          name: recItem.item.name,
+          tags: tags,
+          type: recItem.item.type,
+          marktetData: marketData,
+        };
+
+        items.items.push(newItem);
+      });
+    }
+  });
+  return items;
 };

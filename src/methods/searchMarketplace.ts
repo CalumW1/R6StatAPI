@@ -8,39 +8,9 @@ import {
   GraphQL_SearchQuery,
   UBI_MARKETPLACE_URI,
 } from '../constants';
-import {
-  Items,
-  Item,
-  SellStats,
-  BuyStats,
-  LastSoldAt,
-  MarketData,
-} from '../interfaces/marketplace';
+import { Items, Item } from '../interfaces/marketplace';
 import { ApiClient } from './apiClient';
 import { MapMarketData } from '../utils/helperFunctions';
-
-const defaultSellStats: SellStats = {
-  id: '',
-  paymentItemId: '',
-  lowestPrice: 0,
-  highestPrice: 0,
-  activeCount: 0,
-};
-
-const defaultBuyStats: BuyStats = {
-  id: '',
-  paymentItemId: '',
-  lowestPrice: 0,
-  highestPrice: 0,
-  activeCount: 0,
-};
-
-const defaultLostSoldAt: LastSoldAt = {
-  id: '',
-  paymentItemId: '',
-  price: 0,
-  performedAt: '',
-};
 
 export const Search = async (searchQuery: string): Promise<Items> => {
   // end of each of word we need to add * Looks something like this R4-C*
