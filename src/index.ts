@@ -78,8 +78,9 @@ export class R6StatAPI {
     searchTerm: string,
     marketplaceType: MarkplaceSearchType,
     types: Types,
-    tags: Tags
+    tags: Tags,
+    sortBy: string
   ) {
-    return await AdvancedSearch(searchTerm, marketplaceType, types, tags);
+    return await AdvancedSearch(searchTerm, marketplaceType, types, tags, sortBy);
   }
 }

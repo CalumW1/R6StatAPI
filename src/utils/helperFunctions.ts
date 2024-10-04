@@ -9,6 +9,16 @@ import {
   Event,
   EsportsTeams,
   OtherTypes,
+  SortBy,
+  PurchaseAvailableHighLow,
+  PurchaseAvailableLowHigh,
+  SaleAvailableHighLow,
+  SaleAvailableLowHigh,
+  LastSalePriceHighLow,
+  LastSalePriceLowHigh,
+  ItemNamesDESC,
+  ItemNamesASC,
+  MarkplaceSearchType,
 } from '../interfaces/marketplace';
 
 // ============== Marketplace Helper Functions ==============
@@ -161,6 +171,34 @@ export const BuildOtherTypes = async (otherTypesArray: string[]): Promise<string
   });
 
   return otherTypes;
+};
+
+export const ReturnSortBy = async (
+  sortBy: string,
+  searchType: MarkplaceSearchType
+): Promise<SortBy | undefined> => {
+  switch (sortBy) {
+    case 'Purchase available: high to low':
+      return PurchaseAvailableHighLow;
+    case 'Purchase available: low to high':
+      return PurchaseAvailableLowHigh;
+    case 'Sale available: high to low':
+      return SaleAvailableHighLow;
+    case 'Sale available: low to high':
+      return SaleAvailableLowHigh;
+    case 'Last sale price: high to low':
+      return LastSalePriceHighLow;
+    case 'Last sale price: low to high':
+      return LastSalePriceLowHigh;
+    case 'Item names: A-Z':
+      return ItemNamesDESC;
+    case 'Item names: Z-A':
+      ItemNamesASC;
+      break;
+    default:
+      if (searchType === 'sell') return PurchaseAvailableHighLow;
+      else return SaleAvailableHighLow;
+  }
 };
 
 // ==========================================================

@@ -58,6 +58,16 @@ export interface Tags {
 
 export type MarkplaceSearchType = 'buy' | 'sell';
 
+export type SortByOptions =
+  | 'Purchase available: high to low'
+  | 'Purchase available: low to high'
+  | 'Sale available: high to low'
+  | 'Sale available: low to high'
+  | 'Last sale price: high to low'
+  | 'Last sale price: low to high'
+  | 'Item names: A-Z'
+  | 'Item names: Z-A';
+
 export enum ItemRarity {
   Legendary = 'rarity_legendary',
   SuperRare = 'rarity_superrare',
@@ -344,3 +354,66 @@ export enum OtherTypes {
   Seasonal = 'Seasonal',
   Universal = 'Universal',
 }
+
+export interface SortBy {
+  direction: string;
+  field: string;
+  orderType?: string;
+  paymentItemId: string;
+}
+
+// Sort By options
+
+// Defualt for sell option
+export const PurchaseAvailableHighLow: SortBy = {
+  direction: 'DESC',
+  field: 'ACTIVE_COUNT',
+  orderType: 'Buy',
+  paymentItemId: '9ef71262-515b-46e8-b9a8-b6b6ad456c67',
+};
+
+export const PurchaseAvailableLowHigh: SortBy = {
+  direction: 'ASC',
+  field: 'ACTIVE_COUNT',
+  orderType: 'Buy',
+  paymentItemId: '9ef71262-515b-46e8-b9a8-b6b6ad456c67',
+};
+
+// Default for buy option
+export const SaleAvailableHighLow: SortBy = {
+  direction: 'DESC',
+  field: 'ACTIVE_COUNT',
+  orderType: 'Sell',
+  paymentItemId: '9ef71262-515b-46e8-b9a8-b6b6ad456c67',
+};
+
+export const SaleAvailableLowHigh: SortBy = {
+  direction: 'ASC',
+  field: 'ACTIVE_COUNT',
+  orderType: 'Sell',
+  paymentItemId: '9ef71262-515b-46e8-b9a8-b6b6ad456c67',
+};
+
+export const LastSalePriceHighLow: SortBy = {
+  direction: 'DESC',
+  field: 'LAST_TRANSACTION_PRICE',
+  paymentItemId: '9ef71262-515b-46e8-b9a8-b6b6ad456c67',
+};
+
+export const LastSalePriceLowHigh: SortBy = {
+  direction: 'ASC',
+  field: 'LAST_TRANSACTION_PRICE',
+  paymentItemId: '9ef71262-515b-46e8-b9a8-b6b6ad456c67',
+};
+
+export const ItemNamesDESC: SortBy = {
+  direction: 'DESC',
+  field: 'DISPLAY_NAME',
+  paymentItemId: '9ef71262-515b-46e8-b9a8-b6b6ad456c67',
+};
+
+export const ItemNamesASC: SortBy = {
+  direction: 'ASC',
+  field: 'DISPLAY_NAME',
+  paymentItemId: '9ef71262-515b-46e8-b9a8-b6b6ad456c67',
+};

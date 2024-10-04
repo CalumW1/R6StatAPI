@@ -1,4 +1,5 @@
 import {
+  GraphQL_BuyableItemQuery,
   GraphQL_SellableItemsQuery,
   UBI_APPID_Marketplace,
   UBI_LOCALECODE,
@@ -16,6 +17,7 @@ import {
   BuildOtherTypes,
   BuildWeapons,
   MapMarketData,
+  ReturnSortBy,
 } from '../utils/helperFunctions';
 import { ApiClient } from './apiClient';
 import { CheckToken } from './auth';
@@ -24,7 +26,8 @@ export const AdvancedSearch = async (
   searchTerm: string,
   searchType: MarkplaceSearchType,
   types: Types,
-  tags: Tags
+  tags: Tags,
+  sortBy: string
 ): Promise<Items> => {
   var token = await CheckToken();
 
@@ -45,15 +48,20 @@ export const AdvancedSearch = async (
 
   const type = searchType === 'sell' ? 'GetSellableItems' : 'GetBuyableItems';
 
-  const nonEmptyTypes: any[][] = [];
+  const graphqlQuery =
+    searchType === 'sell' ? GraphQL_SellableItemsQuery : GraphQL_BuyableItemQuery;
+
+  const typesFilter: any[][] = [];
 
   var tagFilters = await BuildTagsFilterArray(tags);
 
   Object.values(types).forEach(value => {
     if (Array.isArray(value) && value.length > 0) {
-      nonEmptyTypes.push(value);
+      typesFilter.push(value);
     }
   });
+
+  const newSortBy = await ReturnSortBy(sortBy, searchType);
 
   const body = [
     {
@@ -66,16 +74,11 @@ export const AdvancedSearch = async (
         filterBy: {
           text: query,
           tags: tagFilters, // Filters: Rarity, season, operator, weapon, event, Esports team, , other
-          types: nonEmptyTypes, // Filters: types
+          types: typesFilter, // Filters: types
         },
-        sortBy: {
-          field: 'ACTIVE_COUNT',
-          orderType: 'Buy',
-          direction: 'DESC',
-          paymentItemId: '9ef71262-515b-46e8-b9a8-b6b6ad456c67',
-        },
+        sortBy: newSortBy,
       },
-      query: GraphQL_SellableItemsQuery,
+      query: graphqlQuery,
     },
   ];
 
@@ -86,38 +89,22 @@ export const AdvancedSearch = async (
 const BuildTagsFilterArray = async (tagsArray: Tags): Promise<any[][]> => {
   const tags: string[][] = [];
 
-  if (Array.isArray(tagsArray.rarity) && tagsArray.rarity.length > 0) {
-    const items = await BuildItemRarity(tagsArray.rarity);
-    tags.push(items);
-  }
+  const mappings = {
+    rarity: BuildItemRarity,
+    seasons: null,
+    operators: BuildOperators,
+    weapons: BuildWeapons,
+    events: BuildEvents,
+    EsportsTeams: BuildEsportTeams,
+    others: BuildOtherTypes,
+  };
 
-  if (Array.isArray(tagsArray.seasons) && tagsArray.seasons.length > 0) {
-    tags.push(tagsArray.seasons);
-  }
-
-  if (Array.isArray(tagsArray.operators) && tagsArray.operators.length > 0) {
-    const operators = await BuildOperators(tagsArray.operators);
-    tags.push(operators);
-  }
-
-  if (Array.isArray(tagsArray.weapon) && tagsArray.weapon.length > 0) {
-    const weapons = await BuildWeapons(tagsArray.weapon);
-    tags.push(weapons);
-  }
-
-  if (Array.isArray(tagsArray.events) && tagsArray.events.length > 0) {
-    const events = await BuildEvents(tagsArray.events);
-    tags.push(events);
-  }
-
-  if (Array.isArray(tagsArray.esportsTeams) && tagsArray.esportsTeams.length > 0) {
-    const esportsTeams = await BuildEsportTeams(tagsArray.esportsTeams);
-    tags.push(esportsTeams);
-  }
-
-  if (Array.isArray(tagsArray.other) && tagsArray.other.length > 0) {
-    const otherTypes = await BuildOtherTypes(tagsArray.other);
-    tags.push(otherTypes);
+  for (const [key, buildFunction] of Object.entries(mappings)) {
+    const items = tagsArray[key as keyof Tags];
+    if (Array.isArray(items) && items.length > 0) {
+      if (buildFunction) tags.push(await buildFunction(items));
+      else tags.push(items);
+    }
   }
 
   return tags;
@@ -133,7 +120,6 @@ const MapResults = async (data: any): Promise<Items> => {
 
     if (itemDetails.marketableItems && itemDetails.marketableItems.nodes.length > 0) {
       itemDetails.marketableItems.nodes.forEach(async (recItem: any) => {
-        console.log(JSON.stringify(recItem));
         const tags = recItem.item.tags as string[];
 
         const marketData = await MapMarketData(recItem.marketData);
