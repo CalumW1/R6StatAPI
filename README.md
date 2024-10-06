@@ -44,7 +44,7 @@ const api = new R6StatAPI();
 // replace with your own information
 const email = "test@gmail.com"
 const password = "Password123"
-const usermame = "User1"
+const usermame = "CaleyW1"
 const platform = "uplay"
 
 // login and get token
