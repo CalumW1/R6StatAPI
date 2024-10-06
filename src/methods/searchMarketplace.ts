@@ -68,11 +68,8 @@ const MapSearchResults = async (data: any): Promise<Items> => {
   data.forEach((element: any) => {
     const itemDetails = element.data.game;
 
-    if (
-      itemDetails.marketplaceRecommendations &&
-      itemDetails.marketplaceRecommendations.nodes.length > 0
-    ) {
-      itemDetails.marketplaceRecommendations.nodes.forEach(async (recItem: any) => {
+    if (itemDetails.marketableItems && itemDetails.marketableItems.nodes.length > 0) {
+      itemDetails.marketableItems.nodes.forEach(async (recItem: any) => {
         const tags = recItem.item.tags as string[];
 
         const marketData = await MapMarketData(recItem.marketData);

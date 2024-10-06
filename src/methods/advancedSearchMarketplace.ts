@@ -51,15 +51,7 @@ export const AdvancedSearch = async (
   const graphqlQuery =
     searchType === 'sell' ? GraphQL_SellableItemsQuery : GraphQL_BuyableItemQuery;
 
-  const typesFilter: any[][] = [];
-
   var tagFilters = await BuildTagsFilterArray(tags);
-
-  Object.values(types).forEach(value => {
-    if (Array.isArray(value) && value.length > 0) {
-      typesFilter.push(value);
-    }
-  });
 
   const newSortBy = await ReturnSortBy(sortBy, searchType);
 
@@ -74,7 +66,7 @@ export const AdvancedSearch = async (
         filterBy: {
           text: query,
           tags: tagFilters, // Filters: Rarity, season, operator, weapon, event, Esports team, , other
-          types: typesFilter, // Filters: types
+          types: types.type,
         },
         sortBy: newSortBy,
       },

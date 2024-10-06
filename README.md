@@ -1,6 +1,6 @@
 <div align="center">
   <img src="./assests/readme/Banner.png" width="100%">
-  
+
   <br>
 
   <img src="https://img.shields.io/discord/834396720061218887?style=flat&labelColor=62C6F2&color=FAFAFA" alt="shield1">
@@ -11,10 +11,12 @@
 
 ## Table of Contents
 
-1. [Installation](#installation)
-2. [Getting Started](#getting-started)
-3. [Functions](#functions)
-4. [Support](#support)
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- Functions
+  - [Statistics](#statistics)
+  - [Marketplace](#marketplace-apis)
+- [Support](#support)
 
 ## Installation
 
@@ -63,18 +65,18 @@ console.log(user);
 }
 ```
 
-## Functions
+# Statistics
 
 ### Table of Contents
 
-1. [Login](#Login)
-2. [GetUserByUsername](#get-user-by-username)
-3. [GetUserByUserId](#get-user-by-userid)
-4. [GetUserProgression](#get-user-progression)
-5. [GetServerStatus](#get-server-status)
-6. [GetUserRank](#get-user-rank)
-7. [GetUserStats](#get-user-stats)
-8. [GetOperators](#get-operator)
+- [Login](#Login)
+- [GetUserByUsername](#get-user-by-username)
+- [GetUserByUserId](#get-user-by-userid)
+- [GetUserProgression](#get-user-progression)
+- [GetServerStatus](#get-server-status)
+- [GetUserRank](#get-user-rank)
+- [GetUserStats](#get-user-stats)
+- [GetOperators](#get-operator)
 
 #### Login
 
@@ -891,12 +893,148 @@ const searchResponse = await api.SearchMarketplace(searchQuery);
 const searchResponse = await api.SearchMarketplace("R4-c");
 ```
 
-Example response
+<details>
+<summary>Response</summary>
 
 ```
-TODO
+{
+  "items": [
+    {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-aee4bdf2-0b54-4c6d-af93-9fe4848e1f76",
+      "assetUrl": "https://ubiservices.cdn.ubi.com/0d2ae42d-4c27-4cb7-af6c-2099062302bb/DeployerAssetsJune2023/bb74359e_3a55_3d28_b3ad_8291964f65f3.png",
+      "itemId": "aee4bdf2-0b54-4c6d-af93-9fe4848e1f76",
+      "name": "BLACK ICE",
+      "tags": [
+        "R4-C",
+        "Texture",
+        "W_AR_RemingtonR4C",
+        "Y1S1",
+        "sku_china",
+        "sku_ww",
+        "type_weapon_skins",
+        "type_weaponskin",
+        "rarity_superrare",
+        "lc_classic-edition-v0"
+      ],
+      "type": "WeaponSkin",
+      "marktetData": {
+        "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-aee4bdf2-0b54-4c6d-af93-9fe4848e1f76",
+        "sellStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-aee4bdf2-0b54-4c6d-af93-9fe4848e1f76-9ef71262-515b-46e8-b9a8-b6b6ad456c67-sell",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 3150,
+          "highestPrice": 1000000,
+          "activeCount": 2731
+        },
+        "buyStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-aee4bdf2-0b54-4c6d-af93-9fe4848e1f76-9ef71262-515b-46e8-b9a8-b6b6ad456c67-buy",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 10,
+          "highestPrice": 3100,
+          "activeCount": 11646
+        },
+        "lastSoldAt": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-aee4bdf2-0b54-4c6d-af93-9fe4848e1f76-9ef71262-515b-46e8-b9a8-b6b6ad456c67-last",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "price": 3000,
+          "performedAt": "2024-10-06T10:27:59.634Z"
+        }
+      }
+    },
+    {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-615257b7-9aea-479f-8521-a0054af3a442",
+      "assetUrl": "https://ubiservices.cdn.ubi.com/0d2ae42d-4c27-4cb7-af6c-2099062302bb/DeployerAssetsJune2023/b4ba3547_77a7_adcc_7cf7_564039670b34.png",
+      "itemId": "615257b7-9aea-479f-8521-a0054af3a442",
+      "name": "PIÑA COLADA",
+      "tags": [
+        "R4-C",
+        "Texture",
+        "W_AR_RemingtonR4C",
+        "Y2S1",
+        "sku_china",
+        "sku_ww",
+        "type_weapon_skins",
+        "type_weaponskin",
+        "rarity_superrare"
+      ],
+      "type": "WeaponSkin",
+      "marktetData": {
+        "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-615257b7-9aea-479f-8521-a0054af3a442",
+        "sellStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-615257b7-9aea-479f-8521-a0054af3a442-9ef71262-515b-46e8-b9a8-b6b6ad456c67-sell",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 770,
+          "highestPrice": 1000000,
+          "activeCount": 1254
+        },
+        "buyStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-615257b7-9aea-479f-8521-a0054af3a442-9ef71262-515b-46e8-b9a8-b6b6ad456c67-buy",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 10,
+          "highestPrice": 666,
+          "activeCount": 1198
+        },
+        "lastSoldAt": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-615257b7-9aea-479f-8521-a0054af3a442-9ef71262-515b-46e8-b9a8-b6b6ad456c67-last",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "price": 750,
+          "performedAt": "2024-10-06T10:25:36.078Z"
+        }
+      }
+    },
+    {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-8d3ffabe-eb44-0e65-2caf-9be17b443207",
+      "assetUrl": "https://ubiservices.cdn.ubi.com/0d2ae42d-4c27-4cb7-af6c-2099062302bb/DeployerAssetsJune2023/22290723_43b4_53ab_f4af_d7bf1daad548.png",
+      "itemId": "8d3ffabe-eb44-0e65-2caf-9be17b443207",
+      "name": "ACID RAIN",
+      "tags": [
+        "Pattern",
+        "R4-C",
+        "Y7S1",
+        "sku_china",
+        "sku_ww",
+        "type_weapon_skins",
+        "type_weaponskin",
+        "rarity_rare",
+        "lc_classic-edition-v17",
+        "lc_classic-edition-v18",
+        "lc_classic-edition-v19",
+        "lc_classic-edition-v20",
+        "lc_platinum-edition-v0",
+        "lc_classic-edition-v22",
+        "lc_classic-edition-v21"
+      ],
+      "type": "WeaponSkin",
+      "marktetData": {
+        "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-8d3ffabe-eb44-0e65-2caf-9be17b443207",
+        "sellStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-8d3ffabe-eb44-0e65-2caf-9be17b443207-9ef71262-515b-46e8-b9a8-b6b6ad456c67-sell",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 10,
+          "highestPrice": 250000,
+          "activeCount": 775
+        },
+        "buyStats": {
+          "id": "",
+          "paymentItemId": "",
+          "lowestPrice": 0,
+          "highestPrice": 0,
+          "activeCount": 0
+        },
+        "lastSoldAt": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-8d3ffabe-eb44-0e65-2caf-9be17b443207-9ef71262-515b-46e8-b9a8-b6b6ad456c67-last",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "price": 10,
+          "performedAt": "2024-10-06T09:06:16.624Z"
+        }
+      }
+    }
+  ]
+}
 
 ```
+
+</details>
 
 ## Advanced Search
 
@@ -932,7 +1070,7 @@ const tags = {
 };
 
 const types = {
-  type: [],
+  type: ["WeaponSkin"],
 };
 
 const response2 = await api.advancedMarketplaceSearch(
@@ -944,6 +1082,146 @@ const response2 = await api.advancedMarketplaceSearch(
 );
 
 ```
+
+<details>
+<summary>Response</summary>
+
+```
+{
+  "items": [
+    {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-f4d787a6-a17d-40a5-9a05-22c924066e81",
+      "assetUrl": "https://ubiservices.cdn.ubi.com/0d2ae42d-4c27-4cb7-af6c-2099062302bb/DeployerAssetsJune2023/ad2e679b_f8d4_38fc_6f01_1402dbea4ac8.png",
+      "itemId": "f4d787a6-a17d-40a5-9a05-22c924066e81",
+      "name": "BLACK ICE",
+      "tags": [
+        "M590A1",
+        "Texture",
+        "W_SG_591A1",
+        "Y1S1",
+        "sku_china",
+        "sku_ww",
+        "type_weapon_skins",
+        "type_weaponskin",
+        "rarity_superrare",
+        "lc_classic-edition-v0",
+        "lc_yttrium-edition-v0"
+      ],
+      "type": "WeaponSkin",
+      "marktetData": {
+        "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-f4d787a6-a17d-40a5-9a05-22c924066e81",
+        "sellStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-f4d787a6-a17d-40a5-9a05-22c924066e81-9ef71262-515b-46e8-b9a8-b6b6ad456c67-sell",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 400,
+          "highestPrice": 1000000,
+          "activeCount": 2065
+        },
+        "buyStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-f4d787a6-a17d-40a5-9a05-22c924066e81-9ef71262-515b-46e8-b9a8-b6b6ad456c67-buy",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 10,
+          "highestPrice": 330,
+          "activeCount": 1928
+        },
+        "lastSoldAt": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-f4d787a6-a17d-40a5-9a05-22c924066e81-9ef71262-515b-46e8-b9a8-b6b6ad456c67-last",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "price": 400,
+          "performedAt": "2024-10-06T11:06:17.944Z"
+        }
+      }
+    },
+    {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-f3fde1b4-329c-4dc7-9e22-987cc6c77b04",
+      "assetUrl": "https://ubiservices.cdn.ubi.com/0d2ae42d-4c27-4cb7-af6c-2099062302bb/DeployerAssetsJune2023/08f7a0ba_be13_9f01_4ff9_8026b07e5ecd.png",
+      "itemId": "f3fde1b4-329c-4dc7-9e22-987cc6c77b04",
+      "name": "BLACK ICE",
+      "tags": [
+        "P226_MK_25",
+        "Texture",
+        "W_SA_P226",
+        "Y1S1",
+        "sku_china",
+        "sku_ww",
+        "type_weapon_skins",
+        "type_weaponskin",
+        "rarity_superrare",
+        "lc_classic-edition-v0"
+      ],
+      "type": "WeaponSkin",
+      "marktetData": {
+        "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-f3fde1b4-329c-4dc7-9e22-987cc6c77b04",
+        "sellStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-f3fde1b4-329c-4dc7-9e22-987cc6c77b04-9ef71262-515b-46e8-b9a8-b6b6ad456c67-sell",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 160,
+          "highestPrice": 803723,
+          "activeCount": 153
+        },
+        "buyStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-f3fde1b4-329c-4dc7-9e22-987cc6c77b04-9ef71262-515b-46e8-b9a8-b6b6ad456c67-buy",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 10,
+          "highestPrice": 110,
+          "activeCount": 131
+        },
+        "lastSoldAt": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-f3fde1b4-329c-4dc7-9e22-987cc6c77b04-9ef71262-515b-46e8-b9a8-b6b6ad456c67-last",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "price": 160,
+          "performedAt": "2024-10-06T11:05:49.128Z"
+        }
+      }
+    },
+    {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-b1cdb343-8ca2-4f7e-b489-af66bfe914cd",
+      "assetUrl": "https://ubiservices.cdn.ubi.com/0d2ae42d-4c27-4cb7-af6c-2099062302bb/DeployerAssetsJune2023/dd1d42bd_53ce_0c52_e256_4808fb7667ac.png",
+      "itemId": "b1cdb343-8ca2-4f7e-b489-af66bfe914cd",
+      "name": "BLACK ICE",
+      "tags": [
+        "SMG-11",
+        "Texture",
+        "W_MP_MAC11",
+        "Y1S1",
+        "sku_china",
+        "sku_ww",
+        "type_weapon_skins",
+        "type_weaponskin",
+        "rarity_superrare",
+        "lc_classic-edition-v0",
+        "lc_platinum-edition-v0"
+      ],
+      "type": "WeaponSkin",
+      "marktetData": {
+        "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-b1cdb343-8ca2-4f7e-b489-af66bfe914cd",
+        "sellStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-b1cdb343-8ca2-4f7e-b489-af66bfe914cd-9ef71262-515b-46e8-b9a8-b6b6ad456c67-sell",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 1000,
+          "highestPrice": 1000000,
+          "activeCount": 1903
+        },
+        "buyStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-b1cdb343-8ca2-4f7e-b489-af66bfe914cd-9ef71262-515b-46e8-b9a8-b6b6ad456c67-buy",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 10,
+          "highestPrice": 890,
+          "activeCount": 4186
+        },
+        "lastSoldAt": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-b1cdb343-8ca2-4f7e-b489-af66bfe914cd-9ef71262-515b-46e8-b9a8-b6b6ad456c67-last",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "price": 1000,
+          "performedAt": "2024-10-06T11:05:41.995Z"
+        }
+      }
+    }
+  ]
+}
+```
+
+</details>
 
 ## Recommended Items
 
