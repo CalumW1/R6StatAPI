@@ -64,7 +64,6 @@ const extractItem = async (data: any): Promise<Item> => {
 
     if (itemDetails) {
       const marketData = await MapMarketData(itemDetails.marketData);
-      console.log(itemDetails);
 
       defualtItem.id = itemDetails.item.id;
       defualtItem.assetUrl = itemDetails.item.assetUrl;

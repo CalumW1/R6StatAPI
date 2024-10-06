@@ -59,7 +59,6 @@ const MapSearchResults = async (data: any): Promise<Items> => {
       itemDetails.marketplaceRecommendations.nodes.length > 0
     ) {
       itemDetails.marketplaceRecommendations.nodes.forEach(async (marketableItem: any) => {
-        console.log(JSON.stringify(marketableItem));
         const tags = marketableItem.item.tags as string[];
 
         const marketPlaceData = await MapMarketData(marketableItem.marketData);

@@ -798,7 +798,7 @@ Gets seasonal operator statistics
 | season      | string | Yes      | format Y(No.)S(No.) Example Y6S3 |
 
 ```JS
-const operators = await api.getUserOperators(
+await api.getUserOperators(
   userId,
   platform,
   view,
@@ -809,7 +809,7 @@ const operators = await api.getUserOperators(
 );
 
 // sample
-const operators = await api.getUserOperators(
+await api.getUserOperators(
   user.userId,
   "uplay",
   "current",
@@ -887,10 +887,10 @@ Basic marketplace search query.
 | searchQuery | string | Yes      |
 
 ```JS
-const searchResponse = await api.SearchMarketplace(searchQuery);
+await api.SearchMarketplace(searchQuery);
 
 // Sample
-const searchResponse = await api.SearchMarketplace("R4-c");
+await api.SearchMarketplace("R4-c");
 ```
 
 <details>
@@ -1049,7 +1049,7 @@ Advanced marketplace search with filters and sorting.
 | sortBy          | string | Yes      | [See sort by](#sort-by) | Default for 'buy' is `Sale available: high to low`. Default for 'sell' is `Purchase available: high to low` |
 
 ```JS
-const response2 = await api.advancedMarketplaceSearch(
+await api.advancedMarketplaceSearch(
   searchTerm,
   marketplaceType,
   types,
@@ -1073,7 +1073,7 @@ const types = {
   type: ["WeaponSkin"],
 };
 
-const response2 = await api.advancedMarketplaceSearch(
+await api.advancedMarketplaceSearch(
   "Black Ice",
   "sell",
   types,
@@ -1225,7 +1225,235 @@ const response2 = await api.advancedMarketplaceSearch(
 
 ## Recommended Items
 
+Returns recommended items for a profile
+
+| Field     | Type | Required | options                                                                                                                 |
+| --------- | ---- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| profileId | id   | yes      | profileId is available from either [getUserByUsername](#get-user-by-username) or [getUserByUserId](#get-user-by-userid) |
+
+```JS
+  await api.getRecommendedItems(profileId);
+
+  // sample
+  await api.getRecommendedItems(user.profileId);
+```
+
+<details>
+<summary>Response</summary>
+
+```
+{
+  "items": [
+    {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-e3c5f6cf-b6c9-4df0-b14a-a0f8fd72fad0",
+      "assetUrl": "https://ubiservices.cdn.ubi.com/0d2ae42d-4c27-4cb7-af6c-2099062302bb/DeployerAssetsJune2023/f843c6b1_ba62_dc85_9392_a708bd22815d.png",
+      "itemId": "e3c5f6cf-b6c9-4df0-b14a-a0f8fd72fad0",
+      "name": "BLACK ICE",
+      "tags": [
+        "F2",
+        "Texture",
+        "W_AR_FAMASG2",
+        "Y1S1",
+        "sku_china",
+        "sku_ww",
+        "type_weapon_skins",
+        "type_weaponskin",
+        "rarity_superrare",
+        "lc_classic-edition-v0",
+        "lc_yttrium-edition-v0"
+      ],
+      "type": "WeaponSkin",
+      "marktetData": {
+        "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-e3c5f6cf-b6c9-4df0-b14a-a0f8fd72fad0",
+        "sellStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-e3c5f6cf-b6c9-4df0-b14a-a0f8fd72fad0-9ef71262-515b-46e8-b9a8-b6b6ad456c67-sell",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 210,
+          "highestPrice": 1000000,
+          "activeCount": 2703
+        },
+        "buyStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-e3c5f6cf-b6c9-4df0-b14a-a0f8fd72fad0-9ef71262-515b-46e8-b9a8-b6b6ad456c67-buy",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 10,
+          "highestPrice": 180,
+          "activeCount": 1174
+        },
+        "lastSoldAt": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-e3c5f6cf-b6c9-4df0-b14a-a0f8fd72fad0-9ef71262-515b-46e8-b9a8-b6b6ad456c67-last",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "price": 180,
+          "performedAt": "2024-10-06T11:33:09.881Z"
+        }
+      }
+    },
+    {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-452d6796-8176-4af1-858b-7d87dabad8a5",
+      "assetUrl": "https://ubiservices.cdn.ubi.com/0d2ae42d-4c27-4cb7-af6c-2099062302bb/DeployerAssetsJune2023/02143738_7e78_0d62_f5e3_41458fa33730.png",
+      "itemId": "452d6796-8176-4af1-858b-7d87dabad8a5",
+      "name": "BLACK ICE",
+      "tags": [
+        "C8-SFW",
+        "Texture",
+        "W_AR_C8SFW",
+        "Y1S1",
+        "sku_china",
+        "sku_ww",
+        "type_weapon_skins",
+        "type_weaponskin",
+        "rarity_superrare",
+        "lc_classic-edition-v0",
+        "lc_classic-edition-v17",
+        "lc_classic-edition-v18",
+        "lc_classic-edition-v19",
+        "lc_classic-edition-v20",
+        "lc_platinum-edition-v0",
+        "lc_classic-edition-v22",
+        "lc_classic-edition-v21"
+      ],
+      "type": "WeaponSkin",
+      "marktetData": {
+        "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-452d6796-8176-4af1-858b-7d87dabad8a5",
+        "sellStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-452d6796-8176-4af1-858b-7d87dabad8a5-9ef71262-515b-46e8-b9a8-b6b6ad456c67-sell",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 500,
+          "highestPrice": 1000000,
+          "activeCount": 3565
+        },
+        "buyStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-452d6796-8176-4af1-858b-7d87dabad8a5-9ef71262-515b-46e8-b9a8-b6b6ad456c67-buy",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 10,
+          "highestPrice": 461,
+          "activeCount": 3560
+        },
+        "lastSoldAt": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-452d6796-8176-4af1-858b-7d87dabad8a5-9ef71262-515b-46e8-b9a8-b6b6ad456c67-last",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "price": 510,
+          "performedAt": "2024-10-06T11:32:37.031Z"
+        }
+      }
+    },
+    {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-8b9b75a2-4ed6-49aa-a403-a1f4122c75c6",
+      "assetUrl": "https://ubiservices.cdn.ubi.com/0d2ae42d-4c27-4cb7-af6c-2099062302bb/DeployerAssetsJune2023/42fcb009_21d9_4458_02c6_b8e54e9fd453.png",
+      "itemId": "8b9b75a2-4ed6-49aa-a403-a1f4122c75c6",
+      "name": "BLACK ICE",
+      "tags": [
+        "416-C_CARBINE",
+        "Texture",
+        "W_AR_HK416",
+        "Y1S1",
+        "sku_china",
+        "sku_ww",
+        "type_weapon_skins",
+        "type_weaponskin",
+        "rarity_superrare",
+        "lc_classic-edition-v0",
+        "lc_classic-edition-v17",
+        "lc_classic-edition-v18",
+        "lc_classic-edition-v19",
+        "lc_classic-edition-v20",
+        "lc_platinum-edition-v0",
+        "lc_classic-edition-v22",
+        "lc_classic-edition-v21"
+      ],
+      "type": "WeaponSkin",
+      "marktetData": {
+        "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-8b9b75a2-4ed6-49aa-a403-a1f4122c75c6",
+        "sellStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-8b9b75a2-4ed6-49aa-a403-a1f4122c75c6-9ef71262-515b-46e8-b9a8-b6b6ad456c67-sell",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 299,
+          "highestPrice": 1000000,
+          "activeCount": 4606
+        },
+        "buyStats": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-8b9b75a2-4ed6-49aa-a403-a1f4122c75c6-9ef71262-515b-46e8-b9a8-b6b6ad456c67-buy",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "lowestPrice": 10,
+          "highestPrice": 267,
+          "activeCount": 2642
+        },
+        "lastSoldAt": {
+          "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-8b9b75a2-4ed6-49aa-a403-a1f4122c75c6-9ef71262-515b-46e8-b9a8-b6b6ad456c67-last",
+          "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+          "price": 289,
+          "performedAt": "2024-10-06T11:32:29.498Z"
+        }
+      }
+    }
+  ]
+}
+```
+
+</details>
+
 ## Get Item Details
+
+Returns the details for an item by id.
+
+| Field  | Type | Required | options |
+| ------ | ---- | -------- | ------- |
+| itemId | id   | yes      |         |
+
+```JS
+await api.getItemDetails("aee4bdf2-0b54-4c6d-af93-9fe4848e1f76");
+
+await api.getItemDetails("aee4bdf2-0b54-4c6d-af93-9fe4848e1f76");
+```
+
+<details>
+<summary>Response</summary>
+
+```
+{
+  "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-aee4bdf2-0b54-4c6d-af93-9fe4848e1f76",
+  "assetUrl": "https://ubiservices.cdn.ubi.com/0d2ae42d-4c27-4cb7-af6c-2099062302bb/DeployerAssetsJune2023/bb74359e_3a55_3d28_b3ad_8291964f65f3.png",
+  "itemId": "aee4bdf2-0b54-4c6d-af93-9fe4848e1f76",
+  "name": "BLACK ICE",
+  "tags": [
+    "R4-C",
+    "Texture",
+    "W_AR_RemingtonR4C",
+    "Y1S1",
+    "sku_china",
+    "sku_ww",
+    "type_weapon_skins",
+    "type_weaponskin",
+    "rarity_superrare",
+    "lc_classic-edition-v0"
+  ],
+  "type": "WeaponSkin",
+  "marktetData": {
+    "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-aee4bdf2-0b54-4c6d-af93-9fe4848e1f76",
+    "sellStats": {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-aee4bdf2-0b54-4c6d-af93-9fe4848e1f76-9ef71262-515b-46e8-b9a8-b6b6ad456c67-sell",
+      "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+      "lowestPrice": 3000,
+      "highestPrice": 1000000,
+      "activeCount": 2739
+    },
+    "buyStats": {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-aee4bdf2-0b54-4c6d-af93-9fe4848e1f76-9ef71262-515b-46e8-b9a8-b6b6ad456c67-buy",
+      "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+      "lowestPrice": 10,
+      "highestPrice": 2800,
+      "activeCount": 11640
+    },
+    "lastSoldAt": {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-aee4bdf2-0b54-4c6d-af93-9fe4848e1f76-9ef71262-515b-46e8-b9a8-b6b6ad456c67-last",
+      "paymentItemId": "9ef71262-515b-46e8-b9a8-b6b6ad456c67",
+      "price": 3000,
+      "performedAt": "2024-10-06T11:40:28.908Z"
+    }
+  }
+}
+```
+
+</details>
 
 ## Get Transaction History
 
@@ -1245,12 +1473,15 @@ add all the different types and objects for an advanced search.
 
 <details>
 <summary>Options</summary>
+
 ```
-  Legendary
-  SuperRare
-  Rare
-  Uncommon
+Legendary
+SuperRare
+Rare
+Uncommon
+
 ```
+
 </details>
 
 ### Seasons
@@ -1263,80 +1494,80 @@ Year 1 season 1 to current season. Format Y(Number)S(Number), Example Y7S3
 <summary>Options</summary>
 
 ```
-  'Ace'
-  'Alibi'
-  'Amaru'
-  'Aruni'
-  'Ash'
-  'Azami'
-  'Bandit'
-  'Blackbeard'
-  'Blitz'
-  'Brava'
-  'Buck'
-  'Capitao'
-  'Castle'
-  'Caveria'
-  'Clash'
-  'Deimos'
-  'Doc'
-  'Dokkaebi'
-  'Echo'
-  'Ela'
-  'Fenrir'
-  'Finka'
-  'Flores'
-  'Frost'
-  'Fuze'
-  'Glaz'
-  'Goyo'
-  'Gridlock'
-  'Grim'
-  'Hibana'
-  'Iana'
-  'IQ'
-  'Jackal'
-  'Jager'
-  'Kaid'
-  'Kali'
-  'Kapkan'
-  'Lesion'
-  'Lion'
-  'Maestro'
-  'Maverick'
-  'Melusi'
-  'Mira'
-  'Montagne'
-  'Mozzie
-  'Mute'
-  'Nokk'
-  'Nomad'
-  'Oryx'
-  'Osa'
-  'Pulse'
-  'Ram'
-  'Rook'
-  'Sens',
-  'Sentry'
-  'Skopos'
-  'Sledge'
-  'Smoke'
-  'Solis'
-  'Striker'
-  'Tachanka'
-  'Thatcher'
-  'Thermite'
-  'Thorn'
-  'Thunderbird'
-  'Tubarao'
-  'Twitch'
-  'Valkrie'
-  'Vigil'
-  'Wamai'
-  'Warden'
-  'Ying'
-  'Zero'
-  'Zofia'
+'Ace'
+'Alibi'
+'Amaru'
+'Aruni'
+'Ash'
+'Azami'
+'Bandit'
+'Blackbeard'
+'Blitz'
+'Brava'
+'Buck'
+'Capitao'
+'Castle'
+'Caveria'
+'Clash'
+'Deimos'
+'Doc'
+'Dokkaebi'
+'Echo'
+'Ela'
+'Fenrir'
+'Finka'
+'Flores'
+'Frost'
+'Fuze'
+'Glaz'
+'Goyo'
+'Gridlock'
+'Grim'
+'Hibana'
+'Iana'
+'IQ'
+'Jackal'
+'Jager'
+'Kaid'
+'Kali'
+'Kapkan'
+'Lesion'
+'Lion'
+'Maestro'
+'Maverick'
+'Melusi'
+'Mira'
+'Montagne'
+'Mozzie
+'Mute'
+'Nokk'
+'Nomad'
+'Oryx'
+'Osa'
+'Pulse'
+'Ram'
+'Rook'
+'Sens',
+'Sentry'
+'Skopos'
+'Sledge'
+'Smoke'
+'Solis'
+'Striker'
+'Tachanka'
+'Thatcher'
+'Thermite'
+'Thorn'
+'Thunderbird'
+'Tubarao'
+'Twitch'
+'Valkrie'
+'Vigil'
+'Wamai'
+'Warden'
+'Ying'
+'Zero'
+'Zofia'
 ```
 
 </details>
@@ -1347,111 +1578,111 @@ Year 1 season 1 to current season. Format Y(Number)S(Number), Example Y7S3
 <summary>Options</summary>
 
 ```
-  '.44 Mag Semi-Auto'
-  '5.7 USG'
-  '6P41'
-  '9mm C1'
-  '9x19VSN'
-  '416-C CARBINE'
-  'FourOneSeven'
-  '552 COMMANDO'
-  '556XL'
-  '1911 TACOPS'
-  'ACS12'
-  'AK-12'
-  'AK-74M'
-  'ALDA 5.56'
-  'AR-15.50'
-  'AR33'
-  'ARX200'
-  'AUG A2'
-  'AUG A3'
-  'Bailiff 410'
-  'BEARING 9'
-  'BOSG.12.2'
-  'C7E'
-  'C8-SFW'
-  'C75 Auto'
-  'CAMRS
-  'COMMANDO 9'
-  'CSRX 300'
-  'D-50'
-  'DP27'
-  'F2'
-  'F90'
-  'FMG-9'
-  'FO-12'
-  'G8A1'
-  'G36C'
-  'GONNE-6'
-  'GSH-18'
-  'ITA12L'
-  'ITA12S'
-  'K1A'
-  'KERATOS .357'
-  'L85A2'
-  'LFP586'
-  'LMG-E'
-  'M4'
-  'M12'
-  'M45 MEUSOC'
-  'M249'
-  'M249 SAW'
-  'M590A1'
-  'M762'
-  'M870'
-  'M1014'
-  'Mk 14 EBR'
-  'MK1 9mm'
-  'MK17 CQB'
-  'MP5'
-  'MP5K'
-  'MP5SD'
-  'MP7'
-  'MPX'
-  'Mx4 Strom'
-  'OTs-03'
-  'P-10C'
-  'P9'
-  'P10 RONI'
-  'P12'
-  'P90'
-  'P226 MK 25'
-  'P229'
-  'PARA-308'
-  'PDW9'
-  'PMM'
-  'POF-9'
-  'PRB92'
-  'Q-929'
-  'R4-C'
-  'RG15'
-  'SASG-12'
-  'SC3000K'
-  'SCORPION EVO 3 A1'
-  'SDP 9mm'
-  'SG-CQB'
-  'SIX12'
-  'SIX12 SD'
-  'SMG-11'
-  'SMG-12'
-  'SPAS-12'
-  'SPAS-15'
-  'SPEAR .308'
-  'SPSMG9'
-  'SR-25'
-  'SUPER 90'
-  'SUPER SHORTY'
-  'SUPERNOVA'
-  'T-5 SMG'
-  'T-95 LSW'
-  'TCSG12'
-  'TYPE-89'
-  'UMP45'
-  'USP40'
-  'UZK50GI'
-  'V308'
-  'VECTOR .45 ACP'
+'.44 Mag Semi-Auto'
+'5.7 USG'
+'6P41'
+'9mm C1'
+'9x19VSN'
+'416-C CARBINE'
+'FourOneSeven'
+'552 COMMANDO'
+'556XL'
+'1911 TACOPS'
+'ACS12'
+'AK-12'
+'AK-74M'
+'ALDA 5.56'
+'AR-15.50'
+'AR33'
+'ARX200'
+'AUG A2'
+'AUG A3'
+'Bailiff 410'
+'BEARING 9'
+'BOSG.12.2'
+'C7E'
+'C8-SFW'
+'C75 Auto'
+'CAMRS
+'COMMANDO 9'
+'CSRX 300'
+'D-50'
+'DP27'
+'F2'
+'F90'
+'FMG-9'
+'FO-12'
+'G8A1'
+'G36C'
+'GONNE-6'
+'GSH-18'
+'ITA12L'
+'ITA12S'
+'K1A'
+'KERATOS .357'
+'L85A2'
+'LFP586'
+'LMG-E'
+'M4'
+'M12'
+'M45 MEUSOC'
+'M249'
+'M249 SAW'
+'M590A1'
+'M762'
+'M870'
+'M1014'
+'Mk 14 EBR'
+'MK1 9mm'
+'MK17 CQB'
+'MP5'
+'MP5K'
+'MP5SD'
+'MP7'
+'MPX'
+'Mx4 Strom'
+'OTs-03'
+'P-10C'
+'P9'
+'P10 RONI'
+'P12'
+'P90'
+'P226 MK 25'
+'P229'
+'PARA-308'
+'PDW9'
+'PMM'
+'POF-9'
+'PRB92'
+'Q-929'
+'R4-C'
+'RG15'
+'SASG-12'
+'SC3000K'
+'SCORPION EVO 3 A1'
+'SDP 9mm'
+'SG-CQB'
+'SIX12'
+'SIX12 SD'
+'SMG-11'
+'SMG-12'
+'SPAS-12'
+'SPAS-15'
+'SPEAR .308'
+'SPSMG9'
+'SR-25'
+'SUPER 90'
+'SUPER SHORTY'
+'SUPERNOVA'
+'T-5 SMG'
+'T-95 LSW'
+'TCSG12'
+'TYPE-89'
+'UMP45'
+'USP40'
+'UZK50GI'
+'V308'
+'VECTOR .45 ACP'
 ```
 
 </details>
@@ -1462,17 +1693,17 @@ Year 1 season 1 to current season. Format Y(Number)S(Number), Example Y7S3
 <summary>Options</summary>
 
 ```
-  'Apocalypse'
-  'Containment'
-  'DoktorsCurse'
-  'FreezeForAll'
-  'MuteFleshAndMetal'
-  'Rengoku'
-  'Showdown'
-  'SnowBrawl'
-  'SugarFright'
-  'TheGrandLarceny'
-  'TheTeddyConflict'
+'Apocalypse'
+'Containment'
+'DoktorsCurse'
+'FreezeForAll'
+'MuteFleshAndMetal'
+'Rengoku'
+'Showdown'
+'SnowBrawl'
+'SugarFright'
+'TheGrandLarceny'
+'TheTeddyConflict'
 ```
 
 </details>
@@ -1483,29 +1714,29 @@ Year 1 season 1 to current season. Format Y(Number)S(Number), Example Y7S3
 <summary>Options</summary>
 
 ```
-  '00Nation'
-  'Astralis'
-  'Chaos EC'
-  'Cloud9'
-  'Fav Gaming'
-  'Giants Gaming'
-  'Guts Gaming'
-  'Heroic'
-  'Intz'
-  'Invictus Gaming'
-  'Mirage'
-  'MNM Gaming'
-  'Natus Vincere'
-  'Nora Rengo'
-  'Order'
-  'Parabellum Esports'
-  'QConfirm'
-  'Santos'
-  'Team Empire'
-  'Team Vitality'
-  'The Chiefs'
-  'Xavier Esports'
-  'XSet'
+'00Nation'
+'Astralis'
+'Chaos EC'
+'Cloud9'
+'Fav Gaming'
+'Giants Gaming'
+'Guts Gaming'
+'Heroic'
+'Intz'
+'Invictus Gaming'
+'Mirage'
+'MNM Gaming'
+'Natus Vincere'
+'Nora Rengo'
+'Order'
+'Parabellum Esports'
+'QConfirm'
+'Santos'
+'Team Empire'
+'Team Vitality'
+'The Chiefs'
+'Xavier Esports'
+'XSet'
 ```
 
 </details>
@@ -1515,9 +1746,9 @@ Year 1 season 1 to current season. Format Y(Number)S(Number), Example Y7S3
 <details>
 <summary>Options</summary>
 ```
-  'Battlepass'
-  'Seasonal'
-  'Universal'
+'Battlepass'
+'Seasonal'
+'Universal'
 ```
 </details>
 
@@ -1527,15 +1758,15 @@ Year 1 season 1 to current season. Format Y(Number)S(Number), Example Y7S3
 <summary>Options</summary>
 
 ```
- 'WeaponSkin'
- 'CharacterHeadgear'
- 'CharacterUniform'
- 'WeaponAttachmentSkinSet'
- 'Charm'
- 'OperatorCardPortrait'
- 'OperatorCardBackground'
- 'DroneSkin'
- 'GadgetSkin'
+'WeaponSkin'
+'CharacterHeadgear'
+'CharacterUniform'
+'WeaponAttachmentSkinSet'
+'Charm'
+'OperatorCardPortrait'
+'OperatorCardBackground'
+'DroneSkin'
+'GadgetSkin'
 ```
 
 </details>
