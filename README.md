@@ -13,7 +13,7 @@
 
 - [Installation](#installation)
 - [Getting Started](#getting-started)
-- Functions
+- Methods
   - [Statistics](#statistics)
   - [Marketplace](#marketplace-apis)
 - [Support](#support)
@@ -878,6 +878,15 @@ await api.getUserOperators(
 
 # Marketplace APIs
 
+### Table of Contents
+
+- [Basic Search](#basic-search)
+- [Advanced Search](#advanced-search)
+- [Recommended Items](#recommended-items)
+- [Get Item Details](#get-item-details)
+- [Get Transaction History](#get-transaction-history)
+- [Get Pending Transactions](#get-pending-transactions)
+
 ## Basic Search
 
 Basic marketplace search query.
@@ -1402,6 +1411,7 @@ Returns the details for an item by id.
 ```JS
 await api.getItemDetails("aee4bdf2-0b54-4c6d-af93-9fe4848e1f76");
 
+// sample
 await api.getItemDetails("aee4bdf2-0b54-4c6d-af93-9fe4848e1f76");
 ```
 
@@ -1463,9 +1473,7 @@ Comming soon
 
 Comming soon
 
-## Marketplace options
-
-add all the different types and objects for an advanced search.
+# Marketplace options
 
 ## Tags
 
