@@ -7,10 +7,11 @@ import { GetUserRank, UserRank } from './methods/getUserRank.js';
 import { GetOperator, GameModes } from './methods/getOperator';
 // import { GetUserStats, UserStats } from './methods/GetUserStats';
 import { Search } from './methods/searchMarketplace';
-import { Item, Items, MarkplaceSearchType, Tags, Types } from './interfaces/marketplace';
+import { Item, Items, MarkplaceSearchType, Tags, Transactions, Types } from './interfaces/marketplace';
 import { RecommendedItems } from './methods/recommendedItems';
 import { getItemDetails } from './methods/getItemDetails';
 import { AdvancedSearch } from './methods/advancedSearchMarketplace';
+import { GetTransactionsPending } from './methods/getPendingTransactions';
 
 export class R6StatAPI {
   public async login(email: string, password: string): Promise<string> {
@@ -82,5 +83,9 @@ export class R6StatAPI {
     sortBy: string
   ) {
     return await AdvancedSearch(searchTerm, marketplaceType, types, tags, sortBy);
+  }
+
+  public async GetPendingtransactions(profileId: string): Promise<Transactions> {
+    return await GetTransactionsPending(profileId)
   }
 }

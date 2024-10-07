@@ -56,6 +56,29 @@ export interface Tags {
   other: OtherTypes[];
 }
 
+// Transactions
+export interface Transactions{
+  transactions: Transaction[];
+}
+
+export interface Transaction{
+  id: string,
+  tradeId: string,
+  state: string,
+  category: string,
+  createdAt: string,
+  expiresAt: string,
+  lastModifiedAt: string,
+  tradeItems: Item,
+  paymentOptions: PaymentOptions,
+}
+
+export interface PaymentOptions {
+  quantity: number,
+  price: number,
+  transactionFee: number
+}
+
 export type MarkplaceSearchType = 'buy' | 'sell';
 
 export type SortByOptions =
