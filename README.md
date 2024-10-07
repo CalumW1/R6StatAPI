@@ -1471,7 +1471,97 @@ Comming soon
 
 ## Get Pending Transactions
 
-Comming soon
+Returns a list of pending transactions for a profileId.
+
+| Field     | Type | Required | options |
+| --------- | ---- | -------- | ------- |
+| profileId | id   | yes      |         |
+
+```JS
+await api.GetPendingtransactions(profileId);
+
+// sample
+await api.GetPendingtransactions("91193155-2b57-48f1-b69b-556f5e4ccfea");
+```
+
+<details>
+<summary>Response</summary>
+
+```
+{
+  "transactions": [
+    {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-afc2afec-b9ed-4988-bffa-58e78eedfa9d-f1b694a9-7984-4f7c-bbb4-f5848931775b",
+      "tradeId": "f1b694a9-7984-4f7c-bbb4-f5848931775b",
+      "state": "Created",
+      "category": "Sell",
+      "createdAt": "2024-10-07T00:53:16.705Z",
+      "expiresAt": "2024-11-06T00:53:16.705Z",
+      "lastModifiedAt": "2024-10-07T00:53:16.831Z",
+      "tradeItems": {
+        "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-268cc330-1a65-4a0a-a277-7a9bb7c79cac",
+        "itemId": "268cc330-1a65-4a0a-a277-7a9bb7c79cac",
+        "assetUrl": "https://ubiservices.cdn.ubi.com/0d2ae42d-4c27-4cb7-af6c-2099062302bb/DeployerAssetsJune2023/65587a79_e7d6_d62a_279c_ac3f46c4333f.png",
+        "name": "WIND BASTION",
+        "tags": [
+          "Character.Legacy.MUTE",
+          "Y3S4",
+          "sku_china",
+          "sku_ww",
+          "type_characterheadgear",
+          "type_headgears",
+          "rarity_uncommon"
+        ],
+        "type": "CharacterHeadgear"
+      },
+      "paymentOptions": {
+        "quantity": 418,
+        "price": 10000,
+        "transactionFee": 1000
+      }
+    },
+    {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-afc2afec-b9ed-4988-bffa-58e78eedfa9d-367b57de-a74a-49b1-af19-79dc3074c0cc",
+      "tradeId": "367b57de-a74a-49b1-af19-79dc3074c0cc",
+      "state": "Created",
+      "category": "Sell",
+      "createdAt": "2024-10-06T22:20:06.459Z",
+      "expiresAt": "2024-11-05T22:20:06.459Z",
+      "lastModifiedAt": "2024-10-06T22:20:06.568Z",
+      "tradeItems": {
+        "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-ee4ff71e-b8d1-4c68-a5a5-ec0608f8eab9",
+        "itemId": "ee4ff71e-b8d1-4c68-a5a5-ec0608f8eab9",
+        "assetUrl": "https://ubiservices.cdn.ubi.com/0d2ae42d-4c27-4cb7-af6c-2099062302bb/DeployerAssetsJune2023/1302cd61_b369_5164_31ba_55cd18a16775.png",
+        "name": "ACID SCOURGE",
+        "tags": [
+          "T-5_SMG",
+          "Texture",
+          "W_SMG_JS9",
+          "Y4S3",
+          "doktorcurse",
+          "sku_china",
+          "sku_ww",
+          "type_weapon_skins",
+          "type_weaponskin",
+          "rarity_rare",
+          "lc_barium-edition-v0",
+          "lc_barium-edition-v1",
+          "lc_barium-edition-v2",
+          "lc_barium-edition-v3"
+        ],
+        "type": "WeaponSkin"
+      },
+      "paymentOptions": {
+        "quantity": 418,
+        "price": 200000,
+        "transactionFee": 20000
+      }
+    }
+  ]
+}
+```
+
+</details>
 
 # Marketplace options
 

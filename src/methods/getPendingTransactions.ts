@@ -108,7 +108,7 @@ const BuildPaymentOptions = async (options: any): Promise<PaymentOptions> => {
 
   if (!options || options.length === 0) return defualtPaymentOptions;
 
-  const { quantity } = options[0].item;
+  const { quantity } = options[0].item.viewer.meta;
   const { price, transactionFee } = options[0];
 
   return {
