@@ -1467,7 +1467,63 @@ await api.getItemDetails("aee4bdf2-0b54-4c6d-af93-9fe4848e1f76");
 
 ## Get Transaction History
 
-Comming soon
+Returns a list of of all completed transactions.
+
+| Field     | Type | Required | options |
+| --------- | ---- | -------- | ------- |
+| profileId | id   | yes      |         |
+
+```JS
+await api.GetTransactionHistory(profileId);
+
+await api.GetTransactionHistory("91193155-2b57-48f1-b69b-556f5e4ccfea");
+```
+
+<details>
+<summary>Response</summary>
+
+```
+{
+  "transactions": [
+    {
+      "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-afc2afec-b9ed-4988-bffa-58e78eedfa9d-41fa7384-309a-4992-be82-36decd65e3ba",
+      "tradeId": "41fa7384-309a-4992-be82-36decd65e3ba",
+      "state": "Succeeded",
+      "category": "Sell",
+      "createdAt": "2024-10-07T21:07:01.238Z",
+      "expiresAt": null,
+      "lastModifiedAt": "2024-10-07T21:07:01.653Z",
+      "tradeItems": {
+        "id": "0d2ae42d-4c27-4cb7-af6c-2099062302bb-02e8b1e8-813a-44d9-8cc3-8d5d484e0b9f",
+        "itemId": "02e8b1e8-813a-44d9-8cc3-8d5d484e0b9f",
+        "assetUrl": "https://ubiservices.cdn.ubi.com/0d2ae42d-4c27-4cb7-af6c-2099062302bb/MtxAssetsDeployer/72b07709_8297_34ea_7f19_85dbb975b108.png",
+        "name": "DOUBLE SUN",
+        "tags": [
+          "Character.Legacy.THATCHER",
+          "Y5S2",
+          "sku_china",
+          "sku_ww",
+          "type_characterheadgear",
+          "type_headgears",
+          "rarity_superrare"
+        ],
+        "type": "CharacterHeadgear"
+      },
+      "paymentOptions": {
+        "quantity": 499,
+        "price": 90,
+        "transactionFee": 9
+      },
+      "payment": {
+        "price": 90,
+        "transactionFee": 9
+      }
+    }
+  ]
+}
+```
+
+</details>
 
 ## Get Pending Transactions
 
