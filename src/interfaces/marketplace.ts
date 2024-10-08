@@ -71,10 +71,16 @@ export interface Transaction {
   lastModifiedAt: string;
   tradeItems: Item;
   paymentOptions: PaymentOptions;
+  payment?: Payment;
 }
 
 export interface PaymentOptions {
   quantity: number;
+  price: number;
+  transactionFee: number;
+}
+
+export interface Payment {
   price: number;
   transactionFee: number;
 }
