@@ -894,12 +894,13 @@ Basic marketplace search query.
 | Field       | Type   | Required |
 | ----------- | ------ | -------- |
 | searchQuery | string | Yes      |
+| limit       | number | yes      |
 
 ```JS
-await api.SearchMarketplace(searchQuery);
+await api.SearchMarketplace(searchQuery, limit);
 
 // Sample
-await api.SearchMarketplace("R4-c");
+await api.SearchMarketplace("R4-c", 20);
 ```
 
 <details>
@@ -1056,6 +1057,7 @@ Advanced marketplace search with filters and sorting.
 | types           | Object | Yes      | [See types](#types)     | to pass in no options use `{}`                                                                              |
 | tags            | Object | Yes      | [See tags](#tags)       | to pass in no options use `{}`                                                                              |
 | sortBy          | string | Yes      | [See sort by](#sort-by) | Default for 'buy' is `Sale available: high to low`. Default for 'sell' is `Purchase available: high to low` |
+| limit           | number | yes      |                         |                                                                                                             |
 
 ```JS
 await api.advancedMarketplaceSearch(
@@ -1063,7 +1065,8 @@ await api.advancedMarketplaceSearch(
   marketplaceType,
   types,
   tags,
-  sortBy
+  sortBy,
+  limit
 );
 
 
@@ -1087,7 +1090,8 @@ await api.advancedMarketplaceSearch(
   "sell",
   types,
   tags,
-  "Item names: A-Z"
+  "Item names: A-Z",
+  20
 );
 
 ```
@@ -1236,15 +1240,16 @@ await api.advancedMarketplaceSearch(
 
 Returns recommended items for a profile
 
-| Field     | Type | Required | options                                                                                                                 |
-| --------- | ---- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
-| profileId | id   | yes      | profileId is available from either [getUserByUsername](#get-user-by-username) or [getUserByUserId](#get-user-by-userid) |
+| Field     | Type   | Required | options                                                                                                                 |
+| --------- | ------ | -------- | ----------------------------------------------------------------------------------------------------------------------- | --- |
+| profileId | id     | yes      | profileId is available from either [getUserByUsername](#get-user-by-username) or [getUserByUserId](#get-user-by-userid) |
+| limit     | number | yes      |                                                                                                                         |     |
 
 ```JS
-  await api.getRecommendedItems(profileId);
+  await api.getRecommendedItems(profileId, limit);
 
   // sample
-  await api.getRecommendedItems(user.profileId);
+  await api.getRecommendedItems(user.profileId, 20);
 ```
 
 <details>
@@ -1469,14 +1474,15 @@ await api.getItemDetails("aee4bdf2-0b54-4c6d-af93-9fe4848e1f76");
 
 Returns a list of of all completed transactions.
 
-| Field     | Type | Required | options |
-| --------- | ---- | -------- | ------- |
-| profileId | id   | yes      |         |
+| Field     | Type   | Required | options |
+| --------- | ------ | -------- | ------- |
+| profileId | id     | yes      |         |
+| limit     | number | yes      |         |
 
 ```JS
-await api.GetTransactionHistory(profileId);
+await api.GetTransactionHistory(profileId, limit);
 
-await api.GetTransactionHistory("91193155-2b57-48f1-b69b-556f5e4ccfea");
+await api.GetTransactionHistory("91193155-2b57-48f1-b69b-556f5e4ccfea", 20);
 ```
 
 <details>
@@ -1529,15 +1535,16 @@ await api.GetTransactionHistory("91193155-2b57-48f1-b69b-556f5e4ccfea");
 
 Returns a list of pending transactions for a profileId.
 
-| Field     | Type | Required | options |
-| --------- | ---- | -------- | ------- |
-| profileId | id   | yes      |         |
+| Field     | Type   | Required | options |
+| --------- | ------ | -------- | ------- |
+| profileId | id     | yes      |         |
+| limit     | number | yes      |         |
 
 ```JS
-await api.GetPendingtransactions(profileId);
+await api.GetPendingtransactions(profileId, limit);
 
 // sample
-await api.GetPendingtransactions("91193155-2b57-48f1-b69b-556f5e4ccfea");
+await api.GetPendingtransactions("91193155-2b57-48f1-b69b-556f5e4ccfea", 20);
 ```
 
 <details>

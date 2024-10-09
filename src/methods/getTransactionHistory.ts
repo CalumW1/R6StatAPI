@@ -17,7 +17,7 @@ import {
 import { ApiClient } from './apiClient';
 import { CheckToken } from './auth';
 
-export const GetTransactionHistroy = async (profileId: string) => {
+export const GetTransactionHistroy = async (profileId: string, limit: number) => {
   const token = await CheckToken();
 
   const headers = {
@@ -36,7 +36,7 @@ export const GetTransactionHistroy = async (profileId: string) => {
       operationName: 'GetTransactionsHistory',
       variables: {
         spaceId: '0d2ae42d-4c27-4cb7-af6c-2099062302bb',
-        limit: 40,
+        limit: limit,
         offset: 0,
       },
       query: GraphQL_GetTransactionHistory,

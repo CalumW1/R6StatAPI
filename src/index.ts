@@ -71,12 +71,12 @@ export class R6StatAPI {
   //   return await GetUserStats(userId, platform, view, aggregation, gameMode, teamRole, season);
   // }
 
-  public async SearchMarketplace(searchQuery: string): Promise<Items> {
-    return await Search(searchQuery);
+  public async SearchMarketplace(searchQuery: string, limit: number): Promise<Items> {
+    return await Search(searchQuery, limit);
   }
 
-  public async getRecommendedItems(profileId: string): Promise<Items> {
-    return await RecommendedItems(profileId);
+  public async getRecommendedItems(profileId: string, limit: number): Promise<Items> {
+    return await RecommendedItems(profileId, limit);
   }
 
   public async getItemDetails(itemId: string): Promise<Item> {
@@ -88,16 +88,17 @@ export class R6StatAPI {
     marketplaceType: MarkplaceSearchType,
     types: Types,
     tags: Tags,
-    sortBy: string
+    sortBy: string,
+    limit: number
   ) {
-    return await AdvancedSearch(searchTerm, marketplaceType, types, tags, sortBy);
+    return await AdvancedSearch(searchTerm, marketplaceType, types, tags, sortBy, limit);
   }
 
-  public async GetPendingtransactions(profileId: string): Promise<Transactions> {
-    return await GetTransactionsPending(profileId);
+  public async GetPendingtransactions(profileId: string, limit: number): Promise<Transactions> {
+    return await GetTransactionsPending(profileId, limit);
   }
 
-  public async GetTransactionHistory(profileId: string): Promise<Transactions> {
-    return await GetTransactionHistroy(profileId);
+  public async GetTransactionHistory(profileId: string, limit: number): Promise<Transactions> {
+    return await GetTransactionHistroy(profileId, limit);
   }
 }

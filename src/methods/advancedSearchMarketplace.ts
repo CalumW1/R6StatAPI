@@ -27,7 +27,8 @@ export const AdvancedSearch = async (
   searchType: MarkplaceSearchType,
   types: Types,
   tags: Tags,
-  sortBy: string
+  sortBy: string,
+  limit: number
 ): Promise<Items> => {
   var token = await CheckToken();
 
@@ -61,7 +62,7 @@ export const AdvancedSearch = async (
       variables: {
         withOwnership: false,
         spaceId: '0d2ae42d-4c27-4cb7-af6c-2099062302bb',
-        limit: 40,
+        limit: limit,
         offset: 0,
         filterBy: {
           text: query,

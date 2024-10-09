@@ -12,7 +12,7 @@ import { ApiClient } from './apiClient';
 import { Item, Items } from '../interfaces/marketplace';
 import { MapMarketData } from '../utils/helperFunctions';
 
-export const RecommendedItems = async (profileId: string): Promise<Items> => {
+export const RecommendedItems = async (profileId: string, limit: number): Promise<Items> => {
   var token = await CheckToken();
 
   const headers = {
@@ -32,7 +32,7 @@ export const RecommendedItems = async (profileId: string): Promise<Items> => {
       variables: {
         withOwnership: true,
         spaceId: '0d2ae42d-4c27-4cb7-af6c-2099062302bb',
-        limit: 20,
+        limit: limit,
         projectId: 'marketplace-user-recommendation',
         categoryId: 'default',
       },

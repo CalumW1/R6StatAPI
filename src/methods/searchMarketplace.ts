@@ -12,7 +12,7 @@ import { Items, Item } from '../interfaces/marketplace';
 import { ApiClient } from './apiClient';
 import { MapMarketData } from '../utils/helperFunctions';
 
-export const Search = async (searchQuery: string): Promise<Items> => {
+export const Search = async (searchQuery: string, limit: number): Promise<Items> => {
   // end of each of word we need to add * Looks something like this R4-C*
   const query = searchQuery
     .split(' ')
@@ -39,7 +39,7 @@ export const Search = async (searchQuery: string): Promise<Items> => {
       variables: {
         withOwnership: true,
         spaceId: '0d2ae42d-4c27-4cb7-af6c-2099062302bb',
-        limit: 40,
+        limit: limit,
         offset: 0,
         filterBy: {
           text: query,
