@@ -902,7 +902,7 @@ await api.SearchMarketplace("R4-c", 20);
 ```
 
 <details>
-<summary>Response</summary>
+<summary>Example Response</summary>
 
 ```
 {
@@ -1095,7 +1095,7 @@ await api.advancedMarketplaceSearch(
 ```
 
 <details>
-<summary>Response</summary>
+<summary>Example Response</summary>
 
 ```
 {
@@ -1251,7 +1251,7 @@ Returns recommended items for a profile
 ```
 
 <details>
-<summary>Response</summary>
+<summary>Example Response</summary>
 
 ```
 {
@@ -1419,7 +1419,7 @@ await api.getItemDetails("aee4bdf2-0b54-4c6d-af93-9fe4848e1f76");
 ```
 
 <details>
-<summary>Response</summary>
+<summary>Example Response</summary>
 
 ```
 {
@@ -1484,7 +1484,7 @@ await api.GetTransactionHistory("91193155-2b57-48f1-b69b-556f5e4ccfea", 20);
 ```
 
 <details>
-<summary>Response</summary>
+<summary>Example Response</summary>
 
 ```
 {
@@ -1546,7 +1546,7 @@ await api.GetPendingtransactions("91193155-2b57-48f1-b69b-556f5e4ccfea", 20);
 ```
 
 <details>
-<summary>Response</summary>
+<summary>Example Response</summary>
 
 ```
 {
