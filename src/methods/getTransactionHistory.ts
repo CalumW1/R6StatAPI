@@ -14,6 +14,7 @@ import {
   Transaction,
   Transactions,
 } from '../interfaces/marketplace';
+import { BuildPayment, BuildPaymentOptions, BuildTradeItems } from '../utils/helperFunctions';
 import { ApiClient } from './apiClient';
 import { CheckToken } from './auth';
 
@@ -80,64 +81,4 @@ const MapResults = async (data: any): Promise<Transactions> => {
   });
 
   return transactions;
-};
-
-const BuildTradeItems = async (tradeItems: any): Promise<Item> => {
-  const defaultItem: Item = {
-    id: '',
-    assetUrl: '',
-    itemId: '',
-    name: '',
-    tags: [],
-    type: '',
-  };
-  if (!tradeItems || tradeItems.length === 0) {
-    return defaultItem;
-  }
-
-  const { id, itemId, assetUrl, name, tags, type } = tradeItems[0].item;
-
-  return {
-    id,
-    itemId,
-    assetUrl,
-    name,
-    tags,
-    type,
-  };
-};
-
-const BuildPaymentOptions = async (options: any): Promise<PaymentOptions> => {
-  const defualtPaymentOptions: PaymentOptions = {
-    price: 0,
-    transactionFee: 0,
-    quantity: 0,
-  };
-
-  if (!options || options.length === 0) return defualtPaymentOptions;
-
-  const { quantity } = options[0].item.viewer.meta;
-  const { price, transactionFee } = options[0];
-
-  return {
-    quantity,
-    price,
-    transactionFee,
-  };
-};
-
-const BuildPayment = async (payment: any): Promise<Payment> => {
-  const defualtPayment: Payment = {
-    price: 0,
-    transactionFee: 0,
-  };
-
-  if (!payment || payment.length === 0) return defualtPayment;
-
-  const { price, transactionFee } = payment;
-
-  return {
-    price,
-    transactionFee,
-  };
 };
