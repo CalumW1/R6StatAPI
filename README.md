@@ -148,6 +148,7 @@ await api.getUserById(user.userId, platform);
 
 <details>
   <summary> Example Response</summary>
+
 ```
 [
   {
@@ -206,12 +207,14 @@ await api.getUserProgression(user.userId, platform);
 
 <details>
   <summary> Example Response</summary>
+
 ```
 {
   level: 326,
   xp: 129949
 }
 ```
+
 </details>
 
 #### Get server status
@@ -226,6 +229,7 @@ await api.getServerStatus(platfrom)
 
 <details>
   <summary> Example Response</summary>
+
 ```
 {
   MDM: '4075',
@@ -238,6 +242,7 @@ await api.getServerStatus(platfrom)
   impactedFeatures: []
 }
 ```
+
 </details>
 
 #### Get user rank
@@ -255,6 +260,7 @@ await api.getUserRank(player.userId, platfrom);
 
 <details>
   <summary> Example Response</summary>
+
 ```
 {
   casual: {
@@ -821,6 +827,7 @@ await api.getUserOperators(
 
 <details>
   <summary> Example Response</summary>
+
 ```
 {
   ranked: {
@@ -872,6 +879,7 @@ await api.getUserOperators(
   casual: { attackers: [], defenders: [] }
 }
 ```
+
 </details>
 
 # Marketplace APIs
@@ -1239,9 +1247,9 @@ await api.advancedMarketplaceSearch(
 Returns recommended items for a profile
 
 | Field     | Type   | Required | options                                                                                                                 |
-| --------- | ------ | -------- | ----------------------------------------------------------------------------------------------------------------------- | --- |
+| --------- | ------ | -------- | ----------------------------------------------------------------------------------------------------------------------- |
 | profileId | id     | yes      | profileId is available from either [getUserByUsername](#get-user-by-username) or [getUserByUserId](#get-user-by-userid) |
-| limit     | number | yes      |                                                                                                                         |     |
+| limit     | number | yes      |                                                                                                                         |
 
 ```JS
   await api.getRecommendedItems(profileId, limit);
@@ -1407,9 +1415,9 @@ Returns recommended items for a profile
 
 Returns the details for an item by id.
 
-| Field  | Type | Required | options |
-| ------ | ---- | -------- | ------- |
-| itemId | id   | yes      |         |
+| Field  | Type | Required |
+| ------ | ---- | -------- |
+| itemId | id   | yes      |
 
 ```JS
 await api.getItemDetails("aee4bdf2-0b54-4c6d-af93-9fe4848e1f76");
@@ -1472,10 +1480,10 @@ await api.getItemDetails("aee4bdf2-0b54-4c6d-af93-9fe4848e1f76");
 
 Returns a list of of all completed transactions.
 
-| Field     | Type   | Required | options |
-| --------- | ------ | -------- | ------- |
-| profileId | id     | yes      |         |
-| limit     | number | yes      |         |
+| Field     | Type   | Required |
+| --------- | ------ | -------- |
+| profileId | id     | yes      |
+| limit     | number | yes      |
 
 ```JS
 await api.GetTransactionHistory(profileId, limit);
@@ -1533,10 +1541,10 @@ await api.GetTransactionHistory("91193155-2b57-48f1-b69b-556f5e4ccfea", 20);
 
 Returns a list of pending transactions for a profileId.
 
-| Field     | Type   | Required | options |
-| --------- | ------ | -------- | ------- |
-| profileId | id     | yes      |         |
-| limit     | number | yes      |         |
+| Field     | Type   | Required |
+| --------- | ------ | -------- |
+| profileId | id     | yes      |
+| limit     | number | yes      |
 
 ```JS
 await api.GetPendingtransactions(profileId, limit);
@@ -1638,7 +1646,6 @@ Legendary
 SuperRare
 Rare
 Uncommon
-
 ```
 
 </details>
@@ -1904,11 +1911,13 @@ Year 1 season 1 to current season. Format Y(Number)S(Number), Example Y7S3
 
 <details>
 <summary>Options</summary>
+
 ```
 'Battlepass'
 'Seasonal'
 'Universal'
 ```
+
 </details>
 
 ## Types
