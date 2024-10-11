@@ -6,6 +6,20 @@ import { GetServerStatus, ServerStatus } from './methods/getServerStatus';
 import { GetUserRank, UserRank } from './methods/getUserRank.js';
 import { GetOperator, GameModes } from './methods/getOperator';
 // import { GetUserStats, UserStats } from './methods/GetUserStats';
+import { Search } from './methods/searchMarketplace';
+import {
+  Item,
+  Items,
+  MarkplaceSearchType,
+  Tags,
+  Transactions,
+  Types,
+} from './interfaces/marketplace';
+import { RecommendedItems } from './methods/recommendedItems';
+import { getItemDetails } from './methods/getItemDetails';
+import { AdvancedSearch } from './methods/advancedSearchMarketplace';
+import { GetTransactionsPending } from './methods/getPendingTransactions';
+import { GetTransactionHistroy } from './methods/getTransactionHistory';
 
 export class R6StatAPI {
   public async login(email: string, password: string): Promise<string> {
@@ -56,4 +70,35 @@ export class R6StatAPI {
   // ): Promise<UserStats> {
   //   return await GetUserStats(userId, platform, view, aggregation, gameMode, teamRole, season);
   // }
+
+  public async SearchMarketplace(searchQuery: string, limit: number): Promise<Items> {
+    return await Search(searchQuery, limit);
+  }
+
+  public async getRecommendedItems(profileId: string, limit: number): Promise<Items> {
+    return await RecommendedItems(profileId, limit);
+  }
+
+  public async getItemDetails(itemId: string): Promise<Item> {
+    return await getItemDetails(itemId);
+  }
+
+  public async advancedMarketplaceSearch(
+    searchTerm: string,
+    marketplaceType: MarkplaceSearchType,
+    types: Types,
+    tags: Tags,
+    sortBy: string,
+    limit: number
+  ) {
+    return await AdvancedSearch(searchTerm, marketplaceType, types, tags, sortBy, limit);
+  }
+
+  public async GetPendingtransactions(profileId: string, limit: number): Promise<Transactions> {
+    return await GetTransactionsPending(profileId, limit);
+  }
+
+  public async GetTransactionHistory(profileId: string, limit: number): Promise<Transactions> {
+    return await GetTransactionHistroy(profileId, limit);
+  }
 }
