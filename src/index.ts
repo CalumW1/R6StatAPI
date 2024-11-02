@@ -20,6 +20,7 @@ import { getItemDetails } from './methods/getItemDetails';
 import { AdvancedSearch } from './methods/advancedSearchMarketplace';
 import { GetTransactionsPending } from './methods/getPendingTransactions';
 import { GetTransactionHistroy } from './methods/getTransactionHistory';
+import { GetNews } from './methods/getNews';
 
 export class R6StatAPI {
   public async login(email: string, password: string): Promise<string> {
@@ -100,5 +101,27 @@ export class R6StatAPI {
 
   public async GetTransactionHistory(profileId: string, limit: number): Promise<Transactions> {
     return await GetTransactionHistroy(profileId, limit);
+  }
+
+  public async GetNews(
+    categoriesFilter: string,
+    mediaFilter: string,
+    placementFilter: string,
+    locale: string,
+    fallbackLocale: string,
+    limit: number,
+    skip: number,
+    startIndex: number
+  ): Promise<any> {
+    return await GetNews(
+      categoriesFilter,
+      mediaFilter,
+      placementFilter,
+      locale,
+      fallbackLocale,
+      limit,
+      skip,
+      startIndex
+    );
   }
 }
