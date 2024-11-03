@@ -27,7 +27,8 @@
   "bugs": {
     "url": "https://github.com/CalumW1/R6StatAPI/issues"
   },
-  "homepage": "https://github.com/CalumW1/R6StatAPI#readme",
+  "documentation": "https://r6stats.esportsapp.gg/",
+  "homepage": "https://r6stats.esportsapp.gg/",
   "devDependencies": {
     "@types/node-fetch": "^2.6.11",
     "typescript": "^5.5.3"
