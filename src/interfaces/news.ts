@@ -3,7 +3,7 @@ export interface News {
   tags: string[];
   mediaFilter?: string;
   categoriesFilter?: string;
-  placementFilter?: string;
+  placementFilter?: string[];
   limit?: number;
   startIndex?: number;
   skip?: number;
