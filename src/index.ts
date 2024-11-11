@@ -21,6 +21,8 @@ import { AdvancedSearch } from './methods/advancedSearchMarketplace';
 import { GetTransactionsPending } from './methods/getPendingTransactions';
 import { GetTransactionHistroy } from './methods/getTransactionHistory';
 import { GetNews } from './methods/getNews';
+import { News } from './interfaces/news';
+import { GetNewsById } from './methods/getNewsById';
 
 export class R6StatAPI {
   public async login(email: string, password: string): Promise<string> {
@@ -112,7 +114,7 @@ export class R6StatAPI {
     limit: number,
     skip: number,
     startIndex: number
-  ): Promise<any> {
+  ): Promise<News> {
     return await GetNews(
       categoriesFilter,
       mediaFilter,
@@ -123,5 +125,9 @@ export class R6StatAPI {
       skip,
       startIndex
     );
+  }
+
+  public async GetNewsById(id: string, locale: string, fallbackLocale: string): Promise<News> {
+    return await GetNewsById(id, locale, fallbackLocale);
   }
 }

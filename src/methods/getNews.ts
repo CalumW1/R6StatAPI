@@ -35,8 +35,7 @@ export const GetNews = async (
 };
 
 const BuildNews = async (data: any): Promise<News> => {
-
-  const news : News = {
+  const news: News = {
     total: data.total,
     tags: data.tags as string[],
     mediaFilter: data.mediaFilter,
@@ -45,17 +44,16 @@ const BuildNews = async (data: any): Promise<News> => {
     limit: data.limit,
     startIndex: data.startIndex,
     skip: data.skip,
-    items: await BuildNewsItems(data.items)
-  }
+    items: await BuildNewsItems(data.items),
+  };
   return news;
-}
+};
 
 const BuildNewsItems = async (newsItems: any): Promise<NewsItems[]> => {
-  
   const news: NewsItems[] = [];
 
   newsItems.forEach(async (item: any) => {
-    const newsItem : NewsItems = {
+    const newsItem: NewsItems = {
       id: item.id,
       type: item.type,
       tag: item.tag,
@@ -68,14 +66,14 @@ const BuildNewsItems = async (newsItems: any): Promise<NewsItems[]> => {
       trackingPageValue: item.trackingPageValue,
       readTime: item.readTime,
       author: item.authors,
-      thumbnail: item?.thumbnail as Thumbnail ?? {},
-      button: item?.button as Button ?? {},
+      thumbnail: (item?.thumbnail as Thumbnail) ?? {},
+      button: (item?.button as Button) ?? {},
       index: item?.index ?? 0,
-      prevNode: item?.prevNode as Node ?? {},
-      nextNode: item?.nextNode as Node ?? {},
-    }
+      prevNode: (item?.prevNode as Node) ?? {},
+      nextNode: (item?.nextNode as Node) ?? {},
+    };
     news.push(newsItem);
   });
 
   return news;
-}
+};

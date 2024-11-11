@@ -115,6 +115,9 @@ export const UBI_GETNEWS = (
 ) =>
   `?categoriesFilter=${categoriesFilter}&mediaFilter=${mediaFilter}&placementFilter=${placementFilter}&locale=${locale}&fallbackLocale=${fallbackLocale}&limit=${limit}&skip=${skip}&startIndex=${startIndex}&tags=BR-rainbow-six%20GA-siege`;
 
+export const UBI_GETNEWSBYID = (id: string, locale: string, fallbackLocale: string) =>
+  `/${id}?entryId=${id}&locale=${locale}&fallbackLocale=${fallbackLocale}&tags=BR-rainbow-six%20GA-siege`;
+
 export const AvatarURI = (userId: string, size: number) =>
   `https://avatars.ubisoft.com/${userId}/default_${
     size === 500 ? 'tall' : `${size}_${size}`
