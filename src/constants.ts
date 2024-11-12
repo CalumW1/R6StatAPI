@@ -22,6 +22,8 @@ export const X_PLATFORM_APPID = '99f58b32-1fe6-4efc-942f-143ce779fac2';
 
 export const UBI_REGIONID_MARKETPLACE = 'WW';
 
+export const NEWS_AUTH_TOKEN = '3u0FfSBUaTSew-2NVfAOSYWevVQHWtY9q3VM8Xx9Lto';
+
 export const UBI_SANDBOXES = [
   { id: 'uplay', value: 'OSBOR_PC_LNCH_A' },
   { id: 'psn', value: 'OSBOR_PS4_LNCH_A' },
@@ -57,6 +59,8 @@ export const UBI_DATADEV_URI = 'https://prod.datadev.ubisoft.com/v1';
 
 export const UBI_MARKETPLACE_URI =
   'https://public-ubiservices.ubi.com/v1/profiles/me/uplay/graphql';
+
+export const UBI_NEWS_URI = 'https://nimbus.ubisoft.com/api/v1/items';
 
 export const UBI_GETUSERBYUSERNAME_URI = (userName: string, platform: string) =>
   `/profiles?namesOnPlatform=${userName}&platformType=${platform}`;
@@ -98,6 +102,21 @@ export const UBI_GETSTATS = (
   seasons: string
 ) =>
   `/users/${userId}/playerstats?spaceId=${spaceId}&view=${view}&aggregation=${aggregation}&gameMode=${gameMode}&platformGroup=${platform}&teamRole=${teamRole}&seasons=${seasons}`;
+
+export const UBI_GETNEWS = (
+  categoriesFilter: string,
+  mediaFilter: string,
+  placementFilter: string,
+  locale: string,
+  fallbackLocale: string,
+  limit: number,
+  skip: number,
+  startIndex: number
+) =>
+  `?categoriesFilter=${categoriesFilter}&mediaFilter=${mediaFilter}&placementFilter=${placementFilter}&locale=${locale}&fallbackLocale=${fallbackLocale}&limit=${limit}&skip=${skip}&startIndex=${startIndex}&tags=BR-rainbow-six%20GA-siege`;
+
+export const UBI_GETNEWSBYID = (id: string, locale: string, fallbackLocale: string) =>
+  `/${id}?entryId=${id}&locale=${locale}&fallbackLocale=${fallbackLocale}&tags=BR-rainbow-six%20GA-siege`;
 
 export const AvatarURI = (userId: string, size: number) =>
   `https://avatars.ubisoft.com/${userId}/default_${
