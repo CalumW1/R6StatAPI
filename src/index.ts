@@ -22,6 +22,8 @@ import { GetTransactionsPending } from './methods/getPendingTransactions';
 import { GetTransactionHistroy } from './methods/getTransactionHistory';
 
 export class R6StatAPI {
+  constructor() {
+  }
   public async login(email: string, password: string): Promise<string> {
     return await Auth(email, password);
   }
