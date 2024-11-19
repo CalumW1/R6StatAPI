@@ -32,5 +32,11 @@
   "devDependencies": {
     "@types/node-fetch": "^2.6.11",
     "typescript": "^5.5.3"
-  }
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ]
 }
