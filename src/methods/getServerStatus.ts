@@ -6,17 +6,7 @@ import {
 } from '../constants';
 import { CheckToken } from './auth';
 import { ApiClient } from './apiClient';
-
-export interface ServerStatus {
-  MDM: string;
-  SpaceID: string;
-  Category: string;
-  Name: string;
-  platform: string;
-  status: string;
-  maintenance: string;
-  impactedFeatures: string[];
-}
+import { ServerStatus } from '../interfaces/stats';
 
 export const GetServerStatus = async (platform: string): Promise<ServerStatus> => {
   if (platform === '') throw new Error(`please check platform: ${platform}`);

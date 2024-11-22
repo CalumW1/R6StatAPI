@@ -1,10 +1,10 @@
 import { Auth } from './methods/auth';
-import { GetUserByUsername, User } from './methods/getUserByUsername';
+import { GetUserByUsername } from './methods/getUserByUsername';
 import { GetUserByUserId } from './methods/getUserByUserId';
-import { GetUserProgression, Progression } from './methods/getUserProgression.js';
-import { GetServerStatus, ServerStatus } from './methods/getServerStatus';
-import { GetUserRank, UserRank } from './methods/getUserRank.js';
-import { GetOperator, GameModes } from './methods/getOperator';
+import { GetUserProgression } from './methods/getUserProgression.js';
+import { GetServerStatus } from './methods/getServerStatus';
+import { GetUserRank } from './methods/getUserRank.js';
+import { GetOperator } from './methods/getOperator';
 // import { GetUserStats, UserStats } from './methods/GetUserStats';
 import { Search } from './methods/searchMarketplace';
 import {
@@ -23,10 +23,10 @@ import { GetTransactionHistroy } from './methods/getTransactionHistory';
 import { GetNews } from './methods/getNews';
 import { News } from './interfaces/news';
 import { GetNewsById } from './methods/getNewsById';
+import { GameModes, Progression, ServerStatus, User, UserRank } from './interfaces/stats';
 
 export class R6StatAPI {
-  constructor() {
-  }
+  constructor() {}
   public async login(email: string, password: string): Promise<string> {
     return await Auth(email, password);
   }

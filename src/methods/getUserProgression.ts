@@ -7,11 +7,7 @@ import {
 } from '../constants';
 import { CheckToken } from './auth';
 import { ApiClient } from './apiClient';
-
-export interface Progression {
-  level: number;
-  xp: number;
-}
+import { Progression } from '../interfaces/stats';
 
 export const GetUserProgression = async (userId: string): Promise<Progression> => {
   if (!userId) throw new Error('Please check userId');

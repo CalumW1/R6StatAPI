@@ -1,25 +1,7 @@
 import { UBI_APPID, BASE_UBI_URI, UBI_GETUSERBYUSERNAME_URI, AvatarImages } from '../constants';
 import { CheckToken } from './auth';
 import { ApiClient } from './apiClient';
-
-interface Profiles {
-  profiles: User[];
-}
-
-export interface User {
-  profileId: string;
-  userId: string;
-  platformType: string;
-  idOnPlatform: string;
-  nameOnPlatform: string;
-  avatars: Avatars;
-}
-
-interface Avatars {
-  '146': string;
-  '256': string;
-  '500': string;
-}
+import { Profiles, User } from '../interfaces/stats';
 
 export const GetUserByUsername = async (username: string, platform: string): Promise<User> => {
   if (!username || !platform)
